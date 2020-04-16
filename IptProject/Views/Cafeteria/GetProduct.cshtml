@@ -1,0 +1,55 @@
+﻿@model List<IptProject.Models.Cafeteria.FoodItem>
+
+@{
+    ViewBag.Title = "GetProduct";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <a onclick="sweetalert();">
+
+
+                    <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">outdoor_grill</i>
+                            </div>
+                            @*<p class="card-category">Used Space</p>*@
+                            <h3 class="card-title">
+                                @item.ItemName
+
+                            </h3>
+                            <div class="tim-typo" style="color:black">
+                                <p>@item.IDescription</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons text-success">money</i>
+                                <a href="javascript:;">Rs @item.Price /-</a>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        }
+
+
+
+    </div>
+@section scripts{
+    <script type="text/javascript">
+        function sweetalert() {
+            swal('Please wait');
+        }
+    </script>
+    
+    
+    
+    }
+
