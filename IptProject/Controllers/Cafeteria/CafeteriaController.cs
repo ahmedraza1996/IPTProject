@@ -43,7 +43,4 @@ namespace IptProject.Controllers
                 }
             }
             
-            return View(lstFoodItems);
-        }
-    }
-}
+            return View(l\
