@@ -399,6 +399,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_PortalLayout.cshtml" />
     <Content Include="Views\Cafeteria\GetProduct.cshtml" />
+    <Content Include="Views\Cafeteria\GetImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
