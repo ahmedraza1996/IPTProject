@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JobPortalWebsite.Models
+namespace IptProject.Models.JobPortal
 {
     public class JobDetails
     {

@@ -1,4 +1,4 @@
-﻿using JobPortalWebsite.Models;
+﻿using IptProject.Models.JobPortal;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
