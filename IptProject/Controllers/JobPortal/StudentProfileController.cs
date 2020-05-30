@@ -131,10 +131,10 @@ namespace IptProject.Controllers.JobPortal
                 var result = deleteTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Profile");
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Profile");
         }
 
     }
