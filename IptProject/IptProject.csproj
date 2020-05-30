@@ -601,6 +601,7 @@
     <Content Include="Views\Cafeteria\GetImage.cshtml" />
     <Content Include="Views\StudentProfile\Profile.cshtml" />
     <Content Include="Views\Job\Index.cshtml" />
+    <Content Include="Views\Job\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
