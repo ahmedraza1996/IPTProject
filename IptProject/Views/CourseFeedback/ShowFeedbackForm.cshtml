@@ -6,8 +6,8 @@
 }
     
     <div class="container-fluid">
-        <form action="http://localhost:44380/api/coursefeedback/postAnswers
-" method="post">
+        <form  id="form"action="http://localhost:44380/api/coursefeedback/postAnswers
+" method="post" onsubmit=s()>
             @foreach (var item in Model)
             {
             <div class="card">
@@ -35,12 +35,24 @@
                         <textarea name=" @item.QuestionID"></textarea>
                     }
                 </div>
-            </div>
-                    
+            </div>  
             }
-            <button class="btn btn-default" type="submit">Submit</button>
+            <button id ="submit" class="btn btn-default" type="submit">Submit</button>
 
         </form>
+        <script>
+            function s(e) {
+                console.log("dedededededededededededededededededede");
+                fetch("https://localhost:44380/api/coursefeedback/postAnswers", {method: "post"));
+               // $('#Form').serializeArray();
+                return false;
+            }
+            $(document).ready(function() {
+                $("#submit").click(function(){
+                  console.log( "hello");
+                }); 
+            });
+        </script>
     </div>
 @section scripts{
     <script type="text/javascript">

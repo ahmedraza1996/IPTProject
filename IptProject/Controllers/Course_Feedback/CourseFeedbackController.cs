@@ -30,10 +30,31 @@ namespace IptProject.Controllers.Course_Feedback
                     var readTask = result.Content.ReadAsAsync<List<Questions>>();
                     readTask.Wait();
 
-                    var fooditems = readTask.Result;
+                    var questions = readTask.Result;
 
-                    return View(fooditems);
+                    return View(questions);
                 
+            }
+        }
+        public ActionResult ShowCOurseList()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                //HTTP GET
+                var responseTask = client.GetAsync("coursefeedback/getQuestions?courseName=AAA&courseType=1");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+
+                var readTask = result.Content.ReadAsAsync<List<Questions>>();
+                readTask.Wait();
+
+                var questions = readTask.Result;
+
+                return View(questions);
+
             }
         }
         
