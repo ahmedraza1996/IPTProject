@@ -1,0 +1,55 @@
+﻿@model List<IptProject.Models.CourseFeedback.Questions>
+
+@{
+    ViewBag.Title = "Submit Feedback";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+    
+    <div class="container-fluid">
+        <form action="http://localhost:44380/api/coursefeedback/postAnswers
+" method="post">
+            @foreach (var item in Model)
+            {
+            <div class="card">
+                <div class="col-md-6">
+
+                    @if (item.QuestionType == "2")
+                    {
+                        <div class="radio m-6">
+                            <p style="margin-left:7px;"><b>@item.QuestionText</b></p>
+                            <label><input type="radio" name="@item.QuestionID">@item.options[0]</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="@item.QuestionID">@item.options[1]</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="@item.QuestionID">@item.options[2]</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="@item.QuestionID">@item.options[3]</label>
+                        </div>
+                    }
+                    @if (item.QuestionType == "1")
+                    {
+                        <p>@item.QuestionText</p>
+                        <textarea name=" @item.QuestionID"></textarea>
+                    }
+                </div>
+            </div>
+                    
+            }
+            <button class="btn btn-default" type="submit">Submit</button>
+
+        </form>
+    </div>
+@section scripts{
+    <script type="text/javascript">
+        function sweetalert() {
+            swal('Please wait');
+        }
+    </script>
+
+
+
+}
+
