@@ -1,0 +1,554 @@
+﻿@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+
+}
+
+
+
+<style>
+
+    .badge_title {
+        border: 1px solid gray;
+        padding: 1rem;
+        font-size: 0.8em;
+        color: darkgrey;
+        margin-bottom: 0.5rem;
+        margin-top: 2rem;
+        background-color: white
+    }
+
+    .fypstudentsearch {
+        display: none;
+        margin-bottom: 2rem;
+        margin-top: 4rem;
+        background-color: rgb(250, 250, 250);
+        padding-bottom: 1rem;
+        box-shadow: 0px 0px 8px 5px rgba(0,0,0,0.1);
+    }
+
+    #fypmetadatasearch {
+        display: none;
+    }
+
+    .tableRow {
+        margin-top: 3rem;
+    }
+
+    .btn {
+        margin-top: 1rem;
+    }
+
+    .search {
+    }
+
+    .radiodiv {
+        margin-top: 1rem;
+    }
+
+    .option {
+        margin-left: 0.5rem;
+        margin-right: 1rem;
+    }
+
+    .default-search {
+        display: block;
+        margin-top: 2rem;
+    }
+
+    .inputdiv {
+        margin-bottom: 2rem;
+    }
+
+    .radiobuttons {
+        display: flex;
+        border: 1px solid rgba(0,0,0,0.2);
+        border-radius: 10px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        width: 100%;
+        box-shadow: rgba(0,0,0,0.2) 1px 5px;
+    }
+
+
+
+    .option {
+        padding: 1rem;
+    }
+</style>
+
+
+<div class="container-fluid" style="margin-top:2rem;">
+    <div class="menu">
+
+        <button onclick='display("defaultsearch")' id="defaultsearchBtn" class="btn btn-primary form-check-inline my-2 my-sm-0">Default Search</button>
+        <button onclick='display("fypstudentsearch")' id="fypstudentsearchBtn" class="btn btn-outline-primary form-check-inline my-2 my-sm-0">FYP Student Search</button>
+        <button onclick='display("fypmetadatasearch")' id="fypmetadatasearchBtn" class="btn btn-outline-primary form-check-inline my-2 my-sm-0">FYP Metadata Search</button>
+
+    </div>
+</div>
+
+<div class="container-fluid fypstudentsearch" id="fypstudentsearch">
+    <div class="row">
+
+        <div class="col-lg-3">
+           
+            
+            <span class="badge_title badge badge-light">Student Name</span>
+
+            <select id="student_names" class="glyphicon-tags"  multiple data-role="slider">
+                <option class="glyphicon-tag" value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+
+            </select>
+        </div>
+
+
+
+
+
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+
+            <span class="badge_title badge badge-light">GPA</span>
+            <!-- Default checked -->
+
+            <div class="custom-control custom-radio">
+                <input onclick="showRangeInput('range')" type="radio" class="custom-control-input" id="range" name="defaultExampleRadios" checked>
+                <label class="custom-control-label" for="range">Range</label>
+            </div>
+
+            <div class="form-check-inline" style="width:50%;">
+                <input disabled id="minRange" min="0.0" max="4.0" type="number" class="form-control" style="margin-right:1rem;" />
+                <input disabled id="maxRange" min="0.0" max="4.0" type="number" class="form-control" />
+            </div>
+
+            <div class="custom-control custom-radio">
+                <input onclick="showRangeInput('exact')" type="radio" class="custom-control-input" id="greater" name="defaultExampleRadios">
+                <label class="custom-control-label" for="greater">Greater Than</label>
+            </div>
+
+            <!-- Default checked -->
+            <div class="custom-control custom-radio">
+                <input onclick="showRangeInput('exact')" type="radio" class="custom-control-input" id="less" name="defaultExampleRadios" checked>
+                <label class="custom-control-label" for="less">Less Than</label>
+            </div>
+
+            <div class="form-check-inline" style="width:50%;">
+                <input id="exactValue" min="0.0" max="4.0" type="number" class="form-control" style="margin-right:1rem;" />
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <button onclick="postFypStudentSearch()" class="btn btn-success"> Submit </button>
+
+</div>
+
+<div id="fypmetadatasearch">
+    <p>Fyp METADATA Search</p>
+</div>
+
+
+<div class="container-fluid " id="defaultsearch">
+    <div class="row ">
+        <div class="col-lg-12 inputdiv">
+            <div>
+                <div>
+                    <form class="form-inline">
+                        <div>
+                            <input id="searchText" onkeyup="success()" class="search form-control mr-sm-2 mt-3" type="search" placeholder="Search" aria-label="Search">
+                        </div>
+
+                        <div class="dropdown form-inline">
+                            <button id="dropDownButton" onclick="onClickDropDown()" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                Select Table
+                            </button>
+                            <div id="dropdown" class="dropdown-menu">
+
+                            </div>
+                        </div>
+
+                        <div id="optionsDiv" class="radiobuttons p-5">
+                            <div id="selectoptions">Select a Table To Display Search Criteria</div>
+                        </div>
+
+                        <div class="mt-3 align-baseline">
+                            <button disabled id="searchButton" class="btn btn-outline-success form-check-inline my-2 my-sm-0" type="button" onclick="sendPostRequest()">Search</button>
+
+                        </div>
+
+                    </form>
+                    <p id="demo"></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr id="attributeheads">
+                            <th scope="col">#</th>
+                            <th scope="col">StudentID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Contact</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="tablebodydata"></tbody>
+                </table>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    isTextInserted = false;
+    isDropDownSelected = false;
+
+    /**
+
+     * This is where you will load your DATABASE TABLE-NAMES and their respective ATTRIBUTES in a dictionary.
+     * KeyValuePair "TableName" : ["attr1","attr2","attr3"]
+     * Below is a dummy database schema
+    **/
+
+
+    /**
+     *
+     *  <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="">
+                                <span class="option">Optssssio</span>
+                            </label>
+     *
+     *  **/
+
+    var database = {};
+
+
+
+    database = {
+        "Teacher": ["name", "faculty_department", "email", "dob"],
+        "Student": ["id", "contact", "address", "school", "section", "batch"],
+        "Course": ["code", "course_name", "credit_hours", "instructor", "department"],
+    }
+
+    const tableNames = Object.keys(database);
+
+
+
+    var dropdown = document.getElementById("dropdown");
+
+    for (i = 0; i < tableNames.length; i++) {
+        dropdown.innerHTML += '<a onclick = "dropDownSet(this)" class="dropdown-item" href = "#" >' + tableNames[i] + '</a >'
+    }
+
+
+
+
+
+    function sendPostRequest() {
+        var attributesToShow = [];
+
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("RES " + this.responseText);
+                //document.getElementById("demo").innerHTML = this.responseText;
+                attributesToShow = JSON.parse(this.responseText);
+                showTableDataOnAttributesRecieved(attributesToShow);
+                //console.log("Attributes to show ");
+                //console.log("=========================>" + attributesToShow);
+            }
+        };
+
+
+        var searchQuery = document.getElementById("searchText").value;
+
+        var allOptions = document.getElementsByClassName("parentOption");
+
+        var selectedOptions = [];
+
+        for (i = 0; i < allOptions.length; i++) {
+            if (allOptions[i].children[0].checked) {
+                console.log(allOptions[i].children[1].innerText);
+                selectedOptions.push(allOptions[i].children[1].innerText);
+            }
+
+        }
+        console.log("----------\n");
+
+        var dataToSend = {
+            searchQuery: searchQuery,
+            attributes: selectedOptions
+        }
+
+        console.log(dataToSend);
+        var postUrl = "/home/post";
+        for (i = 0; i < selectedOptions.length; i++) {
+            console.log(selectedOptions[i]);
+        }
+
+
+        xhttp.open("POST", "/home/post/", true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send(JSON.stringify(dataToSend));
+
+
+
+
+    }
+
+    function showTableDataOnAttributesRecieved(attributesToShow) {
+
+        //HEADER ROW
+        //<th scope="col">StudentID</th>
+
+
+        //DATA ROW  / tablebodydata
+        /**
+         *
+         *   <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>mdo</td>
+                <td>Otto</td>
+                <td>mdo</td>
+                <td>Otto</td>
+                <td>mdo</td>
+                <td>Otto</td>
+                <td>mdo</td>
+             </tr>
+         *
+         *  **/
+
+
+
+        var tableHeaderRow = document.getElementById("attributeheads");
+        tableHeaderRow.innerHTML = "";
+        console.log("==============================");
+
+        for (i = 0; i < attributesToShow.length; i++) {
+            console.log("==!!=>" + attributesToShow[i]);
+            tableHeaderRow.innerHTML += '<th scope="col">' + attributesToShow[i] + '</th>';
+        }
+
+
+    }
+
+    function setOptions(tableName) {
+        var options = document.getElementById("optionsDiv");
+        options.innerHTML = "";
+
+        //alert(tableName);
+
+        var attrs = database[tableName];
+        console.log(attrs);
+
+        for (i = 0; i < attrs.length; i++) {
+            options.innerHTML += '<label class="form-check-label parentOption"><input id="option" type ="checkbox" class="optionsclass form-check-input pr-20" value = "" ><span class="option">' + attrs[i] + '</span></label>';
+
+        }
+
+
+
+
+    }
+
+    function debugState() {
+        console.log("text: " + isTextInserted + " dropwdown: " + isDropDownSelected);
+    }
+
+    function onClickDropDown() {
+        console.log("On Click Drop Down");
+        this.debugState();
+        if (document.getElementById("dropDownButton").innerHTML === "Select Table") {
+            isDropDownSelected = false;
+        } else {
+
+            isDropDownSelected = true;
+        }
+
+        this.setStateToButton();
+    }
+
+
+    function dropDownSet(itemName) {
+
+        console.log("DROP DOWN SET")
+        buttonName = itemName.innerHTML;
+
+        this.setOptions(buttonName);
+        console.log(buttonName);
+
+        var button_ = document.getElementById("dropDownButton");
+        button_.innerText = buttonName;
+        var selectoptionstag = document.getElementById("selectoptions");
+        if (selectoptionstag != null)
+            selectoptionstag.hidden = true;
+
+
+        var dropDownButton = document.getElementById("dropDownButton")
+        dropDownButton.innerHTML = buttonName;
+
+        isDropDownSelected = true;
+        this.setStateToButton();
+
+    }
+
+
+    function success() {
+
+        if (document.getElementById("searchText").value === "") {
+            isTextInserted = false;
+            this.setStateToButton();
+        } else {
+            isTextInserted = true;
+            this.setStateToButton();
+        }
+
+    }
+
+    function setStateToButton() {
+        console.log("In set state");
+        debugState();
+        if (isTextInserted && isDropDownSelected) {
+            console.log("Enable the button :)");
+            document.getElementById('searchButton').disabled = false;
+        } else {
+            document.getElementById('searchButton').disabled = true;
+
+        }
+
+    }
+
+
+    function display(searchToDisplay) {
+
+        var defaultsearch = "defaultsearch";
+        var fypstudentsearch = "fypstudentsearch";
+        var fypmetadatasearch = "fypmetadatasearch";
+
+
+        var searchToShow = document.getElementById(searchToDisplay);
+
+        if (searchToDisplay === defaultsearch) {
+
+            document.getElementById("defaultsearchBtn").classList.add('btn-primary');
+            document.getElementById("defaultsearchBtn").classList.remove('btn-outline-primary');
+
+            document.getElementById("fypstudentsearchBtn").classList.remove('btn-primary');
+            document.getElementById("fypstudentsearchBtn").classList.add('btn-outline-primary');
+
+            document.getElementById("fypmetadatasearchBtn").classList.remove('btn-primary');
+            document.getElementById("fypmetadatasearchBtn").classList.add('btn-outline-primary');
+
+            searchToShow.style.display = "block";
+            var notToShow = document.getElementById(fypmetadatasearch);
+            var notToShow2 = document.getElementById(fypstudentsearch);
+            notToShow.style.display = "none";
+            notToShow2.style.display = "none";
+
+
+        }
+        if (searchToDisplay === fypstudentsearch) {
+
+            document.getElementById("defaultsearchBtn").classList.remove('btn-primary');
+            document.getElementById("defaultsearchBtn").classList.add('btn-outline-primary');
+
+
+            document.getElementById("fypstudentsearchBtn").classList.add('btn-primary');
+            document.getElementById("fypstudentsearchBtn").classList.remove('btn-outline-primary');
+
+            document.getElementById("fypmetadatasearchBtn").classList.remove('btn-primary');
+            document.getElementById("fypmetadatasearchBtn").classList.add('btn-outline-primary');
+
+            searchToShow.style.display = "block";
+            var notToShow = document.getElementById(fypmetadatasearch);
+            var notToShow2 = document.getElementById(defaultsearch);
+            notToShow.style.display = "none";
+            notToShow2.style.display = "none";
+        }
+        if (searchToDisplay === fypmetadatasearch) {
+
+            document.getElementById("fypstudentsearchBtn").classList.remove('btn-primary');
+            document.getElementById("fypstudentsearchBtn").classList.add('btn-outline-primary');
+
+
+            document.getElementById("fypmetadatasearchBtn").classList.add('btn-primary');
+            document.getElementById("fypmetadatasearchBtn").classList.remove('btn-outline-primary');
+
+            document.getElementById("defaultsearchBtn").classList.remove('btn-primary');
+            document.getElementById("defaultsearchBtn").classList.add('btn-outline-primary');
+
+            searchToShow.style.display = "block";
+            var notToShow = document.getElementById(defaultsearch);
+            var notToShow2 = document.getElementById(fypstudentsearch);
+            notToShow.style.display = "none";
+            notToShow2.style.display = "none";
+        }
+
+
+
+    }
+
+
+    function showRangeInput(radioButton) {
+        var radio_button = document.getElementById(radioButton);
+        if (radioButton === "range" && radio_button.checked) {
+            var minRange = document.getElementById("minRange");
+            var maxRange = document.getElementById("maxRange");
+
+            minRange.disabled = false;
+            maxRange.disabled = false;
+
+            var exactValue = document.getElementById("exactValue");
+            exactValue.disabled = true;
+
+
+        } else {
+            var minRange = document.getElementById("minRange");
+            var maxRange = document.getElementById("maxRange");
+
+            minRange.disabled = true;
+            maxRange.disabled = true;
+
+            var exactValue = document.getElementById("exactValue");
+            exactValue.disabled = false;
+        }
+    }
+
+
+    function postFypStudentSearch() {
+
+        var studentNames;
+        var studentIds;
+        var batches;
+        var gpas;
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/popperjs/core2" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
