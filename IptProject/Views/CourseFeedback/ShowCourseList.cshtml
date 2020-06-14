@@ -1,0 +1,88 @@
+﻿@model List<IptProject.Models.CourseFeedback.Course>
+
+@{
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-plain">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title mt-0">Course feedback</h4>
+                            <p class="card-category">Please select a course to submit the feedback</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="">
+                                        <tr>
+                                            <th>
+                                                Course Code
+                                            </th>
+                                            <th>
+                                                Course Name
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            <th>
+                                                Submit
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>
+                                                @item.CourseCode
+                                            </td>
+                                            <td>
+                                                @item.CourseName
+                                            </td>
+                                            <td>
+                                                @if (item.isSubmitted == "0")
+                                                {
+                                                    <span>Not Submited</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Submited</span>
+                                                }
+
+                                            </td>
+                                            <td>
+                                                @if (item.isSubmitted == "0") { 
+                                                <button class="btn btn-primary">Submit</button>
+                                                }
+                                                else
+                                                {
+                                                <button href="/" class="btn btn-primary" disabled>Submitted</button>
+                                                }
+                                            </td>
+
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

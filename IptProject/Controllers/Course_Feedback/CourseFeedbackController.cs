@@ -36,24 +36,24 @@ namespace IptProject.Controllers.Course_Feedback
                 
             }
         }
-        public ActionResult ShowCOurseList()
+        public ActionResult ShowCourseList()
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:44380/api/");
                 //HTTP GET
-                var responseTask = client.GetAsync("coursefeedback/getQuestions?courseName=AAA&courseType=1");
+                var responseTask = client.GetAsync("coursefeedback/getAllCourses?studentID=16k3950");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
 
 
-                var readTask = result.Content.ReadAsAsync<List<Questions>>();
+                var readTask = result.Content.ReadAsAsync<List<Course>>();
                 readTask.Wait();
 
-                var questions = readTask.Result;
+                var courseList = readTask.Result;
 
-                return View(questions);
+                return View(courseList);
 
             }
         }

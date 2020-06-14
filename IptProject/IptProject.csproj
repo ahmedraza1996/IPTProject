@@ -132,6 +132,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cafeteria\FoodItem.cs" />
+    <Compile Include="Models\CourseFeedback\Course.cs" />
     <Compile Include="Models\CourseFeedback\Questions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -402,6 +403,7 @@
     <Content Include="Views\Shared\_PortalLayout.cshtml" />
     <Content Include="Views\Cafeteria\GetProduct.cshtml" />
     <Content Include="Views\CourseFeedback\ShowFeedbackForm.cshtml" />
+    <Content Include="Views\CourseFeedback\ShowCourseList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
