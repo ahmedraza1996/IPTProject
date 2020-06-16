@@ -16,11 +16,20 @@ namespace IptProject.Models.Cafeteria
             this.ItemStatus = ItemStatus;
             this.Price = Price;
         }
+        public FoodItem()
+        {
 
+        }
         public int ItemId { get; set; }
         public string ItemName { get; set; }
         public string IDescription { get; set; }
         public string ItemStatus { get; set; }
         public int Price { get; set; }
+        public string base64image { get; set; }
+        public string ITEMIMAGE { get; set; }
+        //IMAGE
+        public HttpPostedFileBase IMAGEFILE { get; set; }
+
+
     }
 }

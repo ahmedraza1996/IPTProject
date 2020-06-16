@@ -1,0 +1,118 @@
+﻿@model List<IptProject.Models.Cafeteria.FoodItem>
+@{
+    ViewBag.Title = "GetProductList";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Food Item Table</h4>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Price
+                                </th>
+                                <th>
+                                    Desc
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                </th>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.ItemName
+                                            </td>
+                                            <td>
+                                                @item.Price
+                                            </td>
+                                            <td>
+                                                @item.IDescription
+                                            </td>
+                                            <td id="itemid_@item.ItemId">
+                                                @item.ItemStatus
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <a class="btn btn-primary" style="color: white" onclick='ShowEditStatus("@item.ItemId")'>Edit Status</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Item Status</h3>
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+
+            </div>
+            <div class="modal-body" id="myModalBodyDiv">
+
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section scripts{
+    <script>
+
+        var ShowEditStatus = function (ItemId) {
+
+            var url = "/CafeteriaStaff/EditItemStatus?ItemId=" + ItemId;
+
+            $("#myModalBodyDiv").load(url, function () {
+                $("#myModal").modal("show");
+
+            })
+        }
+
+
+    </script>
+}

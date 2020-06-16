@@ -9,6 +9,8 @@ namespace IptProject.Shared
     public class Constants
     {
 
+
+      
         public static SelectList getItemStatus()
         {
             SelectList ItemStatus = new SelectList(
@@ -19,7 +21,7 @@ namespace IptProject.Shared
 
                      }, "Value", "Text"
             );
-
+            
             return ItemStatus;
         }
         public static SelectList getOrderStatus()
@@ -38,7 +40,5 @@ namespace IptProject.Shared
 
             return OrderStatus;
         }
-
-
     }
 }

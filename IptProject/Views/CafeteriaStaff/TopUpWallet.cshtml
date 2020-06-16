@@ -1,0 +1,92 @@
+﻿@model IptProject.Models.Cafeteria.Wallet
+
+@{
+    ViewBag.Title = "TopUpWallet";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Add New Item</h4>
+
+                    </div>
+                    <div class="card-body">
+                        <form id="myForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Your Comments</label>
+                                        <input type="text" rows="3" class="form-control" name="comment" id="comment" placeholder="Enter your comments "/>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Your Comments</label>
+                                    <input type="text" rows="3" class="form-control" name="comment" id="comment" placeholder="Enter your comments "/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                </div>
+
+                            </div>
+                            <input id="rating" name="rating" type="hidden" value="0" />
+
+                            <a href="#" id="btnSubmit" class="btn btn-primary btn-block">
+                                Submit
+                            </a>
+                            @*<button type="submit" class="btn btn-primary pull-right">Submit</button>*@
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+            $(document).ready(function () {
+                debugger;
+                $("#btnSubmit").click(function () {
+
+                    debugger;
+                    var myformdata = $("#myForm").serialize();
+
+                    $.ajax({
+
+                        type: "POST",
+                        url: "/CafeteriaStaff/AddProduct",
+                        data: myformdata,
+                        success: function (response) {
+                            if (response != null) {
+                                swal.fire({ text: response, timer: 15000 });
+                            }
+
+                        }
+
+                    });
+                });
+
+            })
+
+
+    </script>
+
+}
+
+
