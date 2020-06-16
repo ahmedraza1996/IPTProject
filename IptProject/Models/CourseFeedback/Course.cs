@@ -12,5 +12,6 @@ namespace IptProject.Models.CourseFeedback
         public string CourseID { get; set; }
         public string FeedbackID { get; set; }
         public string isSubmitted { get; set; }
+        public int type { get; set; }
     }
 }

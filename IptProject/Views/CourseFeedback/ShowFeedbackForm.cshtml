@@ -7,7 +7,7 @@
     
     <div class="container-fluid">
         <form  id="form"action="http://localhost:44380/api/coursefeedback/postAnswers
-" method="post" onsubmit=s()>
+" method="post" onsubmit="handleUpload()">
             @foreach (var item in Model)
             {
             <div class="card">
@@ -56,9 +56,12 @@
     </div>
 @section scripts{
     <script type="text/javascript">
-        function sweetalert() {
-            swal('Please wait');
+        function handleUpload(event) {
+            alert(123)
+            console.log($("form").serialize());
+            return false;
         }
+        
     </script>
 
 

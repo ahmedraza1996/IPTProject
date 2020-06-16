@@ -1,6 +1,7 @@
 ﻿using IptProject.Models.CourseFeedback;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -15,13 +16,13 @@ namespace IptProject.Controllers.Course_Feedback
         {
             return View();
         }
-        public ActionResult ShowFeedbackForm()
+        public ActionResult ShowFeedbackForm(string name, string type)
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:44380/api/");
                 //HTTP GET
-                var responseTask = client.GetAsync("coursefeedback/getQuestions?courseName=AAA&courseType=1");
+                var responseTask = client.GetAsync("coursefeedback/getQuestions?courseName="+name+"&courseType="+type);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -50,11 +51,22 @@ namespace IptProject.Controllers.Course_Feedback
 
                 var readTask = result.Content.ReadAsAsync<List<Course>>();
                 readTask.Wait();
-
                 var courseList = readTask.Result;
-
+                List<int> ctypes = new List<int>();
+                foreach( var i in courseList)
+                {
+                    var ctype = i.CourseName.Substring(i.CourseName.Length - 3);
+                    if (ctype == "Lab")
+                    {
+                        Debug.WriteLine("This is lab");
+                        i.type = 0;
+                    }
+                    else
+                    {
+                        i.type = 1;
+                    }
+                }
                 return View(courseList);
-
             }
         }
         

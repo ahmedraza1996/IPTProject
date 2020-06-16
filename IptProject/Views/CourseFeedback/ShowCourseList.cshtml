@@ -23,7 +23,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-hover">
+                                <table class="table table-hover" style="z-index:999;">
                                     <thead class="">
                                         <tr>
                                             <th>
@@ -45,7 +45,7 @@
                                         {
                                         <tr>
                                             <td>
-                                                @item.CourseCode
+                                                @item.CourseCode 
                                             </td>
                                             <td>
                                                 @item.CourseName
@@ -63,11 +63,11 @@
                                             </td>
                                             <td>
                                                 @if (item.isSubmitted == "0") { 
-                                                <button class="btn btn-primary">Submit</button>
+                                                <button style="z-index:999;" class="btn btn-primary" onclick="location.href='https://localhost:44359/coursefeedback/showfeedbackform?name=course&type= @item.type'" type="button">Submit</button>
                                                 }
                                                 else
                                                 {
-                                                <button href="/" class="btn btn-primary" disabled>Submitted</button>
+                                                <button href="/"  style="z-index:999;" class="btn btn-primary" disabled>Submitted</button>
                                                 }
                                             </td>
 
