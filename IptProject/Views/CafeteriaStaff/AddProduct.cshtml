@@ -1,0 +1,157 @@
+﻿@model IptProject.Models.Cafeteria.FoodItem
+
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+
+@{
+    if (ViewBag.resp != null)
+    {
+        <script></script>
+        <p style="color:red">@ViewBag.resp</p>
+    }
+}
+
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Add New Item</h4>
+
+                    </div>
+                    <div class="card-body">
+                        @*<form id="myForm" enctype="multipart/form-data">*@
+
+
+                            @using (Html.BeginForm("AddProduct","CafeteriaStaff",FormMethod.Post,new { @enctype = "multipart/form-data", @id = "myForm" }))
+                                {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+
+                                <hr />
+
+                                <div class="row">
+                                    <div class="col-md-6">
+
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ItemName, htmlAttributes: new { @class = "control-label col-md-12" })
+                                            <div class="col-md-12">
+                                                @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-12" })
+                                            <div class="col-md-12">
+                                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.IDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.IDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.IDescription, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ItemStatus, htmlAttributes: new { @class = "control-label col-md-12" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.ItemStatus, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.ItemStatus, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+
+                                        <div class="input-group mb-3">
+                                            <label class="control-label col-md-12">
+                                                Item Image
+                                            </label>
+
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="ITEMIMAGE" name="IMAGEFILE">
+                                                <label class="custom-file-label" for="ITEMIMAGE" style="border:dotted">Choose jpeg file</label>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-12">
+                                        <button  type="submit" class="btn btn-primary pull-right" >Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        @*</form>*@
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@*@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            debugger;
+            $("#btnSubmit").click(function () {
+
+                debugger;
+                var myformdata = $("#myForm").serialize();
+                var image = $("#ITEMIMAGE").prop("files")[0];
+                var formData = new FormData();
+                formData.append("form", myformdata);
+                formData.append('IMAGEFILE',image);
+               
+                $.ajax({
+
+                    type: "POST",
+                    url: "/CafeteriaStaff/AddProduct",
+                    data: formData,
+                    success: function (response) {
+                        if (response != null) {
+                            swal.fire({ text: response, timer: 15000 });
+                        }
+
+                    }
+
+                });
+            });
+
+        })
+
+
+    </script>
+
+}*@

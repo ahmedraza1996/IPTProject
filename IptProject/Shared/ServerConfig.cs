@@ -12,7 +12,7 @@ namespace IptProject.Shared
         public static string GetBaseUrl()
         {
             string Ip = ConfigurationManager.AppSettings["serverIP"].ToString();
-            string port = ConfigurationManager.AppSettings["serverPort"].ToString();
+            string port= ConfigurationManager.AppSettings["serverPort"].ToString();
 
             string baseurl = "https://" + Ip + ":" + port + "/api/";
             return baseurl;

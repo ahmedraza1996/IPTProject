@@ -1,0 +1,231 @@
+﻿@model List<IptProject.Models.Cafeteria.Cart>
+
+@{
+    ViewBag.Title = "CartView";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+
+@if (Model.Count() == 0)
+{
+    <p>Please add some items into cart</p>
+}
+else
+{
+    int sum = 0;
+    foreach (var item in Model)
+    {
+        sum = sum + item.SubTotal;
+    }
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-8">
+                    <div class="card card-plain">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title mt-0">Order Details</h4>
+                            <p class="card-category"> </p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="">
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Price
+                                    </th>
+                                    <th>
+                                        Quantity
+                                    </th>
+                                    <th>
+                                        Amount
+                                    </th>
+
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @item.ItemName
+                                                </td>
+                                                <td>
+                                                    @item.Price
+                                                </td>
+                                                <td>
+                                                    @item.Quantity
+                                                </td>
+                                                <td>
+                                                    @item.SubTotal
+                                                </td>
+                                                <td>
+                                                    <a onclick="removeitem(@item.ItemId);"><i class="material-icons text-danger">delete</i></a>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td style="font-weight:500">Total Amount</td>
+                                            <td style="font-weight:500">@sum</td>
+                                            <td></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Proceed to Checkout</h4>
+                            <p class="card-category"></p>
+                        </div>
+                        <div class="card-body">
+                            <a class="btn btn-info" onclick="check();" ><i class="material-icons ">local_pizza</i>Checkout</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+<script typpe="text/javascript">
+
+
+        var removeitem = function (itemid) {
+
+            debugger;
+
+
+            var myformdata = $("#myForm").serialize();
+            Swal.fire({
+              title: 'Are you sure?',
+              //text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+
+                if (result.value) {
+                       $.ajax({
+
+                type: "POST",
+                url: "/Cafeteria/RemoveItem",
+                data: "id="+itemid,
+                success: function (response) {
+
+                  
+                    if (response == "Success") {
+
+                        Swal.fire(
+                          'Deleted!',
+                          'Your file has been deleted.',
+                          'success'
+                        ).then( function () {
+                                window.location = "/Cafeteria/cartview";
+                            })
+
+                    }
+                    else if (response != null) {
+                        Swal.fire(response);
+                    }
+                }
+
+            })
+                
+              }
+            })
+         
+        }
+
+
+
+    var check =  async function () {
+
+        
+const inputOptions = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve({
+      'Wallet': 'Wallet',
+      'Cash': 'Cash'
+      
+    })
+  }, 1000)
+})
+
+const { value: paymentmethod } = await Swal.fire({
+  title: 'Select Payment Method',
+  input: 'radio',
+  inputOptions: inputOptions,
+  inputValidator: (value) => {
+    if (!value) {
+      return 'You need to choose something!'
+    }
+  }
+})
+        debugger;
+
+    if (paymentmethod) {
+         $.ajax({
+
+                type: "POST",
+             url: "/Cafeteria/Checkout",
+             data: "paymentmethod=" + paymentmethod,
+                success: function (response) {
+
+                  
+                    if (response == "Success") {
+
+                        Swal.fire(
+                            'Yayyy!!!',
+                            'Your order has been placed.',
+                            'success'
+                        ).then(function () {
+                            window.location = "/Cafeteria/GetProduct";
+                        })
+
+                    }
+                    else if (response == "WalletError") {
+                        Swal.fire(
+                            'Oh No!!!',
+                            'Insufficient balance in wallet',
+                            'question'
+                        )
+                    }
+                    else {
+                   Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: 'Something went wrong!'
+                
+                   })
+
+                    }
+                   
+                }
+
+            })
+  
+}
+
+    }
+
+
+</script>
+
+
+

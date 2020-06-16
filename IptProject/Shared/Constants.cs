@@ -10,7 +10,7 @@ namespace IptProject.Shared
     {
 
 
-
+      
         public static SelectList getItemStatus()
         {
             SelectList ItemStatus = new SelectList(
@@ -21,7 +21,7 @@ namespace IptProject.Shared
 
                      }, "Value", "Text"
             );
-
+            
             return ItemStatus;
         }
         public static SelectList getOrderStatus()
