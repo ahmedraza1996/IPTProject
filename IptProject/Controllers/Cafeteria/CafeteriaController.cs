@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace IptProject.Controllers
 {
     public class CafeteriaController : Controller
     {
+
+        static List<FoodItem> globalFooditem = new List<FoodItem>();
+
         // GET: Cafeteria
         public ActionResult GetProduct()
         {
@@ -91,6 +96,103 @@ namespace IptProject.Controllers
           
             return View();
         }
+        public ActionResult Checkout(string paymentmethod)
+        {
+
+
+            List < Cart > lstCart = null;//GetSessionCart();
+            string StudentId = "1";  //get from session
+            int sum = 0;
+            foreach (var item in lstCart)
+            {
+                sum = sum + item.SubTotal;
+            }
+            int Amount = sum;
+            List<Dictionary<string, object>> orderDetails = new List<Dictionary<string, object>>();
+
+            foreach (var item in lstCart)
+            {
+                Dictionary<string, object> orderdet = new Dictionary<string, object>();
+                orderdet["ItemId"] = item.ItemId;
+                orderdet["Quantity"] = item.Quantity;
+
+                orderDetails.Add(orderdet);
+            }
+
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data["StudentId"] = StudentId;
+            data["PaymentMethod"] = paymentmethod;
+            data["Amount"] = Amount;
+            data["OrderDetail"] = orderDetails;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+                //HTTP GET
+                var responseTask = client.PostAsJsonAsync("Cafeteria/Checkout", data);
+
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.StatusCode == HttpStatusCode.Created)
+                {
+
+                    Session["SessionCart"] = null;
+                    return Content("Success");
+
+                }
+                else if (result.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    return Content("WalletError");
+
+                }
+                else
+                {
+                    return Content("BadRequest");
+                }
+            }
+
+            // return Content("");
+        }
+
+        public ActionResult AddtoCart(int id)
+        {
+            FoodItem obj = globalFooditem.Where(x => x.ItemId == id).FirstOrDefault();
+            return PartialView(obj);
+        }
+        [HttpPost]
+        public ActionResult AddtoCart(Cart obj)
+        {
+
+            //getitembyid
+            //calculate subtotal
+            //add to total
+            FoodItem objfood = globalFooditem.Where(x => x.ItemId == obj.ItemId).FirstOrDefault();
+            int subtotal = objfood.Price * obj.Quantity;
+            obj.SubTotal = subtotal;
+            obj.TotalAmount = obj.TotalAmount + subtotal;
+            obj.ItemName = objfood.ItemName;
+            //obj.StudentId
+            obj.Price = objfood.Price;
+            //SetSessionCart(obj);
+            return Content("Success");
+        }
+        //public ActionResult CartView()
+        //{
+        //    return View(GetSessionCart());
+        //}
+        public ActionResult RemoveItem(int id)
+        {
+            var lst = Session["SessionCart"] as List<Cart>;
+            var item = lst.Where(x => x.ItemId == id).FirstOrDefault();
+            lst.Remove(item);
+            Session["SessionCart"] = lst;
+            return Content("Success");
+        }
+
+
+
+
 
     }
 }
