@@ -135,7 +135,6 @@
     <Compile Include="Models\Cafeteria\CafeteriaStaff.cs" />
     <Compile Include="Models\Cafeteria\Feedback.cs" />
     <Compile Include="Models\Cafeteria\FoodItem.cs" />
-    <Compile Include="Models\Cafeteria\Wallet.cs" />
     <Compile Include="Models\Cafeteria\FoodOrder.cs" />
     <Compile Include="Models\Cafeteria\OrderDetails.cs" />
     <Compile Include="Models\Cafeteria\Student.cs" />
@@ -434,7 +433,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CafeteriaStaff\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

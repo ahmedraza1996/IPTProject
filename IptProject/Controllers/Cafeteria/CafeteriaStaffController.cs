@@ -226,21 +226,21 @@ namespace IptProject.Controllers.Cafeteria
                 if (result.IsSuccessStatusCode)
                 {
 
-                    readTask.Wait();
                     var readTask = result.Content.ReadAsAsync<Feedback[]>();
+                    readTask.Wait();
 
                     var feedbacks = readTask.Result;
 
                     foreach (var item in feedbacks)
                     {
+                        item.strDate = item.Date.ToString("dd-MM-yyyy");
                         lstfb.Add(item);
                     }
-                        item.strDate = item.Date.ToString("dd-MM-yyyy");
                 }
-
             }
-            return View(lstfb);
 
+            return View(lstfb);
         }
+
     }
 }

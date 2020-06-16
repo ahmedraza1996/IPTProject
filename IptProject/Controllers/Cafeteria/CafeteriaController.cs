@@ -29,7 +29,7 @@ namespace IptProject.Controllers
         //sessions
         //getitem by id
 
-        static List<FoodItem> globalFooditem = new List<FoodItem>();
+     
         public static List<FoodOrder> lstOrder = new List<FoodOrder>();
 
         public ActionResult GetProduct()
@@ -162,7 +162,7 @@ namespace IptProject.Controllers
         {
 
 
-            List < Cart > lstCart = null;//GetSessionCart();
+            List < Cart > lstCart = GetSessionCart();
             string StudentId = "1";  //get from session
             int sum = 0;
             foreach (var item in lstCart)
@@ -236,13 +236,13 @@ namespace IptProject.Controllers
             obj.ItemName = objfood.ItemName;
             //obj.StudentId
             obj.Price = objfood.Price;
-            //SetSessionCart(obj);
+            SetSessionCart(obj);
             return Content("Success");
         }
-        //public ActionResult CartView()
-        //{
-        //    return View(GetSessionCart());
-        //}
+        public ActionResult CartView()
+        {
+            return View(GetSessionCart());
+        }
         public ActionResult RemoveItem(int id)
         {
             var lst = Session["SessionCart"] as List<Cart>;
