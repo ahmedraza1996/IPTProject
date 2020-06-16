@@ -211,5 +211,36 @@ namespace IptProject.Controllers.Cafeteria
         {
             return View();
         }
+        public ActionResult GetFeedbacks()
+        {
+            List<Feedback> lstfb = new List<Feedback>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+                //HTTP GET
+                var responseTask = client.GetAsync("cafeteriastaff/GetFeedback");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    readTask.Wait();
+                    var readTask = result.Content.ReadAsAsync<Feedback[]>();
+
+                    var feedbacks = readTask.Result;
+
+                    foreach (var item in feedbacks)
+                    {
+                        lstfb.Add(item);
+                    }
+                        item.strDate = item.Date.ToString("dd-MM-yyyy");
+                }
+
+            }
+            return View(lstfb);
+
+        }
     }
 }
