@@ -7,6 +7,7 @@ namespace IptProject.Models.JobPortal
 {
     public class StudentVM
     {
+        public int StudentID { get; set; }
         public List<Experience> experiences { get; set; }
         public List<Skill> skills{ get; set; }
         public List<Project> projects { get; set; }

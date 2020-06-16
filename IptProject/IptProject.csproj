@@ -60,6 +60,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -133,6 +134,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cafeteria\FoodItem.cs" />
+    <Compile Include="Models\JobPortal\CV.cs" />
     <Compile Include="Models\JobPortal\Domain.cs" />
     <Compile Include="Models\JobPortal\Experience.cs" />
     <Compile Include="Models\JobPortal\Framework.cs" />
@@ -149,6 +151,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jobportal.css" />
     <Content Include="Content\JobPortal\csshunt\animate.min.css" />
     <Content Include="Content\JobPortal\csshunt\bootstrap-datepicker.css" />
     <Content Include="Content\JobPortal\csshunt\bootstrap-grid.css" />

@@ -13,7 +13,7 @@
     <meta name="author" content="CreativeLayers">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/bootstrap-grid.css") />
     <link rel="stylesheet" href=@Url.Content("/Content/JobPortal/csshunt/icons.css") />
     <link rel="stylesheet" href=@Url.Content("/Content/JobPortal/csshunt/animate.min.css") />
@@ -23,147 +23,73 @@
 
 
     <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/colors/colors.css") />
-    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/bootstrap.css") />
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/bootstrap.css") />-->
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/jobportal.css") />
+
 
 
 </head>
 <body>
 
-    <div class="page-loading">
-        <img src="images/loader.gif" alt="" />
-        <span>Skip Loader</span>
-    </div>
 
     <!--<div class="theme-layout" id="scrollup">-->
     <div class="container fluid" id="scrollup">
         <section class="overlape">
-            <div class="block no-padding">
-                <div class="container fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="inner-header wform">
-                                <div class="job-search-sec">
-                                    <div class="job-search">
-
-                                        <h4>Explore Thousand Of Jobs With Just Simple Search...</h4>
-                                        <form>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="job-field">
-                                                        <input type="text" placeholder="Job title, keywords or company name" />
-                                                        <i class="la la-keyboard-o"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <div class="job-field">
-                                                        <select data-placeholder="City, province or region" class="chosen-city">
-                                                            <option>Instambul</option>
-                                                            <option>New York</option>
-                                                            <option>London</option>
-                                                            <option>Russia</option>
-                                                        </select>
-                                                        <i class="la la-map-marker"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-1">
-                                                    <button type="submit"><i class="la la-search"></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <!--<div class="tags-bar">
-                                            <span>Full Time<i class="close-tag">x</i></span>
-                                            <span>UX/UI Design<i class="close-tag">x</i></span>
-                                            <span>Istanbul<i class="close-tag">x</i></span>
-                                            <div class="action-tags">
-                                                <a href="#" title=""><i class="la la-cloud-download"></i> Save</a>
-                                                <a href="#" title=""><i class="la la-trash-o"></i> Clean</a>
-                                            </div>
-                                        </div><!-- Tags Bar -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <h2 style="color:#9c27b0;font-weight:500" class="center">FAST Crafting Careers since Ages</h2>
                     </div>
                 </div>
             </div>
-        </section>
+    </section>
+    <br /><br />
+    <section>
+        <div class="block remove-top">
+                <div class="row ">
 
-        <section>
-            <div class="block remove-top">
-                <div class="container fluid">
-                    <div class="row no-gape">
-                        
-                        <div class="col-lg-12 column">
-                            <div class="modrn-joblist np">
-                                <div class="filterbar">
-                                    <span class="emlthis"><a href="/cdn-cgi/l/email-protection#781d00191508141d561b1715" title=""><i class="la la-envelope-o"></i> Email me Jobs Like These</a></span>
-                                    <h5>@Model.Count Jobs & Vacancies</h5>
-                                </div>
-                            </div><!-- MOdern Job LIst -->
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6 ">
+                                <span class="emlthis"><a href="https://localhost:44380/api/subscribe/" title=""><i class="la la-envelope-o"></i> Subscribe to Job Feed</a></span>
+                            </div>
+                            <div class="col-lg-6">
+                                <h5>@Model.Count Jobs Available</h5>
+                            </div>
+                        </div><!-- MOdern Job LIst modrn-joblist np-->
 
-                            <div class="job-list-modern">
-                                <div class="job-listings-sec no-border">
-                                    @foreach (Job job in Model)
-                                    {
-                                        <div style="padding: 50px" class="job-listing wtabs">
-                                            <div class="job-title-sec">
-                                                @*<div class="c-logo"> <img src="images/resource/l1.png" alt="" /> </div>*@
-                                                <h3><a href="/job/detail/@job.JobID" title="">@job.Title</a></h3>
-                                                <span>@job.Organization</span>
-                                                <div class="job-lctn"><i class="la la-map-marker"></i>Karachi</div>
-                                            </div>
-                                            <div class="job-style-bx">
-                                                <span class="job-is ft">View Details</span>
-                                                <span class="fav-job"><i class="la la-heart-o"></i></span>
+                        <div class="job-list-modern">
+                            <div class="job-listings-sec no-border">
+                                @foreach (Job job in Model)
+                                {
+                                    <div style="padding: 10px" class="job-listing wtabs row">
+                                        <div class="job-title-sec col-8">
+                                            @*<div class="c-logo"> <img src="images/resource/l1.png" alt="" /> </div>*@
+                                            <h3><a href="/job/detail/@job.JobID" title="">@job.Title</a></h3>
+                                            <span>@job.Organization</span>
+                                            <div class="job-lctn"><i class="la la-map-marker"></i>Karachi</div>
+                                        </div>
+                                        <div class="job-title-sec col-4">
+                                            <!--<span class="job-is ft">View Details</span>-->
+                                            <a href="/job/detail/@job.JobID" style="background-color:#9c27b0;margin-top:30px" class="waves-effect waves-light btn">View Details</a>
 
-                                            </div>
+                                            <span class="fav-job"><i class="la la-heart-o"></i></span>
+
                                         </div>
 
-                                    }
-                                </div>
+                                    </div>
+
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            
+        </div>
+    </section>
 
 
     </div>
-
-    <div class="account-popup-area signin-popup-box">
-        <div class="account-popup">
-            <span class="close-popup"><i class="la la-close"></i></span>
-            <h3>User Login</h3>
-            <span>Click To Login With Demo User</span>
-            <div class="select-user">
-                <span>Candidate</span>
-                <span>Employer</span>
-            </div>
-            <form>
-                <div class="cfield">
-                    <input type="text" placeholder="Username" />
-                    <i class="la la-user"></i>
-                </div>
-                <div class="cfield">
-                    <input type="password" placeholder="********" />
-                    <i class="la la-key"></i>
-                </div>
-                <p class="remember-label">
-                    <input type="checkbox" name="cb" id="cb1"><label for="cb1">Remember me</label>
-                </p>
-                <a href="#" title="">Forgot Password?</a>
-                <button type="submit">Login</button>
-            </form>
-            <div class="extra-login">
-                <span>Or</span>
-                <div class="login-social">
-                    <a class="fb-login" href="#" title=""><i class="fa fa-facebook"></i></a>
-                    <a class="tw-login" href="#" title=""><i class="fa fa-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-    </div><!-- LOGIN POPUP -->
 
 
 

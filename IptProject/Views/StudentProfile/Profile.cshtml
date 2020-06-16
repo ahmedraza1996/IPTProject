@@ -1,54 +1,93 @@
 ﻿@using IptProject.Models.JobPortal
 @model StudentVM
 
+
 @{
     ViewBag.Title = "ExperienceView";
 }
-
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/bootstrap-grid.css") />
+    <!--<link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/bootstrap-grid.css") />
     <link rel="stylesheet" href=@Url.Content("/Content/JobPortal/csshunt/icons.css") />
     <link rel="stylesheet" href=@Url.Content("/Content/JobPortal/csshunt/animate.min.css") />
     <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/style.css") />
     <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/responsive.css") />
     <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/chosen.css") />
 
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/style.css") />
+
 
     <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/colors/colors.css") />
-    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/bootstrap.css") />
-    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/main.css") />
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/bootstrap.css") />-->
+    <!-- CSS Files -->
+    <link href="@Url.Content("~/Content/Template/assets/css/material-dashboard.css?v=2.1.2")" rel="stylesheet" />
 
-    <script language="JavaScript" type="text/javascript" src=@Url.Content("/Content/JobPortal/jshunt/jquery.min.js")></script>
+   <script language="JavaScript" type="text/javascript" src=@Url.Content("/Content/JobPortal/jshunt/jquery.min.js")></script>
     <script language="JavaScript" type="text/javascript" src=@Url.Content("/Scripts/studentProfile.js")></script>
 
 </head>
+<style>
+    .inner-header {
+    float: left;
+    width: 100%;
+    position: relative;
+    padding-top: 240px;
+    padding-bottom: 15px;
+    z-index: 0;
+}
 
+    .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+</style>
 <body>
     <div class="container fluid">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="inner-header">
-                    <h3>Welcome Hazala 163870</h3>
+            <div class="col-lg-12" style="background-color:#9c27b0">
+                <div class="inner-header" style="align-items: center;">
+                    <h1 style="color:white;" class="center"> Hazala 163870</h1>
+                    @using (Html.BeginForm("Index", "StudentProfile",
+                         FormMethod.Post,
+                         new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="file" name="file" id="cvfile" /><br><br>
+                        <input type="submit" value="Upload" />
+                        <br><br>
+                        @ViewBag.Message
+                    }
+
                 </div>
             </div>
         </div>
+        @Html.ActionLink("DownloadCV", "DownloadCV", new { id = 7 }, new { @class = "la la-trash-o" })
+
     </div>
+
+    <br /><br /><br /><br />
 
     <div class="container">
 
         <div id="ExpirenceSection">
 
-            <div class="border-title"><h3>Work Experience</h3><a href="#" id="addnewExpirenceButton" title=""><i class="la la-plus"></i> Add Experience</a></div>
-
+            <div class="row">
+                <h3 class="col-lg-10" style="color:#9c27b0;font-weight: 500">Work Experience</h3>
+                <a class="center-block col-lg-2" href="#" id="addnewExpirenceButton" title=""><i class="la la-plus"></i> Add Experience</a>
+            </div>
+            <hr />
             <div id="addnewExpirenceDiv" class="row container border-title" style="display:none">
 
                 <div class="col-lg-6">
                     <span class="pf-title">Designation</span>
                     <div class="pf-field">
-                        <input type="text" id="Designation" name="designation" placeholder="Enter Your designation.........">
+                        <input class="form-control" type="text" id="Designation" name="designation" placeholder="Enter Your designation.........">
                     </div>
                 </div>
+
                 <form class="col-lg-6">
                     <span class="pf-title">Organization Name</span>
                     <select id="OrganizationSelect" class="form-control select2">
@@ -63,31 +102,34 @@
 
                 </form>
 
+                <br /><br />
                 <div class="col-lg-6">
                     <span class="pf-title">StartDate</span>
                     <div class="pf-field">
-                        <input type="date" id="StartDate" name="StartDate" placeholder="StartDate">
+                        <input class="form-control" type="date" id="StartDate" name="StartDate" placeholder="StartDate">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <span class="pf-title">End Date</span>
                     <div class="pf-field">
-                        <input type="date" id="EndDate" name="EndDate" placeholder="EndDate">
+                        <input type="date" class="form-control" id="EndDate" name="EndDate" placeholder="EndDate">
                     </div>
                 </div>
+                <br /><br />
+
                 <div class="col-lg-6">
                     <span class="pf-title">Description</span>
                     <div class="pf-field" style="width:100%">
-                        <input type="text" id="description" name="description" placeholder="Tell us about Your role there.">
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Tell us about Your role there.">
                     </div>
                 </div>
                 <div class="col-lg-6" id="OrganizationNameDiv" style="display:none">
                     <span class="pf-title">Add Organization</span>
                     <div class="pf-field" style="width:100%">
-                        <input type="text" id="OrganizationName" name="OrganizationName" placeholder="Enter Organization Name.">
+                        <input type="text" id="OrganizationName" class="form-control" name="OrganizationName" placeholder="Enter Organization Name.">
                     </div>
                 </div>
-
+                <br /><br /><br /><br />
                 <div class="col-lg-12">
                     <input id="ExperienceSubmitButton" type="submit" />
                 </div>
@@ -97,14 +139,15 @@
 
                 @foreach (var item in Model.experiences)
                 {
-                    <div class="edu-history style2">
+                    <div class="row edu-history style2">
+
                         <i></i>
-                        <div class="edu-hisinfo" id="@(item.ExpID)">
-                            <h3>@(item.Designation)</h3>
-                            <i>@(item.StartDate)  -- @(item.EndDate)</i>
+                        <div class="col-lg-10 edu-hisinfo" id="@(item.ExpID)">
+                            <h3 style="color:#9c27b0">@(item.Designation)</h3>
+                            <i>@(item.StartDate.ToString("dd-MM-yyyy")) -- @(item.EndDate.Date.ToString("dd-MM-yyyy"))</i>
                             <p>@(item.JDescription)</p>
                         </div>
-                        <ul class="action_job">
+                        <ul class="action_job col-lg-2">
                             <!--li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>-->
                             @Html.ActionLink("Delete", "DeleteExp", new { id = item.ExpID }, new { @class = "la la-trash-o" })
 
@@ -115,40 +158,45 @@
 
         </div>
 
+        <br /><br />
         <div id="ProjectSection">
-            <div class="border-title">
-                <h3>Projects</h3><a href="#" title="" id="addnewProjectButton"><i class="la la-plus"></i> Add Project</a>
+            <div class="border-title row">
+                <h3 class="col-lg-10" style="color:#9c27b0;font-weight: 500">Projects</h3>
+                <a class="col-lg-2" href="#" title="" id="addnewProjectButton"><i class="la la-plus"></i> Add Project</a>
             </div>
-
+            <hr />
             <!--This Section is hidden div which is used to add a new Project-->
             <div id="addnewProjectDiv" class="row container border-title" style="display:none">
 
-                <div class="col-lg-6">
+                <div class="col-lg-6 ">
                     <span class="pf-title">Project Name</span>
                     <div class="pf-field">
-                        <input type="text" id="ProjectName" name="ProjectName" placeholder="Enter Project Name.........">
+                        <input type="text" class="form-control" id="ProjectName" name="ProjectName" placeholder="Enter Project Name.........">
                     </div>
                 </div>
+                <br /><br />
                 <div class="col-lg-6">
                     <span class="pf-title">GithubLink</span>
                     <div class="pf-field">
-                        <input type="text" id="GithubLink" name="link" placeholder="Enter GithubLink.........">
+                        <input type="text" class="form-control" id="GithubLink" name="link" placeholder="Enter GithubLink.........">
                     </div>
                 </div>
+                <br /><br />
 
                 <div class="col-lg-6">
                     <span class="pf-title">Enter Skill</span>
                     <div class="pf-field">
-                        <input type="text" id="SkillName" name="SkillName" placeholder="Enter Skills you Gained">
+                        <input type="text" class="form-control" id="SkillName" name="SkillName" placeholder="Enter Skills you Gained">
                     </div>
                 </div>
+                <br /><br />
                 <div class="col-lg-6">
                     <span class="pf-title">Course Offered ID</span>
                     <div class="pf-field">
-                        <input type="text" id="CID" name="CID" placeholder="Enter Course ID (If Freelance Project Type 0)">
+                        <input type="text" id="CID" class="form-control" name="CID" placeholder="Enter Course ID (If Freelance Project Type 0)">
                     </div>
                 </div>
-
+                <br /><br />
 
                 <form class="col-lg-6">
                     <span class="pf-title">Framework Name</span>
@@ -162,14 +210,15 @@
                     </select>
 
                 </form>
+                <br /><br />
                 <div class="col-lg-6" id="FrameworkNameDiv" style="display:none">
                     <span class="pf-title">Add new Framework</span>
                     <div class="pf-field" style="width:100%">
-                        <input type="text" id="FrameworkName" name="FrameworkName" placeholder="Enter The Framework you worked on.">
+                        <input type="text" class="form-control" id="FrameworkName" name="FrameworkName" placeholder="Enter The Framework you worked on.">
                     </div>
                 </div>
 
-
+                <br /><br />
 
                 <form class="col-lg-6">
                     <span class="pf-title">Domain Name</span>
@@ -182,13 +231,14 @@
 
                     </select>
                 </form>
+                <br /><br />
                 <div class="col-lg-6" id="DomainNameDiv" style="display:none">
                     <span class="pf-title">Add new Domian</span>
                     <div class="pf-field" style="width:100%">
                         <input type="text" id="DomianName" name="DomianName" placeholder="Enter The Domain of your Project.">
                     </div>
                 </div>
-
+                <br /><br /><br />
 
 
 
@@ -203,19 +253,15 @@
 
                 @foreach (var item in Model.projects)
                 {
-                    <div class="edu-history style2">
+                    <div class="row edu-history style2">
                         <i></i>
-                        <div class="edu-hisinfo" id="@item.ProjectID">
-                            <h3>@(item.ProjectName)</h3>
+                        <div class="edu-hisinfo col-lg-10" id="@item.ProjectID">
+                            <h3 style="color:#9c27b0">@(item.ProjectName)</h3>
                             <i>Github:-<a>@(item.GithubLink)</a></i>
                             <p>@item.Fname</p>
                         </div>
-                        <ul class="action_job">
-                            <li>
-                                <!--<a href="#" title=""><i class="la la-trash-o"></i></a>-->
-
-                                @Html.ActionLink("Delete", "DeleteProject", new { id = item.ProjectID }, new { @class = "la la-trash-o" })
-                            </li>
+                        <ul class="action_job col-lg-2">
+                            @Html.ActionLink("Delete", "DeleteProject", new { id = item.ProjectID }, new { @class = "la la-trash-o" })
 
                         </ul>
                     </div>
@@ -224,21 +270,26 @@
             </div>
 
         </div>
+        <br /><br />
 
         <div id="SkillSection">
-            <div class="border-title"><h3>Personal Skill</h3><a href="#" title=""><i class="la la-plus"></i> Add Skill</a></div>
+            <div class="border-title row">
+                <h3 class="col-lg-8" style="color:#9c27b0;font-weight: 500">Personal Skill</h3>
+            </div>
+            <hr />
             <div class="edu-history-sec">
                 @foreach (var item in Model.skills)
                 {
-                    <div class="edu-history style2">
+                    <div class="edu-history style2 row">
                         <i></i>
-                        <div class="edu-hisinfo">
-                            <h3>@(item.SkillName)</h3>
+                        <div class="edu-hisinfo col-lg-10">
+                            <h3 style="color:#9c27b0">@(item.SkillName)</h3>
                             <p>@(item.DomainName)</p>
                         </div>
-                        <ul class="action_job">
+                        <ul class="action_job col-lg-2">
                             <!--<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>-->
-                            <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
+                            <span>Delete</span>
+                            <a href="#" title=""><i class="la la-trash-o"></a>
                         </ul>
                     </div>
 
@@ -248,143 +299,120 @@
 
     </div>
 
-    <!--<div class="border-title"><h3>Educational Background</h3><a href="#" title=""><i class="la la-plus"></i> Add Education</a></div>
-    <div class="edu-history-sec">
-
-        <div class="edu-history">
-            <i class="la la-graduation-cap"></i>
-            <div class="edu-hisinfo">
-                <h3>University</h3>
-                <i>2008 - 2012</i>
-                <span>Middle East Technical University <i>Computer Science</i></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-            </div>
-            <ul class="action_job">
-                <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-            </ul>
-        </div>
-        <div class="edu-history">
-            <i class="la la-graduation-cap"></i>
-            <div class="edu-hisinfo">
-                <h3>High School</h3>
-                <i>2008 - 2012</i>
-                <span>Tomms College <i>Bachlors in Fine Arts</i></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-            </div>
-            <ul class="action_job">
-                <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-            </ul>
-        </div>
-        </div>-->
-
     <script>
-            $(document).ready(function () {
+        $(document).ready(function () {
 
-                $("#submitButton").click(function (event) {
-                    var FrameworkID = $("#FrameworkSelect").children("option:selected").val();
-                    debugger
-                    var FrameworkName = "";
-                    if (FrameworkID == 0) {
-                        FrameworkName = $("#FrameworkName").val()
-                    } else {
-                        FrameworkName = $("#FrameworkSelect").children("option:selected").html()
-                    }
+            $("#submitButton").click(function (event) {
+                var FrameworkID = $("#FrameworkSelect").children("option:selected").val();
+                debugger
+                var FrameworkName = "";
+                if (FrameworkID == 0) {
+                    FrameworkName = $("#FrameworkName").val()
+                } else {
+                    FrameworkName = $("#FrameworkSelect").children("option:selected").html()
+                }
 
-                    var DomainID = $("#DomainSelect").children("option:selected").val();
-                    var DomainName = "";
-                    if (DomainID == 0) {
-                        DomainName = $("#DomainName").val()
-                    } else {
-                        DomainName = $("#DomainSelect").children("option:selected").html()
-                    }
-                    $.ajax
-                        ({
-                            type: 'POST',
-                            url: 'https://localhost:44380/api/studentProfile/AddProject',
-                            data: {
+                var DomainID = $("#DomainSelect").children("option:selected").val();
+                var DomainName = "";
+                if (DomainID == 0) {
+                    DomainName = $("#DomainName").val()
+                } else {
+                    DomainName = $("#DomainSelect").children("option:selected").html()
+                }
+                $.ajax
+                    ({
+                        type: 'POST',
+                        url: 'https://localhost:44380/api/studentProfile/AddProject',
+                        data: {
 
-                                StudentID: 3870,
-                                ProjectName: $("#ProjectName").val(),
-                                GithubLink: $("#GithubLink").val(),
-                                courseOfferedID: $("#CID").val(),
-                                ApproveStatus: 'Completed',
-                                FrameworkID: FrameworkID,
-                                FName: FrameworkName,
-                                DomainID: DomainID,
-                                DomainName: DomainName,
-                                Skillvalue: $("#SkillName").val()
-                            },
-                            crossDomain: true,
-                            success: function (response) {
-                                alert("you are done");
-                                location.reload(true);
+                            StudentID: 6,
+                            ProjectName: $("#ProjectName").val(),
+                            GithubLink: $("#GithubLink").val(),
+                            courseOfferedID: $("#CID").val(),
+                            ApproveStatus: 'Completed',
+                            FrameworkID: FrameworkID,
+                            FName: FrameworkName,
+                            DomainID: DomainID,
+                            DomainName: DomainName,
+                            Skillvalue: $("#SkillName").val()
+                        },
+                        crossDomain: true,
+                        success: function (response) {
+                            alert("you are done");
+                            location.reload(true);
 
-                            },
-                            error: function (error) {
-                                alert("Error");
-                                location.reload(true);
-                            }
-                        }).done(function () {
-                            alert("DOne");
-                        });
-                    //event.preventDefault();
-                });
+                        },
+                        error: function (error) {
+                            alert("Error");
+                            location.reload(true);
+                        }
+                    }).done(function () {
+                        alert("DOne");
+                    });
+                //event.preventDefault();
             });
+        });
     </script>
     <script>
 
-            // This Is post request for Inserting new Experience record in table
-            $(document).ready(function () {
-                $("#ExperienceSubmitButton").click(function (event) {
-                    var OrganizationID = $("#OrganizationSelect").children("option:selected").val();
-                    var Name = "";
-                    if (OrganizationID == 0) {
-                        Name = $("#FrameworkName").val()
-                    } else {
-                        Name = $("#Organization").children("option:selected").html()
-                    }
-                    $.ajax
-                        ({
-                            type: 'POST',
-                            url: 'https://localhost:44380/api/studentProfile/AddExperience',
-                            data: {
-                                startDate: $("#StartDate").val(),
-                                endDate: $("#EndDate").val(),
-                                designation: $("#Designation").val(),
-                                JDescription: $("#description").val(),
-                                StudentID: 163870,
-                                OrganizationID: OrganizationID,
-                                OrganizationName: Name
+        // This Is post request for Inserting new Experience record in table
+        $(document).ready(function () {
+            $("#ExperienceSubmitButton").click(function (event) {
+                var OrganizationID = $("#OrganizationSelect").children("option:selected").val();
+                var Name = "";
+                if (OrganizationID == 0) {
+                    Name = $("#FrameworkName").val()
+                } else {
+                    Name = $("#Organization").children("option:selected").html()
+                }
+                $.ajax
+                    ({
+                        type: 'POST',
+                        url: 'https://localhost:44380/api/studentProfile/AddExperience',
+                        data: {
+                            startDate: $("#StartDate").val(),
+                            endDate: $("#EndDate").val(),
+                            designation: $("#Designation").val(),
+                            JDescription: $("#description").val(),
+                            StudentID: 6,
+                            OrganizationID: OrganizationID,
+                            OrganizationName: Name
 
-                            },
-                            crossDomain: true,
-                            success: function (response) {
-                                alert("you are done");
-                                location.reload(true);
+                        },
+                        crossDomain: true,
+                        success: function (response) {
+                            alert("you are done");
+                            location.reload(true);
 
-                            },
-                            error: function (xhr, status, error) {
-                                //alert(xhr.responseText);
-                                location.reload(true);
+                        },
+                        error: function (xhr, status, error) {
+                            //alert(xhr.responseText);
+                            location.reload(true);
 
 
-                            }
-                        }).done(function () {
-                            alert("DOne");
-                        });
-                    //event.preventDefault();
-                });
+                        }
+                    }).done(function () {
+                        alert("DOne");
+                    });
+                //event.preventDefault();
             });
+        });
 
 
     </script>
     <script>
-            $(document).ready(function () {
-                $("#testDelete").click(function (event) {
-                    alert("HELEE")
-                });
+        $(document).ready(function () {
+            $("#testDelete").click(function (event) {
+                alert("HELEE")
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('input[type="file"]').change(function (e) {
+                var fileName = e.target.files[0];
+                alert('The file "' + fileName + '" has been selected.');
+            });
+        });
     </script>
 </body>
