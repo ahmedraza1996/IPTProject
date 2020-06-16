@@ -92,6 +92,38 @@ namespace IptProject.Controllers
             return View();
         }
 
+        public ActionResult Wallet()
+        {
+            Wallet obj = new Wallet();
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data["StudentID"] = 1;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+                //HTTP GET
+                var responseTask = client.PostAsJsonAsync("cafeteria/GetUserWallet", data);
+
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    var readTask = result.Content.ReadAsAsync<Wallet>();
+                    readTask.Wait();
+
+                    obj = readTask.Result;
+
+
+                }
+            }
+
+            return View(obj);
+        }
+
+
+
     }
 }
 
