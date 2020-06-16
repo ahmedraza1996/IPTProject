@@ -1,0 +1,186 @@
+﻿
+
+@{
+    ViewBag.Title = "AddFeedback";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/portalstyle.css" rel="stylesheet" />
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Feedback</h4>
+                        <p class="card-category">Thankyou for your valuable feedback</p>
+                    </div>
+                    <div class="card-body">
+                        <form id="myForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Your Comments</label>
+                                        <textarea type="text" rows="3" class="form-control" name="comment" id="comment" placeholder="Enter your comments "></textarea>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <a id="rating1" class="rating">   <img src="~/Content/images/1.png" alt="Star Rating" align="middle" id="1" class="item" mid="1" style="" /></a>
+                                    <a id="rating2" class="rating">  <img src="~/Content/images/2.png" alt="Star Rating" align="middle" id="2" class="item" mid="1" style="" /></a>
+                                    <a id="rating3" class="rating">  <img src="~/Content/images/3.png" alt="Star Rating" align="middle" id="3" class="item" mid="1" style="" /></a>
+                                    <a id="rating4" class="rating"> <img src="~/Content/images/4.png" alt="Star Rating" align="middle" id="4" class="item" mid="1" style="" /></a>
+                                </div>
+
+                            </div>
+                            <input id="rating" name="rating" type="hidden" value="0" />
+
+                            <a href="#" id="btnSubmit" class="btn btn-primary btn-block">
+                                Submit
+                            </a>
+                            @*<button type="submit" class="btn btn-primary pull-right">Submit</button>*@
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+
+
+        $("#rating1").click(function () {
+
+            $("#1").toggleClass('ratingClicked');
+            var res = $("#2").hasClass('ratingClicked');
+            if (res) {
+                $("#2").toggleClass('ratingClicked');
+            }
+            res = $("#3").hasClass('ratingClicked');
+            if (res) {
+                $("#3").toggleClass('ratingClicked');
+            }
+            res = $("#4").hasClass('ratingClicked');
+            if (res) {
+                $("#4").toggleClass('ratingClicked');
+            }
+            SetRating($("#rating"), 1);
+        });
+        $("#rating2").click(function () {
+            $("#2").toggleClass('ratingClicked');
+             var res = $("#1").hasClass('ratingClicked');
+            if (res) {
+                $("#1").toggleClass('ratingClicked');
+            }
+            res = $("#3").hasClass('ratingClicked');
+            if (res) {
+                $("#3").toggleClass('ratingClicked');
+            }
+            res = $("#4").hasClass('ratingClicked');
+            if (res) {
+                $("#4").toggleClass('ratingClicked');
+            }
+
+            SetRating($("#rating"), 2);
+        });
+        $("#rating3").click(function () {
+            $("#3").toggleClass('ratingClicked');
+             var res = $("#2").hasClass('ratingClicked');
+            if (res) {
+                $("#2").toggleClass('ratingClicked');
+            }
+            res = $("#1").hasClass('ratingClicked');
+            if (res) {
+                $("#1").toggleClass('ratingClicked');
+            }
+            res = $("#4").hasClass('ratingClicked');
+            if (res) {
+                $("#4").toggleClass('ratingClicked');
+            }
+            SetRating($("#rating"), 3);
+        });
+        $("#rating4").click(function () {
+            $("#4").toggleClass('ratingClicked');
+
+           var res = $("#2").hasClass('ratingClicked');
+            if (res) {
+                $("#2").toggleClass('ratingClicked');
+            }
+            res = $("#3").hasClass('ratingClicked');
+            if (res) {
+                $("#3").toggleClass('ratingClicked');
+            }
+            res = $("#1").hasClass('ratingClicked');
+            if (res) {
+                $("#1").toggleClass('ratingClicked');
+            }
+
+            SetRating($("#rating"), 4);
+        });
+        function SetRating(att, value) {
+            $(att).val(value);
+
+        }
+
+
+        $(document).ready(function () {
+
+            $("#btnSubmit").click(function () {
+
+
+                debugger;
+                var myformdata = $("#myForm").serialize();
+
+                $.ajax({
+
+                    type: "POST",
+                    url: "/Cafeteria/AddFeedback",
+                    data: myformdata,
+                    success: function (response) {
+                        if (response != null) {
+                            swal.fire({ text: response, timer: 15000 });
+                            $( '#myForm' ).each(function(){
+                                 this.reset();
+                            });
+                             var res = $("#2").hasClass('ratingClicked');
+            if (res) {
+                $("#2").toggleClass('ratingClicked');
+            }
+            res = $("#3").hasClass('ratingClicked');
+            if (res) {
+                $("#3").toggleClass('ratingClicked');
+            }
+            res = $("#4").hasClass('ratingClicked');
+            if (res) {
+                $("#4").toggleClass('ratingClicked');
+                            }
+                             res = $("#1").hasClass('ratingClicked');
+            if (res) {
+                $("#1").toggleClass('ratingClicked');
+            }
+
+
+                        }
+
+
+
+
+                    }
+
+                })
+            })
+
+        })
+    </script>
+
+}
+
+
+

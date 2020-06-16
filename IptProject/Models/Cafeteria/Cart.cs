@@ -19,5 +19,6 @@ namespace IptProject.Models.Cafeteria
         public int SubTotal { get; set; }
         public int TotalAmount { get; set; }
 
+
     }
 }
