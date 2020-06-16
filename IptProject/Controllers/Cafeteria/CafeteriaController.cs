@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
@@ -91,6 +92,43 @@ namespace IptProject.Controllers
           
             return View();
         }
+
+        [HttpPost]
+        public ActionResult AddFeedback(string comment, string rating)
+        {
+
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data["Rating"] = rating;
+            data["FDescription"] = comment;
+            data["Date"] = DateTime.Now.ToString("yyyy-MM-dd");
+            data["StudentID"] = 1;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+                //HTTP GET
+                var responseTask = client.PostAsJsonAsync("Cafeteria/AddFeedback", data);
+
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.StatusCode == HttpStatusCode.Created)
+                {
+
+                    return Content("Feedback Submitted!");
+
+                }
+                else
+                {
+                    return Content("Err...There seems to be some error!");
+                }
+            }
+
+        }
+
+
+
+
 
     }
 }

@@ -1,0 +1,68 @@
+﻿@model List<IptProject.Models.Cafeteria.Feedback>
+@{
+    ViewBag.Title = "Get Feedbacks";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+@if (Model.Count != 0)
+{
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    var cl = "";
+                    if (item.Rating >= 4)
+                    {
+                        cl = "card-header-success";
+                    }
+                    else if (item.Rating >= 3 && item.Rating < 4)
+                    {
+                        cl = "card-header-info";
+                    }
+                    else
+                    {
+                        cl = "card-header-danger";
+                    }
+
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header @cl card-header-icon">
+                                <div class="card-icon">
+                                    <p>@item.strDate</p>
+
+                                </div>
+
+                                <h3 class="card-title">
+
+                                    <small class="fbcomment">@item.FDescription</small>
+                                </h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <a href="#">Rating</a>
+                                    @for (var i = 1; i <= item.Rating; i++)
+                                    {
+                                        <i class="material-icons text-danger">star</i>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+
+    </div>
+
+}
+else
+{
+    <h4>No feedback to show</h4>
+}
+
+
+
