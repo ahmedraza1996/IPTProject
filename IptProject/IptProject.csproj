@@ -430,6 +430,11 @@
     <Content Include="Views\Cafeteria\Wallet.cshtml" />
     <Content Include="Views\Cafeteria\AddFeedback.cshtml" />
     <Content Include="Views\CafeteriaStaff\GetFeedbacks.cshtml" />
+    <Content Include="Views\CafeteriaStaff\EditOrderStatus.cshtml" />
+    <Content Include="Views\CafeteriaStaff\ViewDetails.cshtml" />
+    <Content Include="Views\CafeteriaStaff\ViewOrders.cshtml" />
+    <Content Include="Views\Cafeteria\ViewDetails.cshtml" />
+    <Content Include="Views\Cafeteria\ViewOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

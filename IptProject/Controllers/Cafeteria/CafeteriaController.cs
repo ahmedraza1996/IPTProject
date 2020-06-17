@@ -334,6 +334,50 @@ namespace IptProject.Controllers
             }
 
         }
+        public ActionResult ViewOrder()
+        {
+            List<FoodItem> lstFoodItems = new List<FoodItem>();
+            lstOrder.Clear();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+                //HTTP GET
+                int StudentId = 1;   //get from session
+
+                var responseTask = client.GetAsync("cafeteria/GetOrdersbyStudentId?id=" + StudentId);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    var readTask = result.Content.ReadAsAsync<FoodOrder[]>();
+                    readTask.Wait();
+
+                    var orders = readTask.Result;
+
+                    foreach (var item in orders)
+                    {
+                        item.Datestr = item.OrderDate.ToString("dd-MM-yyyy");
+                        item.Timestr = item.OrderTime.ToString("HH:MM");
+
+                        lstOrder.Add(item);
+                    }
+                }
+            }
+
+
+            return View(lstOrder);
+        }
+        public ActionResult ViewDetails(int OrderId)
+        {
+
+            var orderdetails = lstOrder.Where(x => x.OrderID == OrderId).Select(x => x.OrderDetails).ToList();
+            ViewBag.orderdetails = orderdetails[0];
+            return PartialView();
+        }
+
+
 
 
 

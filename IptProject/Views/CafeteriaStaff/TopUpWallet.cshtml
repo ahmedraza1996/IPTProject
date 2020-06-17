@@ -14,7 +14,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title">Add New Item</h4>
+                        <h4 class="card-title">Top up Wallet</h4>
 
                     </div>
                     <div class="card-body">
@@ -22,8 +22,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Your Comments</label>
-                                        <input type="text" rows="3" class="form-control" name="comment" id="comment" placeholder="Enter your comments "/>
+                                        <label class="bmd-label-floating">Student Roll Number</label>
+                                        <input type="text" rows="3" class="form-control" name="rollnumber" id="rollnumber" placeholder="Kxx-xxxx"/>
                                     </div>
                                 </div>
 
@@ -31,8 +31,8 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="bmd-label-floating">Your Comments</label>
-                                    <input type="text" rows="3" class="form-control" name="comment" id="comment" placeholder="Enter your comments "/>
+                                    <label class="bmd-label-floating">Enter Amount</label>
+                                    <input type="text" rows="3" class="form-control" name="Amount" id="Amount" placeholder="Enter amount to top up"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -41,7 +41,7 @@
                                 </div>
 
                             </div>
-                            <input id="rating" name="rating" type="hidden" value="0" />
+                           
 
                             <a href="#" id="btnSubmit" class="btn btn-primary btn-block">
                                 Submit
@@ -70,12 +70,10 @@
                     $.ajax({
 
                         type: "POST",
-                        url: "/CafeteriaStaff/AddProduct",
+                        url: "/CafeteriaStaff/TopUpWallet",
                         data: myformdata,
                         success: function (response) {
-                            if (response != null) {
-                                swal.fire({ text: response, timer: 15000 });
-                            }
+                         
 
                         }
 
