@@ -11,6 +11,51 @@
 
 <style>
 
+
+    .modalcontainer{
+        border: 1px solid blue;
+        padding:2rem;
+    }
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    .fypdiv {
+        margin-top:2rem
+    }
     .hints {
         font-family: "Times New Roman";
         border: 0.1px solid rgba(0,0,0,0.2);
@@ -183,7 +228,7 @@
         <div class="col-lg-12">
             <input id="fypsearchbox" class="search-fyp form-check-inline" />
             <div class="button-search">
-                <button onclick="findFypData()" class=" btn btn-outline-primary btn-md"> Search </button>
+                <button onclick="findFypMetaData()" class=" btn btn-outline-primary btn-md"> Search </button>
 
             </div>
         </div>
@@ -197,6 +242,27 @@
                 <p>Hint: General Text Query: Some text here</p>
             </div>
         </div>
+    </div>
+
+    <div class="fypdiv row">
+        <div class="col-lg-12">
+            <table class="table">
+
+                <thead id="fypQueryHeaders" class="thead-dark">
+
+                </thead>
+
+                <tbody id="fypQueryRows" class="table-bordered"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row" id="modalcontainer">
+
+        <div class="col-lg-6" id="abstractdatacontainer">
+
+        </div>
+
     </div>
 </div>
 
@@ -240,20 +306,22 @@
             <div>
                 <table id="EmployeeTable" class="table">
                     <thead class="thead-dark">
-                        <tr id="attributeheads">
-                            
-                        </tr>
+                        <tr id="attributeheads"></tr>
                     </thead>
 
-                    <tbody id="tablebodydata">
-                        
-                       
-                    </tbody>
+                    <tbody id="tablebodydata"></tbody>
                 </table>
             </div>
         </div>
 
+       
+
+
     </div>
+
+
+
+    
 </div>
 
 
@@ -264,6 +332,8 @@
 <script type="text/javascript">
 
     var baseUrlDefaultSearch = @Html.Raw(Json.Encode(ViewData["baseUrlDefaultSearch"]));
+    var baseUrlFYPSearch = @Html.Raw(Json.Encode(ViewData["baseUrlFYPSearch"]));
+
     console.log(baseUrlDefaultSearch);
     var database = {};
 
@@ -444,43 +514,119 @@
 
 
 
+     
+    findFypMetaData = async (data) => {
 
-    function findFypData() {
-        var xhttp = new XMLHttpRequest();
+        response = await new Promise(resolve => {
 
-        xhttp.onreadystatechange =  function () {
-            console.log("here");
-            if (this.readyState == 4 && this.status == 200) {
-                console.log("RES " + this.responseText);
-                //document.getElementById("demo").innerHTML = this.responseText;
-                attributesToShow = JSON.parse(this.responseText);
-                //showTableDataOnAttributesRecieved(attributesToShow);
-                console.log("Attributes to show ");
-                console.log("=========================>" + attributesToShow);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", baseUrlFYPSearch, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function (e) {
+                resolve(xhr.response);
+            };
+            xhr.onerror = function () {
+                resolve(undefined);
+                console.error("** An error occurred during the XMLHttpRequest");
+            };
+
+            var query = document.getElementById("fypsearchbox").value;
+            if (query == "" || query == undefined) {
+                alert("Search Term Must not be empty")
+            } else {
+
+                var data = {
+                    "query": query
+                }
             }
-        };
+            xhr.send(JSON.stringify(data));
+        })
 
-        var query = document.getElementById("fypsearchbox").value;
-        if (query == "" || query == undefined) {
-            alert("Search Term Must not be empty")
-        } else {
+        populateFypTable(JSON.parse(response));
 
-            var data = {
-                "query":query
-            }
-
-
-            //FYP QUERY
-            var postUrl = "https://localhost:44380/api/SearchFYP/GetSearchResult";
-            xhttp.open("POST", postUrl, true);
-            xhttp.setRequestHeader("Content-Type", "application/json");
-            console.log(data);
-
-             xhttp.send(JSON.stringify(data));
-
-        }
     }
 
+
+
+    function populateFypTable(response) {
+        console.log("Populating Fyp Datable")
+        console.log(response)
+
+        var headerValues = Object.keys(response[0]);
+
+
+        console.log(headerValues);
+        
+
+
+        /** 
+         *  
+         *  <table class="table">
+
+                <thead id="fypQueryHeaders" class="thead-dark">
+
+                </thead>
+
+                <tbody id="fypQueryRows" class="table-bordered">
+
+                </tbody>
+            </table>
+         *  
+         *  
+         *  **/
+
+        var fypTableHeaders = document.getElementById("fypQueryHeaders");
+        fypTableHeaders.innerHTML = "";
+
+        var innerHtmlHeaders = "";
+
+        innerHtmlHeaders += "<tr>"
+
+        for ( i = 0; i < headerValues.length; i++) {
+            innerHtmlHeaders += "<th>" + headerValues[i] + "</th>";
+
+        }
+        innerHtmlHeaders += "</tr>"
+
+        fypTableHeaders.innerHTML = innerHtmlHeaders;
+
+        var fypQueryRows = document.getElementById("fypQueryRows");
+        fypQueryRows.innerHTML = "";
+
+        var rowInnerHtml = "";
+
+        for (i = 0; i < response.length; i++) {
+            rowInnerHtml += "<tr>"
+            rowInnerHtml += "<td class='info'>" + response[i].supervisor + "</td>";
+            rowInnerHtml += "<td class='info'>" + response[i].member1 + "</td>";
+            rowInnerHtml += "<td class='info'>" + response[i].member2 + "</td>";
+            rowInnerHtml += "<td class='info'>" + response[i].member3 + "</td>";
+            rowInnerHtml += "<td class='info'>" + response[i].title + "</td>";
+            rowInnerHtml += "<td id='row" + i + "'" + " class='info'>" + (response[i].description).slice(0, 6) + "...  <button id='myBtn' onclick='showModalForAbstract(" + '"' + response[i].description + '"'+")' class='btn btn-primary btn-sm'>Show</button></td>";
+
+            rowInnerHtml += "</tr>"
+        }
+
+
+        fypQueryRows.innerHTML = rowInnerHtml;
+
+    }
+
+    
+
+    function showModalForAbstract(abstractFyp) {
+
+        var AbstractDataContainer = document.getElementById("abstractdatacontainer");
+
+        var abstractParagraph = "<hr><h2>Abstract</h2>";
+        abstractParagraph += "<p class='abstractParagraph'>" + abstractFyp + "</p>"
+
+        AbstractDataContainer.innerHTML = abstractParagraph;
+
+        console.log(abstractFyp);
+    }
 
 
 
@@ -956,4 +1102,3 @@
         var gpas;
     }
 </script>
-

@@ -24,7 +24,7 @@ namespace IptProject.Controllers.Search
             ViewData["msg"] = " This is a test msessage";
             //base url 
             ViewData["baseUrlDefaultSearch"] = "https://localhost:44380/api/search/GetSearchResult";
-            ViewData["baseUrlFYPSearch"] = "will set";
+            ViewData["baseUrlFYPSearch"] = "https://localhost:44380/api/SearchFYP/GetSearchResult";
 
             return View();
         }
