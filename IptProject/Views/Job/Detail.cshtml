@@ -1,0 +1,193 @@
+﻿@using IptProject.Models.JobPortal
+@model List<JobDetails>
+@{
+    ViewBag.Title = "Job Details";
+    
+}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Job Hunt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="CreativeLayers">
+
+    <!-- Styles -->
+    <!-- Styles -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/bootstrap-grid.css") />
+    <link rel="stylesheet" href=@Url.Content("/Content/JobPortal/csshunt/icons.css") />
+    <link rel="stylesheet" href=@Url.Content("/Content/JobPortal/csshunt/animate.min.css") />
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/style.css") />
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/responsive.css") />
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/chosen.css") />
+
+
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/colors/colors.css") />-->
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/bootstrap.css") />
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/jobportal.css")/>
+
+
+</head>
+<body>
+    <style>
+        .inner-header {
+    float: left;
+    width: 100%;
+    position: relative;
+    padding-top: 240px;
+    padding-bottom: 15px;
+    z-index: 0;
+}
+ .center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+    </style>
+    
+    <div class="theme-layout" id="scrollup">
+
+
+        <section class="overlape">
+            <div class="block no-padding">
+                <div data-velocity="-.1" style="background: url(images/resource/mslider1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+                <div class="container fluid">
+                    <div class="row">
+                        <div class="col-lg-12" style="background-color:#9c27b0">
+                            <div class="inner-header">
+                                <h2 class="center" style="color:white;font-weight:500">@Model[0].Title</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="block">
+                <div class="container fluid">
+                    <div class="row">
+                        <div class="col-lg-12 column">
+                            <div class="job-single-sec style3">
+                                <div class="job-head-wide">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="job-single-head3">
+                                                <div class="job-single-info3">
+                                                    <h3 style="color:#9c27b0;font-weight:400">@Model[0].Organization</h3>
+                                                    @*<span><i class="la la-map-marker"></i>Sacramento, California</span><span class="job-is ft">Full time</span>*@
+                                                    <ul class="tags-jobs">
+                                                        <i class="la la-calendar-o"></i> Post Date: July 29, 2017
+                                                    </ul>
+                                                </div>
+                                            </div><!-- Job Head -->
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <a id="applyNow" href="#" style="background-color:#9c27b0;margin-top:30px" class="waves-effect waves-light btn">Apply Here</a>
+
+                                            <!--<a id="applyNow" class="apply-thisjob" href="#" title=""><i class="la la-paper-plane"></i>Apply for job</a>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="job-wide-devider">
+                                    <div class="row">
+                                        <div class="col-lg-8 column">
+                                            <div class="job-details">
+                                                <h3 style="color:#9c27b0;font-weight:400">Job Description</h3>
+                                                @*<p>Company is a 2016 Iowa City-born start-up that develops consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.</p>
+                                                    <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien</p>
+                                                    <h3>Required Knowledge, Skills, and Abilities</h3>*@
+                                                <ul>
+                                                    @foreach (JobDetails row in Model)
+                                                    {
+                                                        <li>@row.Description</li>
+                                                    }
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 column">
+                                            <div class="job-overview">
+                                                <h3 style="color:#9c27b0;font-weight:400">Job Overview</h3>
+                                                <ul>
+                                                    <!--<li><i class="la la-money"></i><h4 style="color:#9c27b0">Offerd Salary</h4><span>@Model[0].ApplicationLink</span></li>-->
+                                                    <li><i class="la la-thumb-tack"></i><h4 style="color:#9c27b0">Contact Person</h4><span>@Model[0].ContactPerson</span></li> <br />
+                                                    <li><i class="la la-puzzle-piece"></i><h4 style="color:#9c27b0">Industry</h4><span>@Model[0].Designation</span></li>  <br />
+                                                    <li><i class="la la-shield"></i><h4 style="color:#9c27b0">Minimun Experience</h4><span>@Model[0].MinExperience Years</span></li> <br />
+                                                    <li><i class="la la-line-chart "></i><h4 style="color:#9c27b0">Last Date to Apply</h4><span>@Model[0].LastApplyDate</span></li><br />
+                                                </ul>
+                                            </div><!-- Job Overview -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src=@Url.Content("/Content/JobPortal/jshunt/jquery.min.js")></script>
+    <script language="JavaScript" type="text/javascript" src=@Url.Content("/Content/JobPortal/jshunt/modernizr.js")></script>
+    <script language="JavaScript" type="text/javascript" src=@Url.Content("/Content/JobPortal/jshunt/script.js")></script>
+    <script language="JavaScript" type="text/javascript" src=@Url.Content("/Content/JobPortal/jshunt/bootstrap.min.js")></script>
+    <script language="JavaScript" type="text/javascript" src=@Url.Content("/Content/JobPortal/jshunt/wow.min.js")></script>
+    <script language="JavaScript" type="text/javascript" src=@Url.Content("/Content/JobPortal/jshunt/slick.min.js")></script>
+    <script language="JavaScript" type="text/javascript" src=@Url.Content("/Content/JobPortal/jshunt/parallax.js")></script>
+    <script language="JavaScript" type="text/javascript" src=@Url.Content("/Content/JobPortal/jshunt/select-chosen.js")></script>
+    <script language="JavaScript" type="text/javascript" src=@Url.Content("/Content/JobPortal/jshunt/jquery.scrollbar.min.js")></script>
+
+    <script>
+        //$(document).ready(function () {
+
+        //    $('#applyNow').click(function (event) {
+        //        $('apply-thisjob').html("Applied");
+        //    });
+        //});
+        //var model = @Html.Raw(Json.Encode(Model));
+        var jobID = @Html.Raw(Json.Encode(Model[0].JobID))
+
+        $(document).ready(function () {
+            $("#applyNow").click(function (event) {
+                $.ajax
+                    ({
+                        type: 'POST',
+                        url: 'https://localhost:44380/api/apply',
+                        data: {
+                            StudentId: 6,
+                            JobId: jobID
+                        },
+                        crossDomain: true,
+                        success: function (response) {
+                            //alert("Congratulations! Your application have been submitted.");
+                            //location.reload(true);
+
+                        },
+                        error: function (xhr, status, error) {
+                            alert("Congratulations! Your application have been submitted.");
+                            //alert(xhr.toString());
+                            //alert(status.toString());
+                            //alert(error.toString())
+                            //alert("Something went wrong!")
+                            //location.reload(true);
+                        }
+                    }).done(function () {
+
+                        alert("Congratulations! Your application have been submitted.");
+                        //alert("Done");
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
