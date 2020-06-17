@@ -168,6 +168,7 @@ namespace IptProject.Controllers.Cafeteria
             Dictionary<string, object> data = new Dictionary<string, object>();
             data["ItemId"] = obj.ItemId;
             data["ItemStatus"] = obj.ItemStatus;
+            
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
@@ -211,6 +212,35 @@ namespace IptProject.Controllers.Cafeteria
         {
             //get student id
             //get wallet id by student id
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data["RollNumber"] = rollnumber;
+            data["Amount"] = Amount;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+                //HTTP GET
+                var responseTask = client.PostAsJsonAsync("CafeteriaStaff/TopupWallet", data);
+
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.StatusCode == HttpStatusCode.Created)
+                {
+
+                    return Content("Item Status Updated!");
+
+                    //var readTask = result.Content.ReadAsAsync<FoodItem>();
+                    //readTask.Wait();
+
+                    //obj = readTask.Result;
+
+
+                }
+                else
+                {
+                    return Content("Err...There seems to be some error!");
+                }
+            }
 
 
             return View();

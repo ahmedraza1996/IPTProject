@@ -23,7 +23,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Student Roll Number</label>
-                                        <input type="text" rows="3" class="form-control" name="rollnumber" id="rollnumber" placeholder="Kxx-xxxx"/>
+                                        <input type="text" rows="3" class="form-control" name="rollnumber" id="rollnumber" placeholder="00K0000"/>
                                     </div>
                                 </div>
 
@@ -73,7 +73,20 @@
                         url: "/CafeteriaStaff/TopUpWallet",
                         data: myformdata,
                         success: function (response) {
-                         
+                            if (response == "Item Status Updated!") {
+                                Swal.fire(
+                                    'Yaayyy!',
+                                    'Your wallet has been updated!',
+                                    'success'
+                                );
+                            }
+                            else {
+                                Swal.fire({
+                                  icon: 'error',
+                                  title: 'Oops...',
+                                  text: 'Something went wrong!'
+                                })
+                          }
 
                         }
 

@@ -274,7 +274,7 @@ namespace IptProject.Controllers
         {
             Wallet obj = new Wallet();
             Dictionary<string, object> data = new Dictionary<string, object>();
-            data["StudentID"] = 1;
+            data["StudentID"] = 2;
 
             using (var client = new HttpClient())
             {
