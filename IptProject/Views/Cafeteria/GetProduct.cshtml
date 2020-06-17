@@ -5,98 +5,51 @@
     Layout = "~/Views/Shared/_PortalLayout.cshtml";
 }
 
-<div class="row">
+    <div class="row">
 
-    @foreach (var item in Model)
-    {
-        <div class="col-lg-3 col-md-6 col-sm-6">
-        
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <a onclick="sweetalert();">
 
 
-                <div class="card card-stats">
-                    <div class="card-header card-header-warning card-header-icon">
-                        <div class="card-icon">
-                            @if (string.IsNullOrEmpty(item.base64image))
-                            {
+                    <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                            <div class="card-icon">
                                 <i class="material-icons">outdoor_grill</i>
-                            }
-                            else
-                            {
-                                <img src="data:image/jpeg;base64,@item.base64image" style="height:56px;width:56px; " />
-                            }
+                            </div>
+                            @*<p class="card-category">Used Space</p>*@
+                            <h3 class="card-title">
+                                @item.ItemName
 
-
+                            </h3>
+                            <div class="tim-typo" style="color:black">
+                                <p>@item.IDescription</p>
+                            </div>
                         </div>
-                        @*<p class="card-category">Used Space</p>*@
-                        <h3 class="card-title">
-                            @item.ItemName
-
-                        </h3>
-                        <div class="tim-typo" style="color:black">
-                            <p>@item.IDescription</p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a onclick="Cart(@item.ItemId);"><i class="material-icons text-success">add_shopping_cart</i>Add to Cart</a>
-                        <div class="stats">
-                            <i class="material-icons text-success">money</i>
-                            <a href="javascript:;">Rs @item.Price /-</a>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons text-success">money</i>
+                                <a href="javascript:;">Rs @item.Price /-</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-         
-        </div>
-
-    }
-
-
-
-</div>
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Cart</h3>
-                <a href="#" class="close" data-dismiss="modal">&times;</a>
-
-            </div>
-            <div class="modal-body" id="myModalBodyDiv">
-
-
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
-
+                </a>
             </div>
 
-        </div>
+        }
+
+
 
     </div>
-
-</div>
-
-
-
-
-
 @section scripts{
     <script type="text/javascript">
         function sweetalert() {
             swal('Please wait');
         }
-        
-         var Cart = function (productid) {
-
-            var url = "/Cafeteria/AddtoCart?id=" + productid;
-
-            $("#myModalBodyDiv").load(url, function () {
-                $("#myModal").modal("show");
-
-            })
-        }
-
     </script>
-
-
-}
+    
+    
+    
+    }
 
