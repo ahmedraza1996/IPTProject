@@ -3,10 +3,39 @@
     Layout = "~/Views/Shared/_PortalLayout.cshtml";
 
 }
-
-
+<link href="~/Content/tagsinput.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/popperjs/core2" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="~/Scripts/tags.js"></script>
 
 <style>
+
+    .hints {
+        font-family: "Times New Roman";
+        border: 0.1px solid rgba(0,0,0,0.2);
+        margin-top: 20px;
+        padding: 10px;
+        color: rgb(128, 128, 128)
+    }
+
+    .button-search {
+        display: flex;
+        justify-content: center
+    }
+
+    .search-fyp {
+        border-radius: 100px;
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+        border: 0.1px solid rgb(255, 0, 0)
+    }
+
+    .inner-fypsearch {
+        margin: 20px;
+        padding: 100px
+    }
 
     .badge_title {
         border: 1px solid gray;
@@ -83,7 +112,7 @@
     <div class="menu">
 
         <button onclick='display("defaultsearch")' id="defaultsearchBtn" class="btn btn-primary form-check-inline my-2 my-sm-0">Default Search</button>
-        <button onclick='display("fypstudentsearch")' id="fypstudentsearchBtn" class="btn btn-outline-primary form-check-inline my-2 my-sm-0">FYP Student Search</button>
+        <button onclick='display("fypstudentsearch")' id="fypstudentsearchBtn" class="btn btn-outline-primary form-check-inline my-2 my-sm-0">Student Search</button>
         <button onclick='display("fypmetadatasearch")' id="fypmetadatasearchBtn" class="btn btn-outline-primary form-check-inline my-2 my-sm-0">FYP Metadata Search</button>
 
     </div>
@@ -93,15 +122,14 @@
     <div class="row">
 
         <div class="col-lg-3">
-           
-            
+
+
             <span class="badge_title badge badge-light">Student Name</span>
 
-            <select id="student_names" class="glyphicon-tags"  multiple data-role="slider">
-                <option class="glyphicon-tag" value="2016">2016</option>
-                <option value="2017">2017</option>
+            <select id="student_names" class="tagsinput" multiple data-role="tagsinput">
+                <option value="2016">ahmed</option>
+                <option value="2017">raza</option>
                 <option value="2018">2018</option>
-
             </select>
         </div>
 
@@ -146,12 +174,30 @@
         </div>
     </div>
 
-    <button onclick="postFypStudentSearch()" class="btn btn-success"> Submit </button>
+    <button onclick="postFypStudentSearch()" class="btn btn-success"> Search </button>
 
 </div>
 
-<div id="fypmetadatasearch">
-    <p>Fyp METADATA Search</p>
+<div class="inner-fypsearch" id="fypmetadatasearch">
+    <div class="row">
+        <div class="col-lg-12">
+            <input id="fypsearchbox" class="search-fyp form-check-inline" />
+            <div class="button-search">
+                <button onclick="findFypData()" class=" btn btn-outline-primary btn-md"> Search </button>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="hints">
+                <p>Hint: Boolean Query: mehdi and saad and ismail</p>
+                <p>Hint: Proximity Query: mehdi saad /1</p>
+                <p>Hint: General Text Query: Some text here</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -192,26 +238,18 @@
 
         <div class="col-md-12">
             <div>
-                <table class="table">
+                <table id="EmployeeTable" class="table">
                     <thead class="thead-dark">
                         <tr id="attributeheads">
-                            <th scope="col">#</th>
-                            <th scope="col">StudentID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Contact</th>
-                            <th scope="col">Contact</th>
-                            <th scope="col">Contact</th>
-                            <th scope="col">Contact</th>
-                            <th scope="col">Contact</th>
-
+                            
                         </tr>
                     </thead>
-                    <tbody id="tablebodydata"></tbody>
+
+                    <tbody id="tablebodydata">
+                        
+                       
+                    </tbody>
                 </table>
-
-
             </div>
         </div>
 
@@ -220,10 +258,164 @@
 
 
 
+
+
+
 <script type="text/javascript">
 
-    isTextInserted = false;
-    isDropDownSelected = false;
+    var baseUrlDefaultSearch = @Html.Raw(Json.Encode(ViewData["baseUrlDefaultSearch"]));
+    console.log(baseUrlDefaultSearch);
+    var database = {};
+
+    getMyTable = async (data) => {
+        
+                 response = await new Promise(resolve => {
+                   
+
+                    var xhr = new XMLHttpRequest();
+                     xhr.open("POST", baseUrlDefaultSearch, true);
+                    xhr.setRequestHeader("Content-Type", "application/json");
+
+                    xhr.onload = function (e) {
+                        resolve(xhr.response);
+                    };
+                    xhr.onerror = function () {
+                        resolve(undefined);
+                        console.error("** An error occurred during the XMLHttpRequest");
+                    };
+                    xhr.send(JSON.stringify(data));
+         })
+
+
+        console.log("Database efore calling apis : " + JSON.stringify(database));
+
+        database_cols = JSON.parse(response)
+
+
+        console.log("=================== > >  > > > >INIT\n")
+        console.log("------\n")
+        var tableName = data.TableName;
+        var columns = database_cols;
+
+        console.log(tableName);
+        console.log(columns)
+
+
+
+        if (tableName === "Employee") {
+            database[tableName] = []
+
+            // console.log("-- EMPLOYEE IF CONDITION DATA ----\n")
+            //console.log(data)
+            //console.log("COLUMNS\n")
+            //console.log(columns)
+
+
+            // console.log(tableName)
+            for (var i in columns) {
+                //console.log(columns[i]['COLUMN_NAME'])
+                if (columns[i]['COLUMN_NAME'] == "EmpName" || columns[i]['COLUMN_NAME'] == "Email" || columns[i]['COLUMN_NAME'] == "DesignationTitle" || columns[i]['COLUMN_NAME'] == "DepartmentID") {
+                    database[tableName].push(columns[i]['COLUMN_NAME']);
+                }
+            }
+
+
+            database[tableName].push("Name Contains");
+            database[tableName].push("Name Starts With");
+            database[tableName].push("Instructors by Course Name");
+            database[tableName].push("Instructors by Course CODE");
+            database[tableName].push("Instructor by Designation ID");
+
+
+
+
+            
+          
+        }
+
+        // console.log("DATABASE =============================\n")
+        //console.log(database)
+
+        if (tableName === "Course") {
+
+            database[tableName] = []
+
+
+            database[tableName].push("Course ID");
+            database[tableName].push("Course Taught By");
+            database[tableName].push("Course Taught In Semester");
+
+        }
+
+
+
+
+        //console.log("--------------------------------------------------\n")
+
+      //  console.log(tableNames);
+
+        console.log("\n\n\nDatabase after calling apis : " + JSON.stringify(database));
+
+
+        //console.log(database)
+    }
+
+
+    var employeeParams = {
+        "actionName": "GetTableSchema",
+
+        "TableName": "Employee"
+    }
+
+    
+    var courseParams = {
+        "actionName": "GetTableSchema",
+
+        "TableName": "Course"
+    }
+    
+
+
+
+
+    this.getMyTable(courseParams);
+    this.getMyTable(employeeParams).then(function () {
+        this.populateDropDown(database);
+
+    });;
+
+    console.log("Populating database dropdowns")
+
+   
+    
+
+    function populateDropDown(database) {
+
+        var DropDownTableNames = Object.keys(database)
+        //console.log("IN POPULATE DROPDOWN")
+        var dropdown = document.getElementById("dropdown");
+
+
+        console.log("In drop down:::::::\n")
+        console.log(database)
+
+        
+
+        for (i = 0; i < DropDownTableNames.length; i++) {
+          //  console.log("FOR LOOP")
+            //console.log(tableNames[i])
+            console.log("COUNT:" + i)
+            console.log(DropDownTableNames[i])
+            dropdown.innerHTML += '<a onclick = "dropDownSet(this)" class="dropdown-item" href = "#" >' + DropDownTableNames[i] + '</a >'
+        }
+        //console.log("OUT OF  POPUPLSATE DROPWDOWN")
+    }
+
+
+    //var EmployeeColumns = GetSchemaAndColumnFromDatabase("Employee")
+
+
+    
 
     /**
 
@@ -242,46 +434,94 @@
      *
      *  **/
 
-    var database = {};
 
+    //var InstructorSchema = {}
 
-
-    database = {
-        "Teacher": ["name", "faculty_department", "email", "dob"],
-        "Student": ["id", "contact", "address", "school", "section", "batch"],
-        "Course": ["code", "course_name", "credit_hours", "instructor", "department"],
-    }
-
-    const tableNames = Object.keys(database);
-
-
-
-    var dropdown = document.getElementById("dropdown");
-
-    for (i = 0; i < tableNames.length; i++) {
-        dropdown.innerHTML += '<a onclick = "dropDownSet(this)" class="dropdown-item" href = "#" >' + tableNames[i] + '</a >'
-    }
+    var isTextInserted = false;
+    var isDropDownSelected = false;
 
 
 
 
 
-    function sendPostRequest() {
-        var attributesToShow = [];
 
+    function findFypData() {
         var xhttp = new XMLHttpRequest();
 
-        xhttp.onreadystatechange = function () {
+        xhttp.onreadystatechange =  function () {
+            console.log("here");
             if (this.readyState == 4 && this.status == 200) {
                 console.log("RES " + this.responseText);
                 //document.getElementById("demo").innerHTML = this.responseText;
                 attributesToShow = JSON.parse(this.responseText);
-                showTableDataOnAttributesRecieved(attributesToShow);
-                //console.log("Attributes to show ");
-                //console.log("=========================>" + attributesToShow);
+                //showTableDataOnAttributesRecieved(attributesToShow);
+                console.log("Attributes to show ");
+                console.log("=========================>" + attributesToShow);
             }
         };
 
+        var query = document.getElementById("fypsearchbox").value;
+        if (query == "" || query == undefined) {
+            alert("Search Term Must not be empty")
+        } else {
+
+            var data = {
+                "query":query
+            }
+
+            //var postUrl = "https://localhost:44380/api/SearchFYP/GetSearchResult";
+            xhttp.open("POST", baseUrlDefaultSearch, true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            console.log(data);
+
+             xhttp.send(JSON.stringify(data));
+
+        }
+    }
+
+
+
+
+    getDataBasedOnCheckedBoxes = async (data) => {
+
+        response = await new Promise(resolve => {
+
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", baseUrlDefaultSearch, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function (e) {
+                resolve(xhr.response);
+            };
+            xhr.onerror = function () {
+                resolve(undefined);
+                console.error("** An error occurred during the XMLHttpRequest");
+            };
+            xhr.send(JSON.stringify(data));
+        })
+        console.log("\n\nEmployeeee Detailssssssssssssssssssssss\n")
+        console.log(response);
+
+        var columnNames = Object.keys(JSON.parse(response)[0])
+        console.log("COLUMN NAMES ARE AS FOLLOWS: \n");
+        console.log(columnNames);
+
+        console.log("db response %__%_%_%_%_%_%_ \n");
+        console.log(response);
+
+        this.showTableDataOnAttributesRecieved(columnNames, JSON.parse(response),JSON.parse(response).length)
+
+    }
+
+
+
+    function sendPostRequest() {
+
+        console.log("\n\n\n ---- ")
+        var attributesToShow = [];
+
+        
 
         var searchQuery = document.getElementById("searchText").value;
 
@@ -296,33 +536,129 @@
             }
 
         }
+
+        console.log("Selected options:\n");
+        console.log(selectedOptions[0])
         console.log("----------\n");
 
-        var dataToSend = {
+        var data = {
             searchQuery: searchQuery,
             attributes: selectedOptions
         }
 
-        console.log(dataToSend);
-        var postUrl = "/home/post";
+
+        
+        console.log(data);
+        
         for (i = 0; i < selectedOptions.length; i++) {
             console.log(selectedOptions[i]);
         }
 
+       
+        var employeeParams;
 
-        xhttp.open("POST", "/home/post/", true);
-        xhttp.setRequestHeader("Content-Type", "application/json");
-        xhttp.send(JSON.stringify(dataToSend));
+        if (selectedOptions[0] === "EmpName") {
+             employeeParams = {
+                 "actionName": "GetInstructorByName",
+                "EmpName": data.searchQuery
+            }
+        }
 
 
 
+        if (selectedOptions[0] === "Email") {
+            employeeParams = {
+                "actionName": "GetInstructorByEmail",
+                "Email": data.searchQuery
+            }
+        }
+
+
+        if (selectedOptions[0] === "Instructor by Designation ID") {
+            employeeParams = {
+                "actionName": "GetInstructorByRank",
+                "DesignationTitle": data.searchQuery
+            }
+        }
+
+        if (selectedOptions[0] === "DepartmentID") {
+            employeeParams = {
+                "actionName": "GetInstructorByDepartment",
+                "DepartmentID": data.searchQuery
+            }
+        }
+
+        if (selectedOptions[0] === "Name Starts With") {
+            employeeParams = {
+                "actionName": "GetInstructorByNameStartsWith",
+                "EmpName": data.searchQuery
+            }
+        }
+
+
+        if (selectedOptions[0] === "Name Contains") {
+            employeeParams = {
+                "actionName": "GetInstructorByNameContains",
+                "EmpName": data.searchQuery
+            }
+        }
+
+
+        if (selectedOptions[0] === "Instructors by Course Name") {
+            employeeParams = {
+                "actionName": "GetInstructorByCourseName",
+                "CourseName": data.searchQuery
+            }
+        }
+
+
+        if (selectedOptions[0] === "Instructors by Course CODE") {
+            employeeParams = {
+                "actionName": "GetInstructorByCourseCode",
+                "CourseCode": data.searchQuery
+            }
+        }
+
+
+        if (selectedOptions[0] === "Name Contains") {
+            employeeParams = {
+                "actionName": "GetInstructorByNameContains",
+                "EmpName": data.searchQuery
+            }
+        }
+
+        if (selectedOptions[0] === "Course Taught By") {
+            employeeParams = {
+                "actionName": "GetCoursesTaughtByASpecificInstructor",
+                "EmpName": data.searchQuery
+            }
+        }
+        
+        this.getDataBasedOnCheckedBoxes(employeeParams);
 
     }
 
-    function showTableDataOnAttributesRecieved(attributesToShow) {
+    function showTableDataOnAttributesRecieved(attributesToShow,rows,length) {
+
+
+        console.log("Numbers Of Rows To Display\n");
+        console.log(length);
+
+
+        console.log("Column Headers\n");
+        console.log(attributesToShow)
+        console.log("Number of header columns");
+        console.log(attributesToShow.length)
+
+        console.log("\nAll Rows\n")
+        console.log(rows);
+
+
 
         //HEADER ROW
         //<th scope="col">StudentID</th>
+
+       
 
 
         //DATA ROW  / tablebodydata
@@ -343,17 +679,87 @@
          *
          *  **/
 
+        
 
 
         var tableHeaderRow = document.getElementById("attributeheads");
         tableHeaderRow.innerHTML = "";
+        tableHeaderRow.innerHTML += "<tr>";
         console.log("==============================");
+        tableHeaderInner = "";
 
         for (i = 0; i < attributesToShow.length; i++) {
             console.log("==!!=>" + attributesToShow[i]);
-            tableHeaderRow.innerHTML += '<th scope="col">' + attributesToShow[i] + '</th>';
-        }
+            tableHeaderInner += '<th scope="col">' + attributesToShow[i] + '</th>';
 
+        }
+        tableHeaderRow.innerHTML += tableHeaderInner;
+        tableHeaderRow.innerHTML += "</tr>";
+
+
+       // console.log("LENGTH OF ROWS : " + rows.length);
+        //console.log("LENGTH OF ROWS [0]: " + rows[0].length)
+
+
+        var tableBodyData = document.getElementById("tablebodydata");
+        tableBodyData.innerHTML = "";
+
+
+        var innerHTMLForBody = "";
+
+
+
+        //EMP NAME And most of them
+        for (i = 0; i < length; i++) {
+
+            console.log("VALUE OF i : " + i);
+
+            innerHTMLForBody += "<tr>";
+
+            if (attributesToShow.length == 1) {
+                innerHTMLForBody += "<td>" + rows[i].CourseName + "</td>";
+            } else {
+                if (attributesToShow.length > 1 || attributesToShow.length <= 8) {
+                    innerHTMLForBody += "<td>" + rows[i].EmpID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].EmpName + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].Email + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].MobileNumber + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].DesignationID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].DepartmentID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].RefID + "</td>";
+                    innerHTMLForBody += "<td>" + "**********" + "</td>";
+                }
+
+
+                if (attributesToShow.length > 8) {
+                    innerHTMLForBody += "<td>" + rows[i].CFID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].NumberOfSection + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].CourseOfferedID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].CreditHrs + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].CourseNSections + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].MaxStdPerSection + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].BatchID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].SemesterID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].CourseID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].CourseName + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].CourseCode + "</td>";
+
+
+                }
+            }
+
+           
+
+            
+
+            innerHTMLForBody += "</tr>";
+
+         }
+
+        tableBodyData.innerHTML += innerHTMLForBody;
+        
+        console.log(EmployeeTableBody)
+       // <tbody id="tablebodydata"></tbody>
 
     }
 
@@ -549,6 +955,3 @@
     }
 </script>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/popperjs/core2" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>

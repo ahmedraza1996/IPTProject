@@ -3,6 +3,8 @@
  * 
  */
 
+
+
 .bootstrap-tagsinput {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -15,6 +17,7 @@
     width: 100%;
     line-height: 22px;
     cursor: text;
+    
 }
 
     .bootstrap-tagsinput input {

@@ -153,3 +153,8 @@ D:\Semester Work\Final Semester\IPT\IPTProject\IPTProject\IptProject\obj\Debug\I
 D:\Semester Work\Final Semester\IPT\IPTProject\IPTProject\IptProject\obj\Debug\IptProject.csproj.CopyComplete
 D:\Semester Work\Final Semester\IPT\IPTProject\IPTProject\IptProject\obj\Debug\IptProject.dll
 D:\Semester Work\Final Semester\IPT\IPTProject\IPTProject\IptProject\obj\Debug\IptProject.pdb
+D:\Semester Work\Final Semester\IPT\IPTProject\IPTProject\IptProject\bin\System.Web.Cors.dll
+D:\Semester Work\Final Semester\IPT\IPTProject\IPTProject\IptProject\bin\System.Web.Http.Cors.dll
+D:\Semester Work\Final Semester\IPT\IPTProject\IPTProject\IptProject\bin\System.Web.Http.dll
+D:\Semester Work\Final Semester\IPT\IPTProject\IPTProject\IptProject\bin\System.Web.Http.xml
+D:\Semester Work\Final Semester\IPT\IPTProject\IPTProject\IptProject\bin\System.Web.Http.Cors.xml
