@@ -1,0 +1,61 @@
+﻿@model List<IptProject.Models.TimeTable.TimeTableModel>
+@{
+    ViewBag.Title = "Reallocate";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+
+    List<string> batchlist = ViewBag.BatchList;
+    List<int> daylist = ViewBag.Daylist;
+    List<string> courselist = ViewBag.CourseList;
+    List<string> sectionlist = ViewBag.SectionList;
+
+}
+
+    <h2>Reschedule Class</h2>
+
+@*@Html.DropDownListFor("query", ViewBag.BatchList as SelectList, "Select one", new {@class= "form-control" });*@
+
+
+   
+    <form id="frmdropdown">
+        <select  id="courselist" name="courselist" class="form-control">
+            @foreach (var item in courselist)
+            {
+                <option value=@item.ToString()>@item.ToString()</option>
+            }
+
+        </select>
+
+        <select id="sectionlist" name="sectionlist" class="form-control">
+            @foreach (var item in sectionlist)
+            {
+                <option value=@item.ToString()>@item.ToString()</option>
+            }
+
+        </select>
+
+        @*<form id="frmdropdown">*@
+        <select  id="Daylist" name="daylist" class="form-control">
+            @foreach (var item in daylist)
+            {
+                <option value=@item.ToString()>@item.ToString()</option>
+            }
+
+        </select>
+
+
+    </form>
+    <button onclick="sendData()"> Send Query</button>
+
+    <script>
+        function sendData() {
+            alert("data sent");
+            debugger;
+            var frmSerialize = $("#frmdropdown").serialize();
+            $.post("/timetable/GetClassTimeTablereallocate/", frmSerialize, function (data) {
+
+            });
+
+        }
+
+
+    </script>

@@ -1,0 +1,69 @@
+﻿@model List<IptProject.Models.TimeTable.TimeTableModel>
+@{
+    ViewBag.Title = "ExtraClass";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+
+    List<string> batchlist = ViewBag.BatchList;
+    List<int> daylist = ViewBag.Daylist;
+    List<string> courselist = ViewBag.CourseList;
+    List<string> sectionlist = ViewBag.SectionList;
+    List<string> instructorlist = ViewBag.Instructorlist;
+
+}
+
+<h2>Extra Class</h2>
+
+@*@Html.DropDownListFor("query", ViewBag.BatchList as SelectList, "Select one", new {@class= "form-control" });*@
+
+<form id="frmdropdown">
+    <select name="courselist" id="courselist" class="form-control">
+        @foreach (var item in courselist)
+        {
+            <option value=@item.ToString()>@item.ToString()</option>
+        }
+
+    </select>
+
+    @*<form id="frmdropdown">*@
+        <select name="sectionlist" id="sectionlist" class="form-control">
+            @foreach (var item in sectionlist)
+            {
+                <option value=@item.ToString()>@item.ToString()</option>
+            }
+
+        </select>
+
+        @*<form id="frmdropdown">*@
+            <select name="daylist" id="Daylist" class="form-control">
+                @foreach (var item in daylist)
+                {
+                    <option value=@item.ToString()>@item.ToString()</option>
+                }
+
+            </select>
+
+            @*<form id="frmdropdown">*@
+                <select name="instructor" id="instructorlist" class="form-control">
+                    @foreach (var item in instructorlist)
+                    {
+                        <option value=@item.ToString()>@item.ToString()</option>
+                    }
+
+                </select>
+
+                <button onclick="sendData()"> Send Query</button>
+            </form>
+
+
+            <script>
+                function sendData() {
+                    alert("data sent");
+                    var frmSerialize = $("#frmdropdown").serialize();
+                    $.post("/timetable/PostExtraClass/", frmSerialize, function (data) {
+
+                    });
+
+                }
+
+
+            </script>
