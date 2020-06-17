@@ -469,8 +469,10 @@
                 "query":query
             }
 
-            //var postUrl = "https://localhost:44380/api/SearchFYP/GetSearchResult";
-            xhttp.open("POST", baseUrlDefaultSearch, true);
+
+            //FYP QUERY
+            var postUrl = "https://localhost:44380/api/SearchFYP/GetSearchResult";
+            xhttp.open("POST", postUrl, true);
             xhttp.setRequestHeader("Content-Type", "application/json");
             console.log(data);
 
