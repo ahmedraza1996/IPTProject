@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
     <title>@ViewBag.Title - Chat App</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -67,6 +69,7 @@
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @Scripts.Render("~/bundles/materializejs")
     @RenderSection("scripts", required: false)
-
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: true)
 </body>
 </html>
