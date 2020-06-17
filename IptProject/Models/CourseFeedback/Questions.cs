@@ -12,6 +12,7 @@ namespace IptProject.Models.CourseFeedback
         public string CourseType { get; set; }
         public string QuestionType { get; set; }
         public List<String> options { get; set; }
+        public string FeedbackID { get; set; }
 
         public Questions(string _QuestionText, string _CourseType, string _QuestionType, string _QuestionID)
         {

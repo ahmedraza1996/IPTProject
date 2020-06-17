@@ -10,23 +10,23 @@
 " method="post" onsubmit="handleUpload()">
             @foreach (var item in Model)
             {
+                <p hidden>@item.FeedbackID</p>
             <div class="card">
                 <div class="col-md-6">
-
                     @if (item.QuestionType == "2")
                     {
                         <div class="radio m-6">
                             <p style="margin-left:7px;"><b>@item.QuestionText</b></p>
-                            <label><input type="radio" name="@item.QuestionID">@item.options[0]</label>
+                            <label><input type="radio" value="@item.options[0]" name="@item.QuestionID">@item.options[0]</label>
                         </div>
                         <div class="radio">
-                            <label><input type="radio" name="@item.QuestionID">@item.options[1]</label>
+                            <label><input type="radio" value="@item.options[1]" name="@item.QuestionID">@item.options[1]</label>
                         </div>
                         <div class="radio">
-                            <label><input type="radio" name="@item.QuestionID">@item.options[2]</label>
+                            <label><input type="radio" value="@item.options[2]" name="@item.QuestionID">@item.options[2]</label>
                         </div>
                         <div class="radio">
-                            <label><input type="radio" name="@item.QuestionID">@item.options[3]</label>
+                            <label><input type="radio" value="@item.options[3]" name="@item.QuestionID">@item.options[3]</label>
                         </div>
                     }
                     @if (item.QuestionType == "1")
@@ -40,7 +40,7 @@
             <button id ="submit" class="btn btn-default" type="submit">Submit</button>
 
         </form>
-        <script>
+        @*<script>
             function s(e) {
                 console.log("dedededededededededededededededededede");
                 fetch("https://localhost:44380/api/coursefeedback/postAnswers", {method: "post"));
@@ -52,16 +52,30 @@
                   console.log( "hello");
                 }); 
             });
-        </script>
+        </script>*@
     </div>
 @section scripts{
     <script type="text/javascript">
         function handleUpload(event) {
             alert(123)
             console.log($("form").serialize());
+            var $form = $("form");
+            var data = getFormData($form);
+            console.log(data)
             return false;
+
         }
-        
+
+    function getFormData($form){
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return indexed_array;
+    }
     </script>
 
 

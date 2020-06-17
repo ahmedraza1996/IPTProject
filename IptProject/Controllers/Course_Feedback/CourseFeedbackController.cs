@@ -11,6 +11,9 @@ namespace IptProject.Controllers.Course_Feedback
 {
     public class CourseFeedbackController : Controller
     {
+        //this will hold both the name and feedback id 0 index for feedbackId 1 index for name 
+        List<string> feedbackIds = new List<string>();
+        
         // GET: CourseFeedback
         public ActionResult Index()
         {
@@ -20,28 +23,37 @@ namespace IptProject.Controllers.Course_Feedback
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                //for(var i = 0; i < feedbackIds.Count; i++)
+                //{
+                //    if (feedbackIds[i] == name)
+                //    {
+                        Debug.WriteLine("AAAA");
+                        var responseTask = client.GetAsync("coursefeedback/getQuestions?courseName=" + name + "&courseType=" + type);
+                        responseTask.Wait();
+
+                        var result = responseTask.Result;
+
+
+                        var readTask = result.Content.ReadAsAsync<List<Questions>>();
+                        readTask.Wait();
+
+                        var questions = readTask.Result;
+                        //questions[0].FeedbackID = feedbackIds[i - 1];
+                        return View(questions);
+                //    }
+                //}
                 //HTTP GET
-                var responseTask = client.GetAsync("coursefeedback/getQuestions?courseName="+name+"&courseType="+type);
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-               
-
-                    var readTask = result.Content.ReadAsAsync<List<Questions>>();
-                    readTask.Wait();
-
-                    var questions = readTask.Result;
-
-                    return View(questions);
+              
                 
             }
+            return null;
         }
         public ActionResult ShowCourseList()
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri("https://localhost:44380/api/");
                 //HTTP GET
                 var responseTask = client.GetAsync("coursefeedback/getAllCourses?studentID=16k3950");
                 responseTask.Wait();
@@ -55,6 +67,8 @@ namespace IptProject.Controllers.Course_Feedback
                 List<int> ctypes = new List<int>();
                 foreach( var i in courseList)
                 {
+                    feedbackIds.Add(i.FeedbackID);
+                    feedbackIds.Add(i.CourseName);
                     var ctype = i.CourseName.Substring(i.CourseName.Length - 3);
                     if (ctype == "Lab")
                     {

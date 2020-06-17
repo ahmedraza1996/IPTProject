@@ -131,6 +131,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="intMap\Add.cs" />
     <Compile Include="Models\Cafeteria\FoodItem.cs" />
     <Compile Include="Models\CourseFeedback\Course.cs" />
     <Compile Include="Models\CourseFeedback\Questions.cs" />
