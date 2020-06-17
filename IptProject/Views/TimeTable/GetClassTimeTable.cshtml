@@ -1,0 +1,107 @@
+﻿@model List<IptProject.Models.TimeTable.TimeTableData>
+@{
+    ViewBag.Title = "GetClassTimeTable";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+        List<string> batchlist = ViewBag.BatchList;
+        List<int> daylist = ViewBag.Daylist;
+        List<string> courselist = ViewBag.CourseList;
+        List<string> sectionlist = ViewBag.SectionList;
+        
+
+}
+<h2>Search Class</h2>
+
+@*@Html.DropDownListFor("query", ViewBag.BatchList as SelectList, "Select one", new {@class= "form-control" });*@
+
+<form id="frmdropdown">
+    <select name="query2" id="daylist" class="form-control">
+        @foreach (var item in daylist)
+        {
+            <option value=@item.ToString()>@item.ToString()</option>
+        }
+
+    </select>
+
+
+    <select name="query3" id="sectionlist" class="form-control">
+        @foreach (var item in sectionlist)
+        {
+            <option value=@item.ToString()>@item.ToString()</option>
+        }
+
+    </select>
+
+    <select name="query1" id="batchlist" class="form-control">
+        @foreach (var item in batchlist)
+        {
+            <option value=@item.ToString()>@item.ToString()</option>
+        }
+
+    </select>
+
+    <button onclick="sendData()"> Send Query</button>
+
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <a onclick="sweetalert();">
+
+                    <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">courses121</i>
+                            </div>
+                            @*<p class="card-category">Used Space</p>*@
+                            <h3 class="card-title">
+                                @item.batch
+                            </h3>
+                            <div class="tim-typo" style="color:black">
+                                <p>@item.course</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons text-success">person</i>
+                                <a href="javascript:;">@item.empname </a>
+                                <i class="material-icons text-success">room</i>
+                                <a href="javascript:;">@item.room </a>
+                                <i class="material-icons text-success">schedule</i>
+                                <a href="javascript:;"> @item.timeslot </a>
+                                <i class="material-icons text-success">date_range</i>
+                                <a href="javascript:;"> @item.day </a>
+                                <i class="material-icons text-success">scatter_plot</i>
+                                <a href="javascript:;"> @item.section </a>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        }
+
+    </div>
+    @section scripts{
+        <script type="text/javascript">
+            function sweetalert() {
+                swal('Please wait');
+            }
+        </script>
+    }
+
+</form>
+
+
+<script>
+    function sendData() {
+        alert("data sent");
+        var frmSerailize=$("#frmdropdown").serialize();
+        $.post("/timetable/GetClassTimeTable", frmSerialize, function (data) {
+
+            
+        });
+
+    }
+
+    </script>
