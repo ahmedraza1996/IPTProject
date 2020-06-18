@@ -141,6 +141,7 @@
     <Compile Include="Controllers\Cafeteria\CafeteriaController.cs" />
     <Compile Include="Controllers\Cafeteria\CafeteriaStaffController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Search\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -630,6 +631,17 @@
     <Content Include="Views\Shared\_PortalLayout.cshtml" />
     <Content Include="Views\Cafeteria\GetProduct.cshtml" />
     <Content Include="Views\Cafeteria\GetImage.cshtml" />
+    <Content Include="Views\CafeteriaStaff\AddProduct.cshtml" />
+    <Content Include="Views\CafeteriaStaff\EditItemStatus.cshtml" />
+    <Content Include="Views\CafeteriaStaff\EditOrderStatus.cshtml" />
+    <Content Include="Views\CafeteriaStaff\GetFeedbacks.cshtml" />
+    <Content Include="Views\CafeteriaStaff\GetProductList.cshtml" />
+    <Content Include="Views\CafeteriaStaff\Login.cshtml" />
+    <Content Include="Views\CafeteriaStaff\TopUpWallet.cshtml" />
+    <Content Include="Views\CafeteriaStaff\ViewDetails.cshtml" />
+    <Content Include="Views\CafeteriaStaff\ViewOrders.cshtml" />
+    <Content Include="Views\Search\search.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
