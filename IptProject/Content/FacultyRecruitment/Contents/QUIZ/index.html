@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Quick Quiz</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="home" class="flex-center flex-column">
+        <h1>Quick Quiz</h1>
+        <a class="btn" href="game.html">Play</a>
+        <a class="btn" href="~/Contents/QUIZ/highscores.html">High Scores</a>
+      </div>
+    </div>
+  </body>
+
+<script>
+    var timoutWarning = 840000; // Display warning in 14 Mins.
+var timoutNow = 60000; // Warning has been shown, give the user 1 minute to interact
+var logoutUrl = 'logout.php'; // URL to logout page.
+
+var warningTimer;
+var timeoutTimer;
+
+// Start warning timer.
+function StartWarningTimer() {
+    warningTimer = setTimeout("IdleWarning()", timoutWarning);
+}
+
+// Reset timers.
+function ResetTimeOutTimer() {
+    clearTimeout(timeoutTimer);
+    StartWarningTimer();
+    $("#timeout").dialog('close');
+}
+
+// Show idle timeout warning dialog.
+function IdleWarning() {
+    clearTimeout(warningTimer);
+    timeoutTimer = setTimeout("IdleTimeout()", timoutNow);
+    $("#timeout").dialog({
+        modal: true
+    });
+    // Add code in the #timeout element to call ResetTimeOutTimer() if
+    // the "Stay Logged In" button is clicked
+}
+
+// Logout the user.
+function IdleTimeout() {
+    window.location = logoutUrl;
+}
+</script>
+</html>

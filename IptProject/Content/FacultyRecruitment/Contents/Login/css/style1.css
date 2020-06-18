@@ -1,0 +1,122 @@
+  /*@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}*/
+
+  body{
+    background: rgb(2,0,36);
+	background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(162,185,196,1) 0%, rgba(191,218,224,1) 64%, rgba(0,212,255,1) 84%);
+  /*max-width: 100%;
+  height: auto;*/
+  
+  }
+  
+            h1 { 
+              font-family: Arial, Helvetica, sans-serif;
+                color:black; 
+				      text-align: center;
+            } 
+
+            input {
+			background-color: #50b8e7	;
+			;
+			}
+            div.scroll { 
+              width: 100%;
+              display: table;
+              overflow-x: hidden; 
+                overflow-y: auto; 
+                /*margin:4px, 4px; 
+                padding:4px; 
+                background-color: black; 
+                width: 1590px; 
+                height: 550px; 
+                overflow-x: hidden; 
+                overflow-y: auto; 
+                text-align:center; 
+				        opacity:0.5;
+                */
+            } 
+			#prediction {
+			background-color:black;
+			margin-top:-40px;
+			opacity:0.5;
+			font-size:25px;
+			text-align:center;
+			font-weight: bold;
+			}
+			
+			#myInput {
+        background-color: #f1f1f1;
+  width: 100%; 
+  overflow: hidden;
+  font-size: 16px; 
+  padding: 12px 20px 12px 40px; 
+  border: 1px solid #ddd; 
+  margin-bottom: 12px; 
+  /* margin-left: 150px; */
+}
+
+#myTable {
+  border-collapse: collapse; 
+  width: 100%; 
+  border: 1px solid black; 
+  font-size: 18px; 
+  display:table;
+}
+
+#myTable td {
+  text-align: left; 
+  padding: 12px; 
+  display: table-cell
+}
+
+#myTable tr {
+  /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #ddd;
+    display: table-row;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  
+  background-color: #f1f1f1;
+}
+
+			
+
+	input[type=submit] {
+  background-color: #284e57;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  /* margin-left: 200px; */
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 20px;
+  
+}
+
+input[type=submit]:hover {
+  background-color: #84cdee	;
+}
+
+#backBtn
+{
+  background-color: black;
+  opacity: 0.6;
+  color: #f1f1f1  ;
+  margin-bottom: -60px;
+  margin-top: 10px;
+  /* margin-left: 10px; */
+  position: initial;
+  float: left;
+}
+
+#backa{
+  text-decoration: none;
+}
