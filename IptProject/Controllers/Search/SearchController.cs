@@ -22,7 +22,7 @@ namespace IptProject.Controllers.Search
 
             Console.WriteLine("testing ");
             ViewData["msg"] = " This is a test msessage";
-            //base url 
+            
             ViewData["baseUrlDefaultSearch"] = "https://localhost:44380/api/search/GetSearchResult";
             ViewData["baseUrlFYPSearch"] = "https://localhost:44380/api/SearchFYP/GetSearchResult";
 
