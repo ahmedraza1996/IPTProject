@@ -14,7 +14,7 @@
 
     .modalcontainer{
         border: 1px solid blue;
-        padding:2rem;
+        padding:2rem
     }
     /* The Modal (background) */
     .modal {
@@ -157,7 +157,11 @@
     <div class="menu">
 
         <button onclick='display("defaultsearch")' id="defaultsearchBtn" class="btn btn-primary form-check-inline my-2 my-sm-0">Default Search</button>
-        <button onclick='display("fypstudentsearch")' id="fypstudentsearchBtn" class="btn btn-outline-primary form-check-inline my-2 my-sm-0">Student Search</button>
+        
+        
+        <button hidden onclick='display("fypstudentsearch")' id="fypstudentsearchBtn" class="btn btn-outline-primary form-check-inline my-2 my-sm-0">Student Search</button>
+        
+        
         <button onclick='display("fypmetadatasearch")' id="fypmetadatasearchBtn" class="btn btn-outline-primary form-check-inline my-2 my-sm-0">FYP Metadata Search</button>
 
     </div>
@@ -397,9 +401,6 @@
             database[tableName].push("Instructor by Designation ID");
 
 
-
-
-            
           
         }
 
@@ -411,12 +412,36 @@
             database[tableName] = []
 
 
-            database[tableName].push("Course ID");
+            //database[tableName].push("Course ID");
             database[tableName].push("Course Taught By");
-            database[tableName].push("Course Taught In Semester");
+            //database[tableName].push("Course Taught In Semester");
 
         }
 
+        if (tableName === "Student") {
+            console.log("in student table")
+            database[tableName] = []
+
+
+            database[tableName].push("By Name Contains");
+            //database[tableName].push("By CourseName");
+            //database[tableName].push("By CourseCode");
+
+
+            database[tableName].push("By ID");
+            database[tableName].push("By BatchID");
+            database[tableName].push("By Department");
+            database[tableName].push("By Section");
+            database[tableName].push("By NU-Mail");
+            database[tableName].push("By Primary Email");
+
+
+            //Non Query 
+            database[tableName].push("By Skill");
+            //database[tableName].push("By Domain");
+
+
+        }
 
 
 
@@ -445,22 +470,41 @@
     }
     
 
+    var studentParams = {
+        "actionName": "GetTableSchema",
+        "TableName" : "Student" 
+    }
 
 
+    /**
+    this.getMyTable(courseParams).then(function () {
+        this.getMyTable(studentParams);
 
-    this.getMyTable(courseParams);
+    });
     this.getMyTable(employeeParams).then(function () {
         this.populateDropDown(database);
 
     });;
+    **/
 
-    console.log("Populating database dropdowns")
+
+
+    this.getMyTable(courseParams).then(function () {
+        this.getMyTable(studentParams).then(function () {
+            this.getMyTable(employeeParams).then(function () {
+                this.populateDropDown(database);
+
+            })
+        });
+
+    });
+   
 
    
     
 
     function populateDropDown(database) {
-
+        console.log("Populating database dropdowns")
         var DropDownTableNames = Object.keys(database)
         //console.log("IN POPULATE DROPDOWN")
         var dropdown = document.getElementById("dropdown");
@@ -630,11 +674,14 @@
 
 
 
-    getDataBasedOnCheckedBoxes = async (data) => {
+    getDataBasedOnCheckedBoxes = async (data,actionName) => {
 
+        console.log("**************ACTION NAME IN GET DATABASED : =>>>>", + "\n")
+        console.log(actionName)
         response = await new Promise(resolve => {
 
-
+            console.log("Awaiting response\n");
+            console.log(data);
             var xhr = new XMLHttpRequest();
             xhr.open("POST", baseUrlDefaultSearch, true);
             xhr.setRequestHeader("Content-Type", "application/json");
@@ -648,8 +695,15 @@
             };
             xhr.send(JSON.stringify(data));
         })
-        console.log("\n\nEmployeeee Detailssssssssssssssssssssss\n")
-        console.log(response);
+
+        console.log("\n\nEmployeeee Details\n")
+        console.log(JSON.parse(response));
+        console.log(response.length);   
+
+        if (JSON.parse(response).length == 0) {
+            alert("Data Not Found, Please Try Something Else!");
+            return;
+        }
 
         var columnNames = Object.keys(JSON.parse(response)[0])
         console.log("COLUMN NAMES ARE AS FOLLOWS: \n");
@@ -658,7 +712,7 @@
         console.log("db response %__%_%_%_%_%_%_ \n");
         console.log(response);
 
-        this.showTableDataOnAttributesRecieved(columnNames, JSON.parse(response),JSON.parse(response).length)
+        this.showTableDataOnAttributesRecieved(columnNames, JSON.parse(response),JSON.parse(response).length,actionName)
 
     }
 
@@ -704,6 +758,7 @@
 
        
         var employeeParams;
+        var studentParams;
 
         if (selectedOptions[0] === "EmpName") {
              employeeParams = {
@@ -781,17 +836,87 @@
                 "EmpName": data.searchQuery
             }
         }
+
+        //// STUDENTS
+
+        if (selectedOptions[0] === "By Name Contains") {
+            employeeParams = {
+                "actionName": "GetStudentsByNameContains",
+                "EmpName": data.searchQuery
+            }
+        }
+
+        if (selectedOptions[0] === "By ID") {
+            employeeParams = {
+                "actionName": "GetStudentByStudentID",
+                "RollNumber": data.searchQuery
+            }
+        }
+
+        if (selectedOptions[0] === "By BatchID") {
+            employeeParams = {
+                "actionName": "GetStudentByBatchID",
+                "BatchID": data.searchQuery
+            }
+        }
+
+
+        if (selectedOptions[0] === "By NU-Mail") {
+            employeeParams = {
+                "actionName": "GetStudentByNUEmail",
+                "Email": data.searchQuery
+            }
+        }
+
+        if (selectedOptions[0] === "By NU-Mail") {
+            employeeParams = {
+                "actionName": "GetStudentByNUEmail",
+                "Email": data.searchQuery
+            }
+        }
+
+        if (selectedOptions[0] === "By Primary Email") {
+            employeeParams = {
+                "actionName": "GetStudentByPrimaryEmail",
+                "Email": data.searchQuery
+            }
+        }
+
+        if (selectedOptions[0] === "By Skill") {
+            employeeParams = {
+                "actionName": "GetStudentsBySkill",
+                "Email": data.searchQuery
+            }
+        }
+
+        if (selectedOptions[0] === "By Domain") {
+            employeeParams = {
+                "actionName": "GetStudentsByDomain",
+                "Email": data.searchQuery
+            }
+        }
+        if (employeeParams != null || employeeParams != undefined || employeeParams != "") {
+            this.getDataBasedOnCheckedBoxes(employeeParams, employeeParams["actionName"]);
+        } else {
+            if (studentParams != null || studentParams != undefined || studentParams != "") {
+                this.getDatabaseOnCheckedBoxes(studentParams, employeeParams["actionName"]);
+
+            } else {
+                alert("Query Could Not Be Processed!")
+            }
+        }
         
-        this.getDataBasedOnCheckedBoxes(employeeParams);
 
     }
 
-    function showTableDataOnAttributesRecieved(attributesToShow,rows,length) {
+    function showTableDataOnAttributesRecieved(attributesToShow,rows,length,actionName) {
 
-
+        console.log("ACTION NAME  =>>>>>>>>>>>>>> " + " " + actionName)
         console.log("Numbers Of Rows To Display\n");
         console.log(length);
 
+
+        
 
         console.log("Column Headers\n");
         console.log(attributesToShow)
@@ -801,6 +926,211 @@
         console.log("\nAll Rows\n")
         console.log(rows);
 
+
+
+
+
+        if (attributesToShow[0] === "StudentID" ) {
+            console.log("ATTRIBUETS TO SHOW at index 0 : " + " " + attributesToShow[0])
+
+            var tableHeaderRow = document.getElementById("attributeheads");
+            tableHeaderRow.innerHTML = "";
+            tableHeaderRow.innerHTML += "<tr>";
+            console.log("==============================");
+            tableHeaderInner = "";
+
+            for (i = 0; i < attributesToShow.length; i++) {
+                console.log("==!!=>" + attributesToShow[i]);
+                tableHeaderInner += '<th scope="col">' + attributesToShow[i] + '</th>';
+
+            }
+            tableHeaderRow.innerHTML += tableHeaderInner;
+            tableHeaderRow.innerHTML += "</tr>";
+
+            var tableBodyData = document.getElementById("tablebodydata");
+            tableBodyData.innerHTML = "";
+
+
+            var innerHTMLForBody = "";
+
+
+
+            
+                if (actionName === "GetStudentByNUEmail" || actionName === "GetStudentByPrimaryEmail") {
+
+                console.log("\n\n ------------------------ EMAIL Student ------------------------------\n\n");
+
+                for (i = 0; i < length; i++) {
+                    innerHTMLForBody += "<tr>";
+                    innerHTMLForBody += "<td>" + rows[i].StudentID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].SName + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].Email + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].MobileNumber + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].RollNumber + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].CandidateID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].BatchID + "</td>";
+                    innerHTMLForBody += "<td>" + "**********" + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].ProgrammeID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].CName + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].CAddress + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].Email + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].ContactInfo + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].HSCResult + "</td>";
+                    innerHTMLForBody += "<td>" + "**********" + "</td>";
+                    innerHTMLForBody += "</tr>";
+
+                }
+
+                } else
+                {
+
+                console.log("\n\n ------------------------ Normal Student ------------------------------\n\n");
+                for (i = 0; i < length; i++) {
+                    innerHTMLForBody += "<tr>";
+                    innerHTMLForBody += "<td>" + rows[i].StudentID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].SName + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].Email + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].MobileNumber + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].RollNumber + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].CandidateID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].BatchID + "</td>";
+                    innerHTMLForBody += "<td>" + "**********" + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].ProgrammeID + "</td>";
+                    innerHTMLForBody += "</tr>";
+
+                }
+
+            }
+
+            tableBodyData.innerHTML = innerHTMLForBody;
+           
+
+        } else {
+
+            var tableHeaderRow = document.getElementById("attributeheads");
+            tableHeaderRow.innerHTML = "";
+            tableHeaderRow.innerHTML += "<tr>";
+            console.log("==============================");
+            tableHeaderInner = "";
+
+            for (i = 0; i < attributesToShow.length; i++) {
+                console.log("==!!=>" + attributesToShow[i]);
+                tableHeaderInner += '<th scope="col">' + attributesToShow[i] + '</th>';
+
+            }
+            tableHeaderRow.innerHTML += tableHeaderInner;
+            tableHeaderRow.innerHTML += "</tr>";
+
+
+            // console.log("LENGTH OF ROWS : " + rows.length);
+            //console.log("LENGTH OF ROWS [0]: " + rows[0].length)
+
+
+            var tableBodyData = document.getElementById("tablebodydata");
+            tableBodyData.innerHTML = "";
+
+
+            var innerHTMLForBody = "";
+
+
+
+            //EMP NAME And most of them
+            for (i = 0; i < length; i++) {
+
+                console.log("VALUE OF i : " + i);
+
+                innerHTMLForBody += "<tr>";
+
+                if (attributesToShow.length == 1) {
+                    innerHTMLForBody += "<td>" + rows[i].CourseName + "</td>";
+                } else {
+                    if (attributesToShow.length > 1 || attributesToShow.length <= 8) {
+                        innerHTMLForBody += "<td>" + rows[i].EmpID + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].EmpName + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].Email + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].MobileNumber + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].DesignationID + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].DepartmentID + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].RefID + "</td>";
+                        innerHTMLForBody += "<td>" + "**********" + "</td>";
+                    }
+
+
+                    if (attributesToShow.length > 8) {
+                        innerHTMLForBody += "<td>" + rows[i].CFID + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].NumberOfSection + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].CourseOfferedID + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].CreditHrs + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].CourseNSections + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].MaxStdPerSection + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].BatchID + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].SemesterID + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].CourseID + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].CourseName + "</td>";
+                        innerHTMLForBody += "<td>" + rows[i].CourseCode + "</td>";
+
+
+                    }
+                }
+
+
+
+
+
+                innerHTMLForBody += "</tr>";
+
+            }
+
+
+
+            if (actionName === "GetStudentsBySkill") {
+                var tableHeaderRow = document.getElementById("attributeheads");
+                tableHeaderRow.innerHTML = "";
+                tableHeaderRow.innerHTML += "<tr>";
+                console.log("==============================");
+                tableHeaderInner = "";
+
+                for (i = 0; i < attributesToShow.length; i++) {
+                    console.log("==!!=>" + attributesToShow[i]);
+                    tableHeaderInner += '<th scope="col">' + attributesToShow[i] + '</th>';
+
+                }
+                tableHeaderRow.innerHTML += tableHeaderInner;
+                tableHeaderRow.innerHTML += "</tr>";
+
+                var tableBodyData = document.getElementById("tablebodydata");
+                tableBodyData.innerHTML = "";
+
+
+                var innerHTMLForBody = "";
+                for (i = 0; i < length; i++) {
+                    innerHTMLForBody += "<tr>";
+                    innerHTMLForBody += "<td>" + rows[i].RefID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].StudentID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].SkillID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].SkillName + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].DomainID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].SName + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].Email + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].MobileNumber + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].RollNumber + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].CandidateID + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].BatchID + "</td>";
+                    innerHTMLForBody += "<td>" + "**********" + "</td>";
+                    innerHTMLForBody += "<td>" + rows[i].ProgrammeID + "</td>";
+                    innerHTMLForBody += "</tr>";
+
+                }
+                innerHTMLForBody += "</tr>";
+
+            }
+
+
+            tableBodyData.innerHTML += innerHTMLForBody;
+
+       // <tbody id="tablebodydata"></tbody>
+
+        }
 
 
         //HEADER ROW
@@ -830,84 +1160,6 @@
         
 
 
-        var tableHeaderRow = document.getElementById("attributeheads");
-        tableHeaderRow.innerHTML = "";
-        tableHeaderRow.innerHTML += "<tr>";
-        console.log("==============================");
-        tableHeaderInner = "";
-
-        for (i = 0; i < attributesToShow.length; i++) {
-            console.log("==!!=>" + attributesToShow[i]);
-            tableHeaderInner += '<th scope="col">' + attributesToShow[i] + '</th>';
-
-        }
-        tableHeaderRow.innerHTML += tableHeaderInner;
-        tableHeaderRow.innerHTML += "</tr>";
-
-
-       // console.log("LENGTH OF ROWS : " + rows.length);
-        //console.log("LENGTH OF ROWS [0]: " + rows[0].length)
-
-
-        var tableBodyData = document.getElementById("tablebodydata");
-        tableBodyData.innerHTML = "";
-
-
-        var innerHTMLForBody = "";
-
-
-
-        //EMP NAME And most of them
-        for (i = 0; i < length; i++) {
-
-            console.log("VALUE OF i : " + i);
-
-            innerHTMLForBody += "<tr>";
-
-            if (attributesToShow.length == 1) {
-                innerHTMLForBody += "<td>" + rows[i].CourseName + "</td>";
-            } else {
-                if (attributesToShow.length > 1 || attributesToShow.length <= 8) {
-                    innerHTMLForBody += "<td>" + rows[i].EmpID + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].EmpName + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].Email + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].MobileNumber + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].DesignationID + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].DepartmentID + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].RefID + "</td>";
-                    innerHTMLForBody += "<td>" + "**********" + "</td>";
-                }
-
-
-                if (attributesToShow.length > 8) {
-                    innerHTMLForBody += "<td>" + rows[i].CFID + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].NumberOfSection + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].CourseOfferedID + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].CreditHrs + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].CourseNSections + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].MaxStdPerSection + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].BatchID + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].SemesterID + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].CourseID + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].CourseName + "</td>";
-                    innerHTMLForBody += "<td>" + rows[i].CourseCode + "</td>";
-
-
-                }
-            }
-
-           
-
-            
-
-            innerHTMLForBody += "</tr>";
-
-         }
-
-        tableBodyData.innerHTML += innerHTMLForBody;
-        
-        console.log(EmployeeTableBody)
-       // <tbody id="tablebodydata"></tbody>
 
     }
 
