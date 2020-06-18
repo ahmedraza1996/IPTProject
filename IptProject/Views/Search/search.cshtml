@@ -582,7 +582,8 @@
             } else {
 
                 var data = {
-                    "query": query
+                    "query": query,
+                    "queried_by_username":"UserNameFYPSearch"
                 }
             }
             xhr.send(JSON.stringify(data));
@@ -676,7 +677,8 @@
 
     getDataBasedOnCheckedBoxes = async (data,actionName) => {
 
-        console.log("**************ACTION NAME IN GET DATABASED : =>>>>", + "\n")
+        console.log("********ACTION NAME IN GET DATABASED : =>>>>", + "\n")
+        console.log(data);
         console.log(actionName)
         response = await new Promise(resolve => {
 
@@ -693,6 +695,11 @@
                 resolve(undefined);
                 console.error("** An error occurred during the XMLHttpRequest");
             };
+            // body se nahe behj rahay tm? aisay he jata hay db k
+            data["queried_by_username"] = "UsernameOfUser";
+
+            console.log("\n\n\n ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ \n\n\n");
+            console.log(data);
             xhr.send(JSON.stringify(data));
         })
 
