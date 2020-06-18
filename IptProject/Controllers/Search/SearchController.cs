@@ -25,9 +25,10 @@ namespace IptProject.Controllers.Search
 
             var BaseUrl = Shared.ServerConfig.GetBaseUrl();
 
-
             ViewData["baseUrlDefaultSearch"] = BaseUrl + "search/GetSearchResult";
-            ViewData["baseUrlFYPSearch"] = BaseUrl + "api/SearchFYP/GetSearchResult";
+            ViewData["baseUrlDefaultSearch"] = BaseUrl + "search/GetSearchResult";
+            ViewData["baseUrlFYPSearch"] = BaseUrl + "SearchFYP/GetSearchResult";
+            ViewData["UpdateIndexGet"] = BaseUrl + "SearchFYP/UpdateIndex";
 
             return View();
         }

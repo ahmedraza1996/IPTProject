@@ -337,6 +337,34 @@
 
     var baseUrlDefaultSearch = @Html.Raw(Json.Encode(ViewData["baseUrlDefaultSearch"]));
     var baseUrlFYPSearch = @Html.Raw(Json.Encode(ViewData["baseUrlFYPSearch"]));
+    var UpdateIndex = @Html.Raw(Json.Encode(ViewData["UpdateIndexGet"]));
+
+    sendUpdateIndexRequest = async () => {
+
+        response = await new Promise(resolve => {
+
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", UpdateIndex, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function (e) {
+                resolve(xhr.response);
+            };
+            xhr.onerror = function () {
+                resolve(undefined);
+                console.error("** An error occurred during the XMLHttpRequest");
+            };
+            xhr.send(null);
+        })
+        console.log(response);
+    }
+
+    this.sendUpdateIndexRequest();
+
+
+
+    
 
     console.log(baseUrlDefaultSearch);
     var database = {};
