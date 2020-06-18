@@ -22,9 +22,12 @@ namespace IptProject.Controllers.Search
 
             Console.WriteLine("testing ");
             ViewData["msg"] = " This is a test msessage";
-            
-            ViewData["baseUrlDefaultSearch"] = "https://localhost:44380/api/search/GetSearchResult";
-            ViewData["baseUrlFYPSearch"] = "https://localhost:44380/api/SearchFYP/GetSearchResult";
+
+            var BaseUrl = Shared.ServerConfig.GetBaseUrl();
+
+
+            ViewData["baseUrlDefaultSearch"] = BaseUrl + "search/GetSearchResult";
+            ViewData["baseUrlFYPSearch"] = BaseUrl + "api/SearchFYP/GetSearchResult";
 
             return View();
         }
