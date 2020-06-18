@@ -1,0 +1,102 @@
+﻿@model IptProject.Models.Faculty_Recruitment.Login
+
+@{
+    ViewBag.Title = "AccessDenied";
+    //Layout = "~/Views/Shared/_PortalLayout.cshtml";
+    Layout = null;
+}
+
+<head>
+    <title>OIDA SERVER</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/Content/FacultyRecruitment/Contents/Login/css/main.css" />
+</head>
+<header>
+    <h2>AccessDenied. Please Login Fisrt</h2>
+</header>
+<section id="one" class="wrapper style2">
+    <div class="inner">
+        <div class="grid-style">
+            <div>
+                <div class="box">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h2>Candidate Login</h2>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="text-danger">@ViewBag.Issuccess</div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div>
+                <div class="box">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>Employee Login</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="text-danger">@ViewBag.Issuccess</div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+        
+</section>
+    
+    <script src="~/Content/FacultyRecruitment/Contents/Login/js/jquery.min.js"></script>
+    <script src="~/Content/FacultyRecruitment/Contents/Login/js/jquery.scrollex.min.js"></script>
+    <script src="~/Content/FacultyRecruitment/Contents/Login/js/skel.min.js"></script>
+    <script src="~/Content/FacultyRecruitment/Contents/Login/js/util.js"></script>
+    <script src="~/Content/FacultyRecruitment/Contents/Login/js/main.js"></script>

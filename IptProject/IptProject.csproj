@@ -145,6 +145,8 @@
     <Compile Include="Content\FacultyRecruitment\DbOperations\WebRoleProvider.cs" />
     <Compile Include="Controllers\Cafeteria\CafeteriaController.cs" />
     <Compile Include="Controllers\Cafeteria\CafeteriaStaffController.cs" />
+    <Compile Include="Controllers\Faculty Recruitment\NucesJobAccountController.cs" />
+    <Compile Include="Controllers\Faculty Recruitment\NucesJobController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Search\SearchController.cs" />
     <Compile Include="Global.asax.cs">
@@ -837,6 +839,15 @@
     <Content Include="Views\CafeteriaStaff\ViewOrders.cshtml" />
     <Content Include="Views\Search\search.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\NucesJobAccount\AccessDenied.cshtml" />
+    <Content Include="Views\NucesJobAccount\CandidateLogin.cshtml" />
+    <Content Include="Views\NucesJobAccount\EmployeeLogin.cshtml" />
+    <Content Include="Views\NucesJobAccount\SignUpCandidate.cshtml" />
+    <Content Include="Views\NucesJob\AddJobOpening.cshtml" />
+    <Content Include="Views\NucesJob\EditJobOpenings.cshtml" />
+    <Content Include="Views\NucesJob\GetAllJobOpenings.cshtml" />
+    <Content Include="Views\NucesJob\Index.cshtml" />
+    <Content Include="Views\NucesJob\JobOpeningDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
