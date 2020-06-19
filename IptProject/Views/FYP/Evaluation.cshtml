@@ -1,0 +1,119 @@
+﻿@model IEnumerable<IptProject.Models.FYP.FYP2FinalEvaluation>
+
+@{
+    ViewBag.Title = "Evaluation";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<h2>Evaluation</h2>
+
+@foreach (var item in Model)
+{
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">MID-I Evaluation Form</h4>
+
+                        </div>
+                        <div class="card-body">
+
+                            <div class="form-horizontal">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="md-form form-group">
+                                                <label for="inputProjectTitle">PROJECT TITLE</label>
+                                                @Html.TextBox(item.ProjectName, item.ProjectName, new { disabled = "disabled", @class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                        <!-- Grid column -->
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-4">
+                                            <div class="md-form form-group">
+                                                <label for="Member1ID">STUDENT 1 ID</label>
+                                                @Html.TextBoxFor(modelItem => item.LeaderID, new { disabled = "disabled", @class = "form-control" })
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="md-form form-group">
+                                                <label for="inputLeaderID">STUDENT 2 ID</label>
+                                                @Html.TextBoxFor(modelItem => item.Member1ID, new { disabled = "disabled", @class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="md-form form-group">
+                                                <label for="inputLeaderID">STUDENT 3 ID</label>
+                                                @Html.TextBoxFor(modelItem => item.Member2ID, new { disabled = "disabled", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="md-form form-group">
+                                                <label for="inputSupervisor">SUPERVISOR ID</label>
+                                                @Html.TextBoxFor(modelItem => item.SupervisorEmpID, new { disabled = "disabled", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="md-form form-group">
+                                                <label for="inputCoSupervisor">CO-SUPERVISOR ID</label>
+                                                @Html.TextBoxFor(modelItem => item.CoSupervisorID, new { disabled = "disabled", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <br />
+                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>Marks given by Supervisor</h5>
+                                        <div class="form-group">
+                                            <div style="margin-left:0%" class="form-check form-check-inline">
+                                                @Html.TextBoxFor(modelItem => item.leaderMarks, new { disabled = "disabled", @class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>Marks given by Internal Jury</h5>
+                                        <div class="form-group">
+                                            <div style="margin-left:0% " class="form-check form-check-inline">
+                                                @Html.TextBoxFor(modelItem => item.member1marks, new { disabled = "disabled", @class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
+
+                           
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+}
+
+

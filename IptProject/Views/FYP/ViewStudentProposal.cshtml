@@ -1,0 +1,93 @@
+﻿@model List<IptProject.Models.FYP.StudentProposal>
+@{
+
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+@foreach (var item in Model)
+{
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">View Pre-Registration Form</h4>
+                            <p class="card-category">Final Year Project I - CS 491</p>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Project Title</label>
+                                            <input type="text" value=@item.ProjectTitle disabled class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Project Type</label>
+                                            <input type="text" value=@item.ProjectType disabled class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Abstract</label>
+                                            <div class="form-group">
+                                                <label class="form-control">@item.Abstract  </label>
+                                                @*<textarea class="form-control" value="Hello" disabled rows="7"></textarea>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h5>Team Members</h5>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Student 1 ID</label>
+                                            <input type="text" value=@item.LeaderID disabled class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Student 2 ID</label>
+                                            <input type="text" value=@item.Member1ID disabled class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Student 3 ID</label>
+                                            <input type="text" value=@item.Member2ID disabled class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Supervisor ID</label>
+                                            <input type="text" value=@item.SupervisorID disabled class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Co-Supervisor ID</label>
+                                            <input type="text" value=@item.CoSupervisorID disabled class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary pull-right">SUBMIT</button>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

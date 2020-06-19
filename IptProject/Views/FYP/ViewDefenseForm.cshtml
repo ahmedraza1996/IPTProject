@@ -1,0 +1,246 @@
+﻿@model IptProject.Models.FYP.GlobalDefense
+
+@{
+    ViewBag.Title = "ViewDefenseForm";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<h2>ViewDefenseForm</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+@foreach (var item in Model.IndexModels)
+{
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">Student Info</h4>
+                            <p class="card-category"></p>
+                        </div>
+                        <div class="card-body">
+
+                            <form>
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        <div class="md-form form-group">
+                                            <label for="inputProjectTitle">PROJECT TITLE</label>
+                                            @*<input type="text" class="form-control" disabled value=@(modelItem => item.ProjectName) />*@
+                                            <p> @ViewBag.message</p>
+                                            @*@Html.TextBoxFor(modelItelm => item.ProjectName, new { disabled = "disabled", @class = "form-control" })*@
+                                            @*@Html.DisplayFor(modelItem => item.ProjectName)*@
+                                        </div>
+                                    </div>
+
+                                    <!-- Grid column -->
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-4">
+
+                                        <div class="md-form form-group">
+                                            <label for="inputLeaderID">STUDENT 1 ID</label>
+                                            @*@Html.DisplayFor(modelItem => item.LeaderID)*@
+                                            @*@Html.TextBox(item.LeaderID, item.LeaderID, new { disabled = "disabled", @class = "form-control" })*@
+                                            @Html.TextBoxFor(modelItem => item.LeaderID, new { disabled = "disabled", @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+
+                                        <div class="md-form form-group">
+                                            <label for="inputLeaderID">STUDENT 2 ID</label>
+                                            @*@Html.DisplayFor(modelItem => item.Member1ID)*@
+                                            @Html.TextBoxFor(modelItem => item.Member1ID, new { disabled = "disabled", @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <!-- Material input -->
+                                        <div class="md-form form-group">
+                                            <label for="inputLeaderID">STUDENT 3 ID</label>
+                                            @*@Html.DisplayFor(modelItem => item.Member2ID)*@
+                                            @Html.TextBoxFor(modelItem => item.Member2ID, new { disabled = "disabled", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <!-- Grid column -->
+                                </div>
+                                <div class="form-row">
+                                    <!-- Grid column -->
+                                    <div class="col-md-6">
+                                        <!-- Material input -->
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">SUPERVISOR ID</label>
+                                            @*@Html.DisplayFor(modelItem => item.SupervisorID)*@
+                                            @Html.TextBoxFor(modelItem => item.SupervisorEmpID, new { disabled = "disabled", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <!-- Grid column -->
+                                    <div class="col-md-6">
+                                        <!-- Material input -->
+                                        <div class="md-form form-group">
+                                            <label for="inputCoSupervisor">CO-SUPERVISOR ID</label>
+                                            @*@Html.DisplayFor(modelItem => item.CoSupervisorID)*@
+                                            @Html.TextBoxFor(modelItem => item.CoSupervisorID, new { disabled = "disabled", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <!-- Grid column -->
+                                </div>
+
+                            </form>
+                            <br />
+                            
+                            <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Evaluation</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm())
+                        {
+                            <br />
+                            <div class="form-check form-check-inline">
+                                <p>PROJECT STATUS: </p>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                @*<input type="radio" name="Status" value=@item.DefenceStatus /> ACCEPTED*@
+                                <label>@Html.RadioButtonFor(modelItem => modelItem.SearchModel.DefenceStatus, "ACCEPTED") ACCEPTED</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                @*<input type="radio" name="Status" value=@item.DefenceStatus /> REJECTED (RE-DEFEND)*@
+                                <label>@Html.RadioButtonFor(modelItem => modelItem.SearchModel.DefenceStatus, "REJECTED") REJECTED (RE-DEFEND)</label>
+                            </div>
+                            <br />
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">ASSESSMENT CRITERIA TYPE</th>
+                                        <th scope="col" width=25%>MAXIMUM POINTS 05 PER ASSESSMENT TYPE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Number 1 </td>
+                                        @*<td><label>@Html.DisplayFor(modelItem => item.Criteria1Marks)</label></td>*@
+                                        @*<td>@Html.TextBoxFor(modelItem => item.Criteria1Marks, new { disabled = "disabled", @class = "form-control" })</td>*@
+                                        <td>@Html.TextBoxFor(modelItem => modelItem.SearchModel.Criteria1Marks, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Number 2</td>
+                                        @*<td><label>@Html.DisplayFor(modelItem => item.Criteria2Marks)</label></td>*@
+                                        <td>@Html.TextBoxFor(modelItem => modelItem.SearchModel.Criteria2Marks, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td> Number 3 </td>
+                                        <td>@Html.TextBoxFor(modelItem => modelItem.SearchModel.Criteria3Marks, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>Number 4</td>
+                                        @*<td><label>@Html.DisplayFor(modelItem => item.Criteria4Marks)</label></td>*@
+                                        <td>@Html.TextBoxFor(modelItem => modelItem.SearchModel.Criteria4Marks, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">5</th>
+                                        <td>Number 5</td>
+                                        @*<td><label>@Html.DisplayFor(modelItem => item.Criteria5Marks)</label></td>*@
+                                        <td>@Html.TextBoxFor(modelItem => modelItem.SearchModel.Criteria5Marks, new { @class = "form-control" })</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="md-form form-group">
+                                        <label for="inputSupervisor">DELIVERABLE #1</label>
+                                        @*<label>@Html.DisplayNameFor(model => model.Deliverables1)</label>*@
+                                        @*<label>@Html.TextBoxFor(modelItem => item.Deliverables1, new { disabled = "disabled", @class = "form-control" })</label>*@
+                                        @Html.TextBoxFor(modelItem => modelItem.SearchModel.Deliverables1, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="md-form form-group">
+                                        <label for="inputSupervisor">DELIVERABLE #2</label>
+                                        @*<label>@Html.DisplayNameFor(model => model.Deliverables2)</label>*@
+                                        @Html.TextBoxFor(modelItem => modelItem.SearchModel.Deliverables2, new { @class = "form-control" })
+                                        @*<label>@Html.TextBoxFor(modelItem => item.Deliverables2, new { disabled = "disabled", @class = "form-control" })</label>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="md-form form-group">
+                                        <label for="inputSupervisor">DELIVERABLE #3</label>
+                                        @Html.TextBoxFor(modelItem => modelItem.SearchModel.Deliverables3, new { @class = "form-control" })
+                                        @*<label>@Html.DisplayNameFor(model => model.Deliverables3)</label>*@
+                                        @*<label>@Html.TextBoxFor(modelItem => item.Deliverables3, new { disabled = "disabled", @class = "form-control" })</label>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="md-form form-group">
+                                        <label for="inputSupervisor">DELIVERABLE #4</label>
+                                        @*<label>@Html.DisplayNameFor(model => model.Deliverables4)</label>*@
+                                        @*<label>@Html.TextBoxFor(modelItem => item.Deliverables4, new { disabled = "disabled", @class = "form-control" })</label>*@
+                                        @Html.TextBoxFor(modelItem => modelItem.SearchModel.Deliverables4, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="md-form form-group">
+                                        <label for="inputSupervisor">DELIVERABLE #5</label>
+                                        @*<label>@Html.DisplayNameFor(model => model.Deliverables5)</label>*@
+                                        @*<label>@Html.TextBoxFor(modelItem => item.Deliverables5, new { disabled = "disabled", @class = "form-control" })</label>*@
+                                        @Html.TextBoxFor(modelItem => modelItem.SearchModel.Deliverables5, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="md-form form-group">
+                                        <h5 for="inputSupervisor"><strong>Changes Recommended (if any):</strong></h5>
+                                        @*<label>@Html.DisplayNameFor(model => model.Deliverables5)</label>*@
+                                        @*<label>@Html.TextBoxFor(modelItem => item.Deliverables5, new { disabled = "disabled", @class = "form-control" })</label>*@
+                                        @Html.TextBoxFor(modelItem => modelItem.SearchModel.ChangesRecommeneded, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" style="float:left" class="btn btn-primary pull-right">Submit</button>
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

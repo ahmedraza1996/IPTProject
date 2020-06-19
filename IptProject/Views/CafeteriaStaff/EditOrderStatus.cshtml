@@ -1,0 +1,49 @@
+﻿
+@model  IptProject.Models.Cafeteria.FoodOrder
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.5.4/dist/sweetalert2.all.min.js"><</script>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-warning">
+                <h4 class="card-title ">Order Status</h4>
+            </div>
+            <div class="card-body">
+                <form id="myForm">
+                    @Html.HiddenFor(model => model.OrderID, new { @id = "OrderID" })
+                    @Html.DropDownListFor(model => model.OrderStatus, ViewBag.OrderStatus as SelectList, "--Select Order Status--", new { @class = "form-control", @value = Model.OrderStatus, @id = "OrderStatus" })
+                    <a href="#" id="btnSubmit" class="btn btn-primary btn-block">
+                        Submit
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            var myformdata = $("#myForm").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/CafeteriaStaff/EditOrderStatus",
+                data: myformdata,
+                success: function (response) {
+                    if (response != null) {
+                        swal.fire({ text: response, timer: 15000 });
+                    }
+                    if (response == "Order Status Updated!") {
+                        var is = $("#OrderStatus").val();
+                        var id = $("#OrderID").val();
+                        //$("itemid_" + id).text(is);
+                    }
+                    $("#myModal").modal("hide");
+                    window.location.href = "/CafeteriaStaff/ViewOrders";
+                }
+            })
+        })
+    })
+</script>
+
+

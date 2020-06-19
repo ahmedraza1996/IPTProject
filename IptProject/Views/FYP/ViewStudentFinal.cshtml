@@ -1,0 +1,148 @@
+﻿@model IEnumerable<IptProject.Models.FYP.Fyp1FinalModel>
+
+@{
+    ViewBag.Title = "ViewStudentFinal";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<h2>ViewStudentFinal</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuperVisorEmpID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CoSuperVisorID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member1ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member2ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliverable1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliverable2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliverable3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliverable4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliverable5)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fyp2Deliverables)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliverable1Completion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliverable2Completion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliverable3Completion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliverable4Completion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliverable5Completion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.leaderMarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.member1marks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.member2marks)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuperVisorEmpID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoSuperVisorID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeaderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Member1ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Member2ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliverable1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliverable2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliverable3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliverable4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliverable5)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fyp2Deliverables)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliverable1Completion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliverable2Completion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliverable3Completion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliverable4Completion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliverable5Completion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.leaderMarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.member1marks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.member2marks)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

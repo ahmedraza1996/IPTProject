@@ -1,0 +1,75 @@
+/*------------------------------------------------------------------
+Background Color
+-------------------------------------------------------------------*/
+.bg-color,
+.account-popup > form button,
+.layer.color::before,
+.pricetable > a,
+.pricetable.active,
+.bottom-line.style2{
+    background-color: #141f72 ;
+}
+
+/*------------------------------------------------------------------
+Text Color
+-------------------------------------------------------------------*/
+.text-color,
+.pricetable-head h2,
+.pricetable.active > a{
+    color: #141f72;
+}
+
+/*------------------------------------------------------------------
+Border Color
+-------------------------------------------------------------------*/
+
+
+/*------------------------------------------------------------------
+COLOR SCHEME 2
+-------------------------------------------------------------------*/
+
+.forsticky.sticky .post-job-btn{
+	border: 2px solid #fb236a;
+	background: transparent; color: #fb236a;
+}
+.post-job-btn{
+    background-color: #fb236a ; border: 2px solid #fb236a;
+}
+
+
+.bg-color,
+.post-job-btn,
+.account-popup .close-popup,
+.blog-metas a::before{
+    background-color: #fb236a ;
+}
+
+/*------------------------------------------------------------------
+Text Color
+-------------------------------------------------------------------*/
+.text-color,
+.menu-sec nav > ul > li > ul li:hover > a,
+.account-popup > form .cfield i,
+.account-popup > form > a,
+.chosen-container-single .chosen-single div::before,
+.job-field i,
+.chosen-container .chosen-results li.highlighted,
+.active-result.result-selected,
+.scroll-to a,
+.p-category > a p,
+.p-category:hover i,
+.job-title-sec span,
+.blog-metas a,
+.blog-details > a{
+    color: #fb236a ;
+}
+
+/*------------------------------------------------------------------
+Border Color
+-------------------------------------------------------------------*/
+.border-color,
+.select-user > span.active,
+.browse-all-cat a{
+    border-color: #fb236a ;
+}
+

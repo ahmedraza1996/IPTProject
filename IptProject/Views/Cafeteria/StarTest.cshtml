@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "StarTest";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+
+<img src="~/Content/images/emptystar.png" alt="Star Rating" align="middle" id="1" class="rating" mid="1"  style="height:20px; width:20px;"/>
+
+<img src="~/Content/images/emptystar.png" alt="Star Rating" align="middle" id="2" class="rating" mid="1"  style="height:20px; width:20px;" />
+
+<img src="~/Content/images/emptystar.png" alt="Star Rating" align="middle" id="3" class="rating" mid="1" style="height:20px; width:20px;" />
+
+<img src="~/Content/images/emptystar.png" alt="Star Rating" align="middle" id="4" class="rating" mid="1"  style="height:20px; width:20px;"/>
+
+<img src="~/Content/images/emptystar.png" alt="Star Rating" align="middle" id="5" class="rating" mid="1"  style="height:20px; width:20px;"/>
+
+
+
+<script type="text/javascript">
+
+    $(function () {
+
+
+
+        debugger;
+
+        $("#1").hover(function () {
+            debugger;
+            giveRating($(this), "Filledstar.png");
+
+            $(this).css("cursor", "pointer");
+
+        });
+
+        $("img.rating").mouseout(function () {
+
+            giveRating($(this), "emptystar.png");
+
+            refilRating($(this));
+
+        });
+
+
+
+        $("img.rating").click(function (e) {
+
+           // $("img.rating").unbind("mouseout mouseover click");
+
+            $(this).css('color', 'red');
+
+           // alert(e.currentTarget + ' was clicked!');
+
+            // call ajax methods to update database
+
+            var url = "/Movies/PostRating?rating=" + parseInt($(this).attr("id")) + "&mid=" + parseInt($(this).attr("mid"));
+
+            $.post(url, null, function (data) {
+
+                $(e.currentTarget).closest('tr').find('div.result').text(data).css('color','red') // $("#result").text(data);
+
+            });
+
+        });
+
+   });
+
+
+
+    function SetRating(img, image) {
+
+        img.attr("src", "/Content/images/" + image)
+
+            .prevAll("img.rating").attr("src", "/Content/images/" + image);
+
+    }
+
+    function refilRating(img1)
+
+    {
+
+        var rt = $(img1).closest('tr').find("span.avr").text();
+
+        var img = $(img1).closest('tr').find("img[id='" + parseInt(rt) + "']");
+
+        img.attr("src", "/Content/images/Filledstar.png").prevAll("img.rating").attr("src", "/Content/images/Filledstar.png");
+
+    }
+
+
+</script>

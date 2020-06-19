@@ -1,0 +1,128 @@
+﻿/* Job Listing */
+.job-listings-sec {
+    float: left;
+    width: 100%;
+}
+
+.job-listing {
+    float: left;
+    width: 100%;
+    display: table;
+    border-bottom: 1px solid #e8ecec;
+    padding: 30px 0;
+    background: #ffffff;
+    border-left: 2px solid #ffffff;
+    padding-right: 30px;
+}
+.job-list-modern .job-is.ft {
+    color: #8b91dd;
+    border-color: #8b91dd;
+}
+.job-listing.wtabs {
+    border: 1px solid #ebefef;
+    margin-top: 30px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    display: inherit;
+    text-align: left;
+    position: relative;
+}
+
+    .job-listing.wtabs .job-title-sec {
+        float: left;
+        width: 70%;
+    }
+
+        .job-listing.wtabs .job-title-sec > span {
+            color: #1e83f0;
+            display: table;
+            float: none;
+        }
+
+    .job-listing.wtabs .job-lctn {
+        display: inline;
+        padding-top: 20px;
+        width: 100%;
+        font-size: 13px;
+    }
+
+        .job-listing.wtabs .job-lctn i {
+            float: none;
+            font-size: 15px;
+        }
+.job-style-bx {
+    float: left;
+    width: 30%;
+    position: absolute;
+    right: 0px;
+    bottom: 0;
+    padding: 15px;
+}
+
+    .job-style-bx .fav-job {
+        font-size: 20px;
+        float: right;
+        margin-top: 5px;
+        margin-right: 10px;
+    }
+
+    .job-style-bx .job-is {
+        margin: 0;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+        border-radius: 4px;
+        color: #ffffff;
+  }
+.job-is.pt,
+.job-list-modern .job-is.pt {
+    color: #7dc246;
+    border-color: #7dc246;
+}
+
+.job-is.fl,
+.job-list-modern .job-is.fl {
+    color: #fb236a;
+    border-color: #fb236a;
+}
+
+.job-is.tp,
+.job-list-modern .job-is.tp {
+    color: #26ae61;
+    border-color: #26ae61;
+}
+
+.job-listing:hover {
+    border-left-color: #8b91dd;
+    -webkit-box-shadow: 0px 0px 30px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 30px rgba(0,0,0,0.1);
+    -ms-box-shadow: 0px 0px 30px rgba(0,0,0,0.1);
+    -o-box-shadow: 0px 0px 30px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.1);
+    z-index: 1;
+    position: relative;
+}
+
+.inner-header {
+    float: left;
+    width: 100%;
+    position: relative;
+    padding-top: 240px;
+    padding-bottom: 15px;
+    z-index: 0;
+}
+
+
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
