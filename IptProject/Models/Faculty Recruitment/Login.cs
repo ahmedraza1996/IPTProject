@@ -14,5 +14,7 @@ namespace IptProject.Models.Faculty_Recruitment
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public string LoginAs { get; set; }
     }
 }

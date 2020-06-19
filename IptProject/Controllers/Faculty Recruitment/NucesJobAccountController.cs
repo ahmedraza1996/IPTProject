@@ -22,7 +22,7 @@ namespace IptProject.Controllers.Faculty_Recruitment
             employeedbhelper = new EmployeeDb();
         }
 
-        public ActionResult AccessDenied()
+        public ActionResult GeneralLogin()
         {
             return View();
         }
@@ -53,6 +53,12 @@ namespace IptProject.Controllers.Faculty_Recruitment
                 ModelState.AddModelError("", "Invalid Data");
                 return View();
             } 
+        }
+
+        public ActionResult Signout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "NucesJob");
         }
 
         public ActionResult EmployeeLogin(Login model)

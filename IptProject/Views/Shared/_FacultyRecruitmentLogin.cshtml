@@ -1,0 +1,24 @@
+﻿@model IptProject.Models.Faculty_Recruitment.Login
+
+
+
+<div class="form-container">
+    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("GeneralLogin", "NucesJobAccount"))
+    {
+        <h1>Login</h1>
+
+
+        <label for="email"><b>Username</b></label>
+        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "forinput", placeholder = "UserName" } })
+        <label for="psw"><b>Password</b></label>
+        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "forinput", placeholder = "Password" } })
+
+        <label for="choice"><b>Login AS</b></label>
+        @Html.DropDownListFor(model => model.Designation, new SelectList(ViewBag.list), "--LOGIN AS--", htmlAttributes: new { @class = "form-control" })
+
+        <button type="submit" class="btn">Login</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    }
+
+</div>

@@ -848,6 +848,8 @@
     <Content Include="Views\NucesJob\GetAllJobOpenings.cshtml" />
     <Content Include="Views\NucesJob\Index.cshtml" />
     <Content Include="Views\NucesJob\JobOpeningDetails.cshtml" />
+    <Content Include="Views\Shared\_Faculty RecruitmentLayout.cshtml" />
+    <Content Include="Views\Shared\_FacultyRecruitmentLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
