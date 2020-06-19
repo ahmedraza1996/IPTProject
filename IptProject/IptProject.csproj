@@ -839,9 +839,6 @@
     <Content Include="Views\CafeteriaStaff\ViewOrders.cshtml" />
     <Content Include="Views\Search\search.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\NucesJobAccount\AccessDenied.cshtml" />
-    <Content Include="Views\NucesJobAccount\CandidateLogin.cshtml" />
-    <Content Include="Views\NucesJobAccount\EmployeeLogin.cshtml" />
     <Content Include="Views\NucesJobAccount\SignUpCandidate.cshtml" />
     <Content Include="Views\NucesJob\AddJobOpening.cshtml" />
     <Content Include="Views\NucesJob\EditJobOpenings.cshtml" />
@@ -850,6 +847,7 @@
     <Content Include="Views\NucesJob\JobOpeningDetails.cshtml" />
     <Content Include="Views\Shared\_Faculty RecruitmentLayout.cshtml" />
     <Content Include="Views\Shared\_FacultyRecruitmentLogin.cshtml" />
+    <Content Include="Views\NucesJobAccount\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,6 +18,10 @@
                         <li class="nav-item"><a class="nav-link  hoverr" onclick="history.go(-1)">GO BACK</a></li>
                         <li class="nav-item" style="background-color:transparent"><a class="nav-link"></a></li>
                     </ul>
+                    <ul class="nav navbar-nav flex-nowrap ml-auto">
+                        <li class="nav-item"><a class="nav-link  hoverr" href="https://localhost:44359/">ERP HOME</a></li>
+                        <li class="nav-item" style="background-color:transparent"><a class="nav-link"></a></li>
+                    </ul>
                 }
                 <a class="navbar-brand logo" href="#" style="font-family:Amaranth, sans-serif;">FACULTY RECRUITMENT SYSTEM</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -85,9 +89,6 @@
 
             @if (!User.Identity.IsAuthenticated)
             {
-                var List = new List<string>();
-                List.Add("Employee");
-                List.Add("Candidate");
                 @Html.Partial("~/Views/Shared/_FacultyRecruitmentLogin.cshtml")
             }
         </div>

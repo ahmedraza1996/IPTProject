@@ -22,60 +22,44 @@ namespace IptProject.Controllers.Faculty_Recruitment
             employeedbhelper = new EmployeeDb();
         }
 
-        public ActionResult GeneralLogin()
+      
+        public ActionResult Login()
         {
             return View();
         }
-        public ActionResult CandidateLogin()
-        {
-            return View();
-        }
-
         [HttpPost]
-        public ActionResult CandidateLogin(Login model)
+        public ActionResult Login(Login model)
         {
             if(ModelState.IsValid)
             {
-                List<CandidateEmployee> candidatelist = candidatedbhelper.GetAllCandidates();
-                foreach(CandidateEmployee item in candidatelist)
+                if(model.LoginAs=="Candidate")
                 {
-                    if(item.Email==model.Username &&item.Epassword==model.Password)
+                    List<CandidateEmployee> candidatelist = candidatedbhelper.GetAllCandidates();
+                    foreach (CandidateEmployee item in candidatelist)
                     {
-                        FormsAuthentication.SetAuthCookie(model.Username, false);
-                        return RedirectToAction("NucesJob", "Index");
+                        if (item.Email == model.Username && item.Epassword == model.Password)
+                        {
+                            FormsAuthentication.SetAuthCookie(model.Username, false);
+                            return RedirectToAction("Index", "NucesJob");
+                        }
                     }
+                    ViewBag.Issuccess = "Wrong UserName or Password";
+                    return View();
                 }
-                ViewBag.Issuccess = "Wrong UserName or Password";
-                return View();
-            }
-            else
-            {
-                ModelState.AddModelError("", "Invalid Data");
-                return View();
-            } 
-        }
-
-        public ActionResult Signout()
-        {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "NucesJob");
-        }
-
-        public ActionResult EmployeeLogin(Login model)
-        {
-            if (ModelState.IsValid)
-            {
-                List<Employee> employeelist = employeedbhelper.GetAllEmployee();
-                foreach (Employee item in employeelist)
+                else
                 {
-                    if (item.Email == model.Username && item.Epassword == model.Password)
+                    List<Employee> employeelist = employeedbhelper.GetAllEmployee();
+                    foreach (Employee item in employeelist)
                     {
-                        FormsAuthentication.SetAuthCookie(model.Username, false);
-                        return RedirectToAction("NucesJob", "Index");
+                        if (item.Email == model.Username && item.Epassword == model.Password)
+                        {
+                            FormsAuthentication.SetAuthCookie(model.Username, false);
+                            return RedirectToAction("Index", "NucesJob");
+                        }
                     }
+                    ViewBag.Issuccess = "Wrong UserName or Password";
+                    return View();
                 }
-                ViewBag.Issuccess = "Wrong UserName or Password";
-                return View();
             }
             else
             {
@@ -83,8 +67,6 @@ namespace IptProject.Controllers.Faculty_Recruitment
                 return View();
             }
         }
-
-
         public ActionResult SignUpCandidate()
         {
             return View();
