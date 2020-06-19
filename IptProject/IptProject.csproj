@@ -49,6 +49,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -116,9 +120,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -136,8 +137,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig2.cs" />
+    <Compile Include="App_Start\BundleConfig3.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\FilterConfig2.cs" />
+    <Compile Include="App_Start\FilterConfig3.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\RouteConfig2.cs" />
+    <Compile Include="App_Start\RouteConfig3.cs" />
+    <Compile Include="Controllers\Attendance\AttendanceStudentController.cs" />
+    <Compile Include="Controllers\Attendance\AttendanceTeacherController.cs" />
     <Compile Include="Controllers\Cafeteria\CafeteriaController.cs" />
     <Compile Include="Controllers\Cafeteria\CafeteriaStaffController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -145,6 +154,32 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Attendance\AddAttendanceVM.cs" />
+    <Compile Include="Models\Attendance\AllStudentCourses.cs" />
+    <Compile Include="Models\Attendance\Attend.cs" />
+    <Compile Include="Models\Attendance\Attendance.cs" />
+    <Compile Include="Models\Attendance\Batch.cs" />
+    <Compile Include="Models\Attendance\CheckStudentAttendance.cs" />
+    <Compile Include="Models\Attendance\Course.cs" />
+    <Compile Include="Models\Attendance\CourseEnrollment.cs" />
+    <Compile Include="Models\Attendance\CourseFaculty.cs" />
+    <Compile Include="Models\Attendance\CourseOffered.cs" />
+    <Compile Include="Models\Attendance\CoursesVM.cs" />
+    <Compile Include="Models\Attendance\DataVM.cs" />
+    <Compile Include="Models\Attendance\DeleteAttendanceVM.cs" />
+    <Compile Include="Models\Attendance\Department.cs" />
+    <Compile Include="Models\Attendance\Designation.cs" />
+    <Compile Include="Models\Attendance\Employee.cs" />
+    <Compile Include="Models\Attendance\FacultySections.cs" />
+    <Compile Include="Models\Attendance\MarkAttendanceVM.cs" />
+    <Compile Include="Models\Attendance\Section.cs" />
+    <Compile Include="Models\Attendance\SectionVM.cs" />
+    <Compile Include="Models\Attendance\Semester.cs" />
+    <Compile Include="Models\Attendance\Student.cs" />
+    <Compile Include="Models\Attendance\StudentCoursesAttendance.cs" />
+    <Compile Include="Models\Attendance\TeacherAttendanceDetails.cs" />
+    <Compile Include="Models\Attendance\TeacherCourseSectionDetail.cs" />
+    <Compile Include="Models\Attendance\TeacherData.cs" />
     <Compile Include="Models\Cafeteria\Cart.cs" />
     <Compile Include="Models\Cafeteria\CafeteriaStaff.cs" />
     <Compile Include="Models\Cafeteria\Feedback.cs" />
@@ -608,6 +643,13 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -642,9 +684,16 @@
     <Content Include="Views\CafeteriaStaff\ViewOrders.cshtml" />
     <Content Include="Views\Search\search.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\AttendanceStudent\ViewAttendance.cshtml" />
+    <Content Include="Views\AttendanceTeacher\AddAttendance.cshtml" />
+    <Content Include="Views\AttendanceTeacher\ChooseSection.cshtml" />
+    <Content Include="Views\AttendanceTeacher\EditAttendance.cshtml" />
+    <Content Include="Views\AttendanceTeacher\MarkAttendance.cshtml" />
+    <Content Include="Views\AttendanceTeacher\ViewTeacherAttendance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

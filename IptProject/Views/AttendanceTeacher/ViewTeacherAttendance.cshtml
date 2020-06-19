@@ -1,0 +1,142 @@
+﻿@using IptProject.Models.Attendance
+@model AddAttendanceVM
+
+@{
+    ViewBag.Title = "ViewTeacherAttendance";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<h2>View Teacher Attendance</h2>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Manage Attendance</h4>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("ViewTeacherAttendance", "AttendanceTeacher", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Teacher Name</label>
+                                        <input class="form-control" type="text" placeholder="@Model.EmpName" value="@Model.EmpName" name="EmpName" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Offered Courses</label>
+                                        <input class="form-control" type="text" placeholder="@Model.CourseID" value="@Model.CourseID" name="CourseID" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Section</label>
+                                        <input class="form-control" type="text" placeholder="@Model.SectionName" value="@Model.SectionName" name="SectionName" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <input type="submit" class="btn btn-success" value="Add Attendance" />
+                                </div>
+                            </div>
+
+                        }
+
+                        @*@using (Html.BeginForm("DeleteAttendance", "AttendanceTeacher", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()*@
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <thead class="card-header card-header-primary">
+
+                                        <tr>
+                                            <th scope="col">S.No</th>
+                                            <th scope="col">Date</th>
+
+                                            <th scope="col" colspan="2">Action</th>
+                                            @*<th scope="col">Presence</th>*@
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+
+                                            int i = 0;
+                                            foreach (var item in Model.attendances)
+                                            {
+
+                                                //<option value="@item.SemesterID">@item.SemesterName</option>
+
+                                                <tr>
+
+                                                    <td>@(i + 1)</td>
+                                                    @*<input class="form-control" type="date" name="Date" id="Date" value="@(modelItem => item.AttendanceDate)">*@
+                                                    <td>@Html.DisplayFor(modelItem => item.AttendanceDate, new { @class = "form-control" })</td>
+                                                    @*<td>@Html.DisplayFor(modelItem => item.ClassDuration)</td>*@
+
+                                                    <td>
+                                                        @using (Html.BeginForm("EditAttendance", "AttendanceTeacher", FormMethod.Post))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+
+                                                            <input type="text" value="@Model.EmpName" name="EmpName" hidden>
+
+                                                            <input type="text" value="@Model.SectionName" name="SectionName" hidden>
+
+                                                            <input type="text" value="@Model.CourseID" name="CourseID" hidden>
+
+                                                            <input type="text" value="@item.AttendanceDate" name="AttendanceDate" hidden />
+
+                                                            <input type="text" value="@item.ClassDuration" name="ClassDuration" hidden />
+
+                                                            <input type="submit" class="btn btn-primary" value="Edit" />
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @using (Html.BeginForm("DeleteAttendance", "AttendanceTeacher", FormMethod.Post))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+
+                                                            <input type="text" value="@Model.EmpName" name="EmpName" hidden>
+
+                                                            <input type="text" value="@Model.SectionName" name="SectionName" hidden>
+
+                                                            <input type="text" value="@Model.CourseID" name="CourseID" hidden>
+
+                                                            <input type="text" value="@item.AttendanceDate" name="AttendanceDate" hidden />
+
+                                                            <input type="submit" class="btn btn-danger" value="Delete" />
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                </tr>
+
+                                                i++;
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        @*}*@
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
