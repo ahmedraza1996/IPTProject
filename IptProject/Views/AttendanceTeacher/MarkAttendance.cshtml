@@ -1,0 +1,286 @@
+﻿@using IptProject.Models.Attendance
+@model MarkAttendanceVM
+
+@{
+    ViewBag.Title = "MarkAttendance";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<h2>Mark Attendance</h2>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Manage Attendance</h4>
+                    </div>
+                    <div class="card-body">
+                        @*<form id="formteacherdata">*@
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group" id="editors">
+                                        <label>Teacher Name</label>
+
+                                        @foreach (var item in Model.employees)
+                                        {
+                                            @Html.EditorFor(model => item.EmpName, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly", @disabled = "disabled" })
+                                            @*<input class="form-control" type="text" placeholder="@item.EmpName" value="@item.EmpName" disabled name="EmpName" id="EmpName">*@
+
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Offered Courses</label>
+                                        <select class="form-control bootstrap-select " name="courses" id="courses" required>
+                                            <option selected hidden disabled>Select Course</option>
+                                            @foreach (var item in Model.courses)
+                                            {
+                                                if (item.CourseID != 0)
+                                                {
+                                                    <option value="@item.CourseID">@item.CourseCode - @item.CourseName</option>
+
+                                                    @*@Html.EditorFor(model => item.CourseID, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                                                }
+
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Campus</label>
+                                        <select class="form-control">
+                                            <option>Karachi</option>
+                                        </select>
+                                        @*<input type="text" id="campus" name="Campus" value="Karachi" readonly><br><br>*@
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Semester</label>
+
+                                        <select class="form-control" id="semesterSelected" required>
+
+                                            <option selected hidden disabled>Select Semester</option>
+                                            @foreach (var item in Model.semesters)
+                                            {
+
+                                                <option value="@item.SemesterID">@item.SemesterName</option>
+
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                @*<div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Section</label>
+                                            <select class="form-control " id="sectionSelected">
+                                                <option selected hidden disabled>Select Section</option>
+                                                @foreach (var item in Model.sections)
+                                                {
+                                                    if (item.SectionID != 0)
+                                                    {
+                                                        <option value="@item.SectionID">@item.SectionName</option>
+
+                                                    }
+
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 ">
+
+                                    @*<div class="col-lg-12">
+                                            <input id="addButton" type="submit" />
+                                        </div>*@
+
+                                    @*@Html.ActionLink("Add New", "AddAttendance", new { }, new { @class = "btn btn-success pull-right" })*@
+
+                                    @*<button type="submit" class="btn btn-success pull-right">Add New</button>
+
+                                        <input type="submit" value="Create" class="btn btn-success pull-right" />*@
+                                    <input type="submit" class="btn btn-success" value="Choose Section" />
+
+                                    @*<button type="submit" class="btn btn-primary pull-right">Edit</button>*@
+                                </div>
+                            </div>
+                            @*
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-info">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                            <span>
+                                                <b> Info - </b> This is a regular notification made with ".alert-info"
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            *@
+                        }
+                        @*</form>*@
+
+                        @*@using (Html.BeginForm("DeleteAttendance", "AttendanceTeacher", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table table-bordered">
+                                            <thead class="card-header card-header-primary">
+                                                <tr>
+                                                    <th scope="col">S.No</th>
+                                                    <th scope="col">Date</th>
+
+                                                    <th scope="col">Delete</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td><input class="form-control" type="date" name="Date" id="Date"></td>
+
+                                                    <td>
+                                                        <input type="submit" class="btn btn-danger pull-right" value="Delete" />
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td><input class="form-control" type="date" name="Date" id="Date"></td>
+
+                                                    <td>
+                                                        <input type="submit" class="btn btn-danger pull-right" value="Delete" />
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td><input class="form-control" type="date" name="Date" id="Date"></td>
+
+                                                    <td>
+                                                        <input type="submit" class="btn btn-danger pull-right" value="Delete" />
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                            }*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $("#addButton").click(function (event) {
+            //course
+            var courseID = $("#courseSelected").children("option:selected").val();
+            debugger
+            var courseName = "";
+            if (courseID != 0) {
+                courseName = $("#courseSelected").children("option:selected").html()
+            }
+            //section
+            var sectionID = $("#sectionSelected").children("option:selected").val();
+            debugger
+            var SectionName = "";
+            if (sectionID != 0) {
+                SectionName = $("#sectionSelected").children("option:selected").html()
+            }
+            //semester
+            var semesterID = $("#semesterSelected").children("option:selected").val();
+            debugger
+            var semesterName = "";
+            if (semesterID != 0) {
+                semesterName = $("#semesterSelected").children("option:selected").html()
+            }
+
+            $.ajax
+                ({
+                    type: 'POST',
+                    url: 'https://localhost:44380/api/AttendanceTeacher/AddStudentAttendance',
+                    data: {
+
+                        EmpID: 11,
+                        TeacherName: $("#TeacherName").val(),
+                        courseID: courseID,
+                        sectionID: sectionID,
+                        semesterID: semesterID
+                    },
+                    crossDomain: true,
+                    success: function (response) {
+                        alert("You are done");
+                        location.reload(true);
+
+                    },
+                    error: function (error) {
+                        alert("Error");
+                        location.reload(true);
+                    }
+                }).done(function () {
+                    alert("DOne");
+                });
+            //event.preventDefault();
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        $("#courseSelected").change(function () {
+            var courseID = $("#courseSelected").children("option:selected").val();
+            var check = "";
+            debugger
+            if (courseID != 0) {
+                check = $("#courseSelected").children("option:selected").html()
+            }
+
+            $.get('https://localhost:44380/api/AttendanceTeacher/GetTeacherSections/7', function (data, status) {
+                alert("Data: " + data + "\nStatus: " + status);
+            });
+
+            /* $.ajax({
+
+                 url: 'https://localhost:44380/api/AttendanceTeacher/GetTeacherSection/'+ courseID,
+                 type: "get", //send it through get method
+                 *//*data: {
+courseID: courseID
+},*//*
+                                                                                                                                                                                                                                                                           crossDomain: true,
+                                                                                                                                                                                                                                                                           success: function (response) {
+                                                                                                                                                                                                                                                                               alert("Task complete!");
+                                                                                                                                                                                                                                                                               location.reload(true);
+                                                                                                                                                                                                                                                                           },
+                                                                                                                                                                                                                                                                           error: function (xhr, status, error, response) {
+                                                                                                                                                                                                                                                                               alert(response);
+                                                                                                                                                                                                                                                                               //location.reload(true);
+                                                                                                                                                                                                                                                                           }
+                                                                                                                                                                                                                                                                       }).done(function () {
+                                                                                                                                                                                                                                                                                       alert("DOne");
+                                                                                                                                                                                                                                                                                   });
+                                                                                                                                                                                                                                                               */
+
+        });
+
+    });
+</script>

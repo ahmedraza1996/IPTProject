@@ -1,0 +1,159 @@
+﻿@using IptProject.Models.Attendance
+@model AddAttendanceVM
+
+@{
+    ViewBag.Title = "EditAttendance";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<h2>Edit Attendance</h2>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Manage Attendance</h4>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("UpdateStudentAttendance", "AttendanceTeacher", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Teacher Name</label>
+                                        <input class="form-control" type="text" name="EmpName" placeholder="@Model.EmpName" value="@Model.EmpName" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Offered Courses</label>
+                                        <input class="form-control" type="text" placeholder="@Model.CourseID" name="CourseID" value="@Model.CourseID" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                @*<div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>campus</label>
+                                            <input class="form-control" type="text" placeholder="campus" disabled>
+                                        </div>
+                                    </div>*@
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Section</label>
+                                        <input class="form-control" type="text" placeholder="@Model.SectionName" name="SectionName" value="@Model.SectionName" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <input type="text" name="oldAttendanceDate" value="@Model.AttendanceDate" hidden />
+                                        <input class="form-control" type="text" name="AttendanceDate" id="AttendanceDate" value="@Model.AttendanceDate">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Duration</label>
+                                        <select class="form-control bootstrap-select " name="ClassDuration" id="ClassDuration" required>
+                                            <option selected hidden value="@Model.ClassDuration">@Model.ClassDuration</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*<div class="row">
+
+                                    <div class="col-md-12 ">
+                                        <button type="submit" class="btn btn-success pull-right">Save</button>
+                                    </div>
+                                </div>*@
+                            @*
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-info">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                            <span>
+                                                <b> Info - </b> This is a regular notification made with ".alert-info"
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            *@
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <thead class="card-header card-header-primary">
+
+                                            <tr>
+                                                <th scope="col">S.No</th>
+                                                <th scope="col">Roll#</th>
+                                                <th scope="col">Student Name</th>
+                                                <th scope="col">Presence</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+
+                                                int i = 0;
+                                                foreach (var item in Model.students)
+                                                {
+
+                                                    //<option value="@item.SemesterID">@item.SemesterName</option>
+
+                                                    <tr>
+
+                                                        <td>@(i + 1)</td>
+
+                                                        <td>@Html.DisplayFor(modelItem => item.RollNumber)</td>
+                                                        <td>@Html.DisplayFor(modelItem => item.SName)</td>
+                                                        <input type="text" value="@item.EnrollmentID" name="EnrollmentID" hidden />
+                                                        <td>
+                                                            <select class="form-control" name="Presence" required>
+                                                                <option selected hidden value="@item.AttendanceStatus">@item.AttendanceStatus</option>
+                                                                <option value="A">Absent</option>
+                                                                <option value="P">Present</option>
+                                                                <option value="L">Late</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                        </td>
+                                                    </tr>
+
+                                                    i++;
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                    <button type="submit" class="btn btn-success pull-right">Update Attendence</button>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
