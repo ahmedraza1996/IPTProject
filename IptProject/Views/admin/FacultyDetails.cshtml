@@ -1,0 +1,93 @@
+﻿@model IEnumerable<IptProject.Models.adminpanel.faculties>
+
+@{
+    ViewBag.Title = "FacultyDetails";
+    Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
+}
+
+<h2>Faculty Details CRUD Operations</h2>
+<br />
+<p>
+    <a href="@Url.Action("AddOrEdit","admin")" class="btn btn-success" style="margin-bottom:10px"><i class="fa fa-plus" style="padding-right:10px"></i> Add New</a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DesignationTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
+            <th colspan="">Actions</th>
+
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesignationTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentName)
+            </td>
+            @*<td>
+                    <a href="@Url.Action("AddOrEdit", "admin", new { id = item.EmpID })" class="btn btn-default"><i class="fa fa-pencil"></i>  Edit</a>
+                </td>*@
+            <td>
+
+                @using (Html.BeginForm("DeleteFaculty", "admin", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input type="text" value="@item.EmpID" name="EmpID" hidden>
+
+                    <input style="text-align:center" type="submit" class="btn btn-danger" value="Delete" style="padding-top:20px" />
+                }
+
+                @*<a href="@Url.Action("Delete","admin", new { item.EmpID})" class="btn btn-default"><i class="fa fa-trash"></i>  Delete</a>*@
+
+            </td>
+            <td></td>
+        </tr>
+
+    }
+
+</table>
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+
+        function Delete(id) {
+            alertify.confirm('Web Api CRUD Operations', 'Are You Sure to Delete this Record ?', function() {
+                window.location.href = '@Url.Action("Delete","admin")/' + id;
+            },null );
+        }
+    </script>
+}
