@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Http;
 
 namespace IptProject.Content.FacultyRecruitment.DbOperations
 {
@@ -16,7 +17,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
             List<JobOpening> AllJobOpenings = new List<JobOpening>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
                 var responseTask = client.GetAsync("NucesJob/GetAllOpenings");
                 responseTask.Wait();
@@ -40,7 +41,6 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
             }
             return AllJobOpenings;
         }
-
         public int AddJob(JobOpening job)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
@@ -53,7 +53,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 var responseTask = client.PostAsJsonAsync("NucesJob/AddJobOpening", data);
                 responseTask.Wait();
 
@@ -68,7 +68,6 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
                 }
             }
         }
-
         public int UpdateJob(JobOpening job)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
@@ -83,7 +82,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 var responseTask = client.PostAsJsonAsync("NucesJob/UpdateJobOpening", data);
                 responseTask.Wait();
 
@@ -105,7 +104,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
             List<JobOpening> AllJobOpenings = new List<JobOpening>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 var responseTask = client.GetAsync("NucesJob/GetOpeningsById/" + id.ToString());
                 responseTask.Wait();
 
@@ -132,7 +131,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 var responseTask = client.DeleteAsync("NucesJob/DeleteJobOpening/"+id.ToString());
                 responseTask.Wait();
 
@@ -153,7 +152,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
             List<Designation> AllDesignations = new List<Designation>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
                 var responseTask = client.GetAsync("NucesJob/GetAllDesignations");
                 responseTask.Wait();
@@ -180,7 +179,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
             List<Department> AllDepartments = new List<Department>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
                 var responseTask = client.GetAsync("NucesJob/GetAllDepartments");
                 responseTask.Wait();
@@ -207,7 +206,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
             List<Designation> AllDesignations = new List<Designation>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 var responseTask = client.GetAsync("NucesJob/GetDesignationById/" + id.ToString());
                 responseTask.Wait();
 
@@ -235,7 +234,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
             List<Department> AllDepartments = new List<Department>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 var responseTask = client.GetAsync("NucesJob/GetDepartmentById/" + id.ToString());
                 responseTask.Wait();
 
