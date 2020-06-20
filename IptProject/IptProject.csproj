@@ -138,9 +138,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Auth\AuthController.cs" />
     <Compile Include="Controllers\Cafeteria\CafeteriaController.cs" />
     <Compile Include="Controllers\Cafeteria\CafeteriaStaffController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobPortal\JobController.cs" />
+    <Compile Include="Controllers\JobPortal\StudentProfileController.cs" />
+    <Compile Include="Controllers\Search\SearchController.cs" />
+    <Compile Include="Controllers\TimeTable\TimeTableController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -162,6 +167,8 @@
     <Compile Include="Models\Cafeteria\OrderDetails.cs" />
     <Compile Include="Models\Cafeteria\Student.cs" />
     <Compile Include="Models\Cafeteria\Wallet.cs" />
+    <Compile Include="Models\TimeTable\TimeTableData.cs" />
+    <Compile Include="Models\TimeTable\TimeTableModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\Constants.cs" />
     <Compile Include="Shared\ServerConfig.cs" />
@@ -630,6 +637,35 @@
     <Content Include="Views\Shared\_PortalLayout.cshtml" />
     <Content Include="Views\Cafeteria\GetProduct.cshtml" />
     <Content Include="Views\Cafeteria\GetImage.cshtml" />
+    <Content Include="Views\CafeteriaStaff\AddProduct.cshtml" />
+    <Content Include="Views\CafeteriaStaff\EditItemStatus.cshtml" />
+    <Content Include="Views\CafeteriaStaff\EditOrderStatus.cshtml" />
+    <Content Include="Views\CafeteriaStaff\GetFeedbacks.cshtml" />
+    <Content Include="Views\CafeteriaStaff\GetProductList.cshtml" />
+    <Content Include="Views\CafeteriaStaff\Login.cshtml" />
+    <Content Include="Views\CafeteriaStaff\TopUpWallet.cshtml" />
+    <Content Include="Views\CafeteriaStaff\ViewDetails.cshtml" />
+    <Content Include="Views\CafeteriaStaff\ViewOrders.cshtml" />
+    <Content Include="Views\Search\search.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Cafeteria\AddFeedback.cshtml" />
+    <Content Include="Views\Cafeteria\AddtoCart.cshtml" />
+    <Content Include="Views\Cafeteria\CartView.cshtml" />
+    <Content Include="Views\Cafeteria\StarTest.cshtml" />
+    <Content Include="Views\Cafeteria\ViewDetails.cshtml" />
+    <Content Include="Views\Cafeteria\ViewOrder.cshtml" />
+    <Content Include="Views\Cafeteria\Wallet.cshtml" />
+    <Content Include="Views\Job\Detail.cshtml" />
+    <Content Include="Views\Job\Index.cshtml" />
+    <Content Include="Views\Shared\_CafeteriaLayout.cshtml" />
+    <Content Include="Views\StudentProfile\Profile.cshtml" />
+    <Content Include="Views\TimeTable\ExtraClass.cshtml" />
+    <Content Include="Views\TimeTable\GetClassTimeTable.cshtml" />
+    <Content Include="Views\TimeTable\Reallocate.cshtml" />
+    <Content Include="Views\Auth\StudentLogin.cshtml" />
+    <Content Include="Views\Auth\FacultyLogin.cshtml" />
+    <Content Include="Views\Auth\StudentHome.cshtml" />
+    <Content Include="Views\Auth\FacultyHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

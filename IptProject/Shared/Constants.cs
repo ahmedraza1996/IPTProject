@@ -40,5 +40,11 @@ namespace IptProject.Shared
 
             return OrderStatus;
         }
+
+        public static string SESSION_CAFETERIA = "Cafeteria";
+        public static string SESSION_STUDENT = "Student";
+        public static string SESSION_FACULTY = "Faculty";
+        public  static string SESSION_ADMIN = "Admin";
+
     }
 }
