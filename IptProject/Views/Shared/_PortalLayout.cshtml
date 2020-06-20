@@ -1,5 +1,25 @@
 ﻿<!DOCTYPE html>
+@{
 
+
+    Dictionary<string, object> SessionFaculty= null;
+    if (Session[IptProject.Shared.Constants.SESSION_FACULTY] != null)
+    {
+        SessionFaculty = Session[IptProject.Shared.Constants.SESSION_FACULTY] as Dictionary<string, object>;
+    }
+    
+    Dictionary<string, object> SessionStudent= null;
+    if (Session[IptProject.Shared.Constants.SESSION_STUDENT] != null)
+    {
+        SessionStudent = Session[IptProject.Shared.Constants.SESSION_STUDENT] as Dictionary<string, object>;
+    }
+   Dictionary<string, object> SessionCafeteria= null;
+    if (Session[IptProject.Shared.Constants.SESSION_CAFETERIA] != null)
+    {
+        SessionCafeteria = Session[IptProject.Shared.Constants.SESSION_CAFETERIA] as Dictionary<string, object>;
+    }
+  
+ }
 <html>
 
 <!-- begin::Head -->
@@ -28,82 +48,249 @@
     <div class="wrapper ">
         <div class="sidebar" data-color="azure" data-background-color="white" data-image="@Url.Content("~/Content/Template/assets/img/sidebar-1.jpg")">
             <!--
-                Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-                Tip 2: you can also add an image using data-image tag
-            -->
+        Tip 2: you can also add an image using data-image tag
+    -->
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                   FAST-NUCES
+                    FAST-NUCES
                 </a>
             </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
-                   
-                    <li class="nav-item active  ">
-                        <a class="nav-link" href="./dashboard.html">
-                            <i class="material-icons">dashboard</i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./user.html">
-                            <i class="material-icons">person</i>
-                            <p>User Profile</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./tables.html">
-                            <i class="material-icons">content_paste</i>
-                            <p>Table List</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./typography.html">
-                            <i class="material-icons">library_books</i>
-                            <p>Typography</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./icons.html">
-                            <i class="material-icons">bubble_chart</i>
-                            <p>Icons</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./map.html">
-                            <i class="material-icons">location_ons</i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./notifications.html">
-                            <i class="material-icons">notifications</i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./rtl.html">
-                            <i class="material-icons">language</i>
-                            <p>RTL Support</p>
-                        </a>
-                    </li>
+            @if (SessionStudent != null)
+            {
+                <div class="sidebar-wrapper">
+                    <ul class="nav">
 
-                    <li class="nav-item ">
-                        <a class="nav-link" href="/StudentProfile/Profile">
-                            <i class="material-icons">unarchive</i>
-                            <p>My Profile</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="/Job/Index">
-                            <i class="material-icons">unarchive</i>
-                            <p>Job Opening</p>
-                        </a>
-                    </li>
+                        <li class="nav-item active  ">
+                            <a class="nav-link" href="./dashboard.html">
+                                <i class="material-icons">dashboard</i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        @*<li class="nav-item ">
+                            <a class="nav-link" href="./user.html">
+                                <i class="material-icons">person</i>
+                                <p>User Profile</p>
+                            </a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#submenu">
+                                <i class="material-icons">person</i>
+                                <p>Cafeteria <span class="caret"></span></p>
 
-                </ul>
-            </div>
+                            </a>
+                            <div class="collapse" id="submenu">
+                                <ul class="nav nav-collapse">
+
+
+                                    <li>
+                                        <a class="nav-link" href="#" onclick="location.href='@Url.Action("GetProduct","Cafeteria")'">
+                                            <span class="sub-item">Menu</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="#" onclick="location.href='@Url.Action("CartView","Cafeteria")'">
+                                            <span class="sub-item">Cart</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="#" onclick="location.href='@Url.Action("ViewOrder","Cafeteria")'">
+                                            <span class="sub-item">Order</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="#" onclick="location.href='@Url.Action("Wallet","Cafeteria")'">
+                                            <span class="sub-item">Wallet</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="#" onclick="location.href='@Url.Action("AddFeedback","Cafeteria")'">
+                                            <span class="sub-item">Add Feedback</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </li>
+                      
+                        @*<li class="nav-item ">
+                            <a class="nav-link" href="./tables.html">
+                                <i class="material-icons">content_paste</i>
+                                <p>Table List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./typography.html">
+                                <i class="material-icons">library_books</i>
+                                <p>Typography</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./icons.html">
+                                <i class="material-icons">bubble_chart</i>
+                                <p>Icons</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./map.html">
+                                <i class="material-icons">location_ons</i>
+                                <p>Maps</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./notifications.html">
+                                <i class="material-icons">notifications</i>
+                                <p>Notifications</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./rtl.html">
+                                <i class="material-icons">language</i>
+                                <p>RTL Support</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/StudentProfile/Profile">
+                                <i class="material-icons">unarchive</i>
+                                <p>My Profile</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/Job/Index">
+                                <i class="material-icons">unarchive</i>
+                                <p>Job Opening</p>
+                            </a>
+                        </li>*@
+
+                    </ul>
+                </div>
+            }
+            @if (SessionFaculty != null)
+            {
+                <div class="sidebar-wrapper">
+                    <ul class="nav">
+
+                        <li class="nav-item active  ">
+                            <a class="nav-link" href="#">
+                                <i class="material-icons">Faculty dashboard</i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./user.html">
+                                <i class="material-icons">person</i>
+                                <p>User Profile</p>
+                            </a>
+                        </li>
+                    
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./tables.html">
+                                <i class="material-icons">content_paste</i>
+                                <p>Table List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./typography.html">
+                                <i class="material-icons">library_books</i>
+                                <p>Typography</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./icons.html">
+                                <i class="material-icons">bubble_chart</i>
+                                <p>Icons</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./map.html">
+                                <i class="material-icons">location_ons</i>
+                                <p>Maps</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./notifications.html">
+                                <i class="material-icons">notifications</i>
+                                <p>Notifications</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./rtl.html">
+                                <i class="material-icons">language</i>
+                                <p>RTL Support</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/StudentProfile/Profile">
+                                <i class="material-icons">unarchive</i>
+                                <p>My Profile</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/Job/Index">
+                                <i class="material-icons">unarchive</i>
+                                <p>Job Opening</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            }
+            @if (SessionCafeteria != null)
+            {
+                //Session[IptProject.Shared.Constants.SESSION_FACULTY]= null;
+                //Session[IptProject.Shared.Constants.SESSION_STUDENT]= null;
+
+                <div class="sidebar-wrapper">
+                    <ul class="nav">
+
+
+                     
+                        <li class="nav-item ">
+                            <a class="nav-link" onclick="location.href='@Url.Action("AddProduct","CafeteriaStaff")'">
+                                <i class="material-icons">content_paste</i>
+                                <p>Add Product</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" onclick="location.href='@Url.Action("GetProductList","CafeteriaStaff")'">
+                                <i class="material-icons">content_paste</i>
+                                <p>Menu</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" onclick="location.href='@Url.Action("GetFeedbacks","CafeteriaStaff")'">
+                                <i class="material-icons">content_paste</i>
+                                <p>Feedbacks</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" onclick="location.href='@Url.Action("ViewOrders","CafeteriaStaff")'">
+                                <i class="material-icons">library_books</i>
+                                <p>Orders</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" onclick="location.href='@Url.Action("TopUpWallet","CafeteriaStaff")'">
+                                <i class="material-icons">library_books</i>
+                                <p>Top Up wallet</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./icons.html">
+                                <i class="material-icons">bubble_chart</i>
+                                <p>Sign Out</p>
+                            </a>
+                        </li>
+                     
+
+                    </ul>
+                </div>
+            }
+
         </div>
         <div class="main-panel">
             <!-- Navbar -->

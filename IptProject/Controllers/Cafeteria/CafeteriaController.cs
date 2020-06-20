@@ -34,6 +34,10 @@ namespace IptProject.Controllers
 
         public ActionResult GetProduct()
         {
+            if (!SessionExist())
+            {
+                return RedirectToAction("StudentLogin", "Auth");
+            }
             globalFooditem.Clear();
             List<FoodItem> lstFoodItems = new List<FoodItem>();
             
@@ -160,10 +164,16 @@ namespace IptProject.Controllers
         }
         public ActionResult Checkout(string paymentmethod)
         {
-
+            if (!SessionExist())
+            {
+                return RedirectToAction("StudentLogin", "Auth");
+            }
 
             List < Cart > lstCart = GetSessionCart();
-            string StudentId = "1";  //get from session
+            Dictionary<string, object> sessuser = Session[Shared.Constants.SESSION_STUDENT] as Dictionary<string, object>;
+            object studid;
+            sessuser.TryGetValue("StudentID", out studid);
+            //string StudentId = "1";  //get from session
             int sum = 0;
             foreach (var item in lstCart)
             {
@@ -182,7 +192,7 @@ namespace IptProject.Controllers
             }
 
             Dictionary<string, object> data = new Dictionary<string, object>();
-            data["StudentId"] = StudentId;
+            data["StudentId"] = studid;
             data["PaymentMethod"] = paymentmethod;
             data["Amount"] = Amount;
             data["OrderDetail"] = orderDetails;
@@ -241,6 +251,10 @@ namespace IptProject.Controllers
         }
         public ActionResult CartView()
         {
+            if (!SessionExist())
+            {
+                return RedirectToAction("StudentLogin", "Auth");
+            }
             return View(GetSessionCart());
         }
         public ActionResult RemoveItem(int id)
@@ -256,25 +270,20 @@ namespace IptProject.Controllers
 
 
 
-        //public Volunteer GetSessionUser()
-        //{
-        //    if (Session[Shared.Constants.SESSION_USER] != null)
-        //    {
-        //        return Session[Shared.Constants.SESSION_USER] as Volunteer;
-        //    }
-
-        //    return null;
-        //}
-
-        //public void SetSessionUser(Volunteer obj)
-        //{
-        //    Session[Shared.Constants.SESSION_USER] = obj;
-        //}
+       
         public ActionResult Wallet()
         {
+            if (!SessionExist())
+            {
+                return RedirectToAction("StudentLogin", "Auth");
+            }
             Wallet obj = new Wallet();
             Dictionary<string, object> data = new Dictionary<string, object>();
-            data["StudentID"] = 2;
+            Dictionary<string, object> sessuser = Session[Shared.Constants.SESSION_STUDENT] as Dictionary<string, object>;
+            object studid;
+            sessuser.TryGetValue("StudentID", out studid);
+
+            data["StudentID"] = studid;
 
             using (var client = new HttpClient())
             {
@@ -300,7 +309,14 @@ namespace IptProject.Controllers
             return View(obj);
         }
 
-
+        public ActionResult AddFeedback()
+        {
+            if (!SessionExist())
+            {
+                return RedirectToAction("StudentLogin", "Auth");
+            }
+            return View();
+        }
 
         [HttpPost]
         public ActionResult AddFeedback(string comment, string rating)
@@ -310,7 +326,11 @@ namespace IptProject.Controllers
             data["Rating"] = rating;
             data["FDescription"] = comment;
             data["Date"] = DateTime.Now.ToString("yyyy-MM-dd");
-            data["StudentID"] = 1;
+            Dictionary<string, object> sessuser = Session[Shared.Constants.SESSION_STUDENT] as Dictionary<string, object>;
+            object studid;
+            sessuser.TryGetValue("StudentID", out studid);
+
+            data["StudentID"] = studid;
 
             using (var client = new HttpClient())
             {
@@ -336,14 +356,21 @@ namespace IptProject.Controllers
         }
         public ActionResult ViewOrder()
         {
+            if (!SessionExist())
+            {
+                return RedirectToAction("StudentLogin", "Auth");
+            }
             List<FoodItem> lstFoodItems = new List<FoodItem>();
             lstOrder.Clear();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
-                int StudentId = 1;   //get from session
-
+               
+                Dictionary<string, object> sessuser = Session[Shared.Constants.SESSION_STUDENT] as Dictionary<string, object>;
+                object studid;
+                sessuser.TryGetValue("StudentID", out studid);
+                int StudentId = Convert.ToInt32(studid);
                 var responseTask = client.GetAsync("cafeteria/GetOrdersbyStudentId?id=" + StudentId);
                 responseTask.Wait();
 
@@ -359,7 +386,7 @@ namespace IptProject.Controllers
                     foreach (var item in orders)
                     {
                         item.Datestr = item.OrderDate.ToString("dd-MM-yyyy");
-                        item.Timestr = item.OrderTime.ToString("HH:MM");
+                        item.Timestr = item.OrderTime.ToString("HH:mm");
 
                         lstOrder.Add(item);
                     }
@@ -378,7 +405,16 @@ namespace IptProject.Controllers
         }
 
 
+        public bool SessionExist()
+        {
+            if (Session[Shared.Constants.SESSION_STUDENT] == null)
+            {
 
+                return false;
+            }
+            else
+                return true;
+        }
 
 
 

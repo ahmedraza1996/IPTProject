@@ -78,7 +78,10 @@
                                     'Yaayyy!',
                                     'Your wallet has been updated!',
                                     'success'
-                                );
+                                ).then(function(){
+                                    window.location.href='/cafeteriastaff/vieworders'
+
+                                });
                             }
                             else {
                                 Swal.fire({

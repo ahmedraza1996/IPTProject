@@ -17,6 +17,12 @@ namespace IptProject.Controllers.Cafeteria
         // GET: CafeteriaStaff
         public ActionResult Index()
         {
+            if (!SessionExist())
+            {
+                return RedirectToAction("Login");
+            }
+
+
             return View();
         }
         //staff login
@@ -32,17 +38,81 @@ namespace IptProject.Controllers.Cafeteria
         //session
         public ActionResult AddProduct()
         {
+            if (!SessionExist())
+            {
+                return RedirectToAction("Login");
+            }
+
             return View();
         }
 
         public ActionResult Login()
         {
+            if (Session[Shared.Constants.SESSION_CAFETERIA] != null)
+            {
+
+                return RedirectToAction("ViewOrders");
+            }
+
             return View();
 
+        }
+        
+      
+    [HttpPost]
+        public ActionResult Login(string username, string password)
+        {
+            //FoodItem obj = new FoodItem();
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data["Cred"] = username;
+            data["SPassword"] = password;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+                //HTTP GET
+                var responseTask = client.PostAsJsonAsync("cafeteriastaff/Login", data);
+
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                
+                if (result.IsSuccessStatusCode)
+                {
+
+                    var readTask = result.Content.ReadAsAsync<Dictionary<string, object>>();
+                    readTask.Wait();
+
+                    Dictionary<string, object> dta = readTask.Result;
+                    SetSessionStaff(dta);
+
+
+                    return Content("LoginSuccessful");
+
+
+                }
+                else
+                {
+                    var readTask = result.Content.ReadAsAsync<Dictionary<string, object>>();
+                    readTask.Wait();
+                    var msg = readTask.Result;
+                    
+                    return Content(msg["Message"].ToString());
+                }
+            }
+
+            ////SelectList ItemStatus = Shared.Constants.getItemStatus();
+            ////ViewBag.ItemStatus = ItemStatus;
+            //return PartialView(obj);
         }
 
         public ActionResult GetProductList()
         {
+           
+            if (!SessionExist())
+            {
+            return RedirectToAction("Login");
+            }
+
             List<FoodItem> lstFoodItems = new List<FoodItem>();
 
             using (var client = new HttpClient())
@@ -132,6 +202,11 @@ namespace IptProject.Controllers.Cafeteria
 
         public ActionResult EditItemStatus(int ItemId)
         {
+
+            if (!SessionExist())
+            {
+                return RedirectToAction("Login");
+            }
             FoodItem obj = new FoodItem();
             Dictionary<string, object> data = new Dictionary<string, object>();
             data["ItemID"] = ItemId;
@@ -205,6 +280,11 @@ namespace IptProject.Controllers.Cafeteria
 
         public ActionResult TopUpWallet()
         {
+
+            if (!SessionExist())
+            {
+                return RedirectToAction("Login");
+            }
             return View();
         }
         [HttpPost]
@@ -247,6 +327,11 @@ namespace IptProject.Controllers.Cafeteria
         }
         public ActionResult GetFeedbacks()
         {
+
+            if (!SessionExist())
+            {
+                return RedirectToAction("Login");
+            }
             List<Feedback> lstfb = new List<Feedback>();
 
             using (var client = new HttpClient())
@@ -277,6 +362,11 @@ namespace IptProject.Controllers.Cafeteria
         }
         public ActionResult ViewOrders()
         {
+
+            if (!SessionExist())
+            {
+                return RedirectToAction("Login");
+            }
             //List<FoodOrder> lstOrder = new List<FoodOrder>();
             lstOrder.Clear();
             using (var client = new HttpClient())
@@ -350,6 +440,37 @@ namespace IptProject.Controllers.Cafeteria
                 }
             }
 
+        }
+
+
+        public Dictionary<string, object>  GetSessionStaff()
+        {
+            if (Session[Shared.Constants.SESSION_CAFETERIA] != null)
+            {
+                return Session[Shared.Constants.SESSION_CAFETERIA] as Dictionary<string, object>;
+            }
+         
+            return null;
+        }
+
+        public void SetSessionStaff(Dictionary<string, object> obj)
+        {
+            Session[Shared.Constants.SESSION_CAFETERIA] = obj;
+        }
+        public bool SessionExist()
+        {
+            if (Session[Shared.Constants.SESSION_CAFETERIA] == null)
+            {
+
+                return false;
+            }
+            else
+                return true;
+        }
+        public ActionResult SignOut()
+        {
+            Session[Shared.Constants.SESSION_CAFETERIA] = null;
+            return RedirectToAction("Login","CafeteriaStaff");
         }
     }
 }

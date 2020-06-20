@@ -7,7 +7,7 @@
 <div class="col-lg-6 col-md-12">
     <div class="card">
         <div class="card-header card-header-warning">
-            <h4 class="card-title">Cafeteria Login</h4>
+            <h4 class="card-title">Faculty Login</h4>
 
         </div>
         <div class="card-body">
@@ -55,21 +55,22 @@
                 $.ajax({
 
                     type: "POST",
-                    url: "/CafeteriaStaff/Login",
+                    url: "/Auth/FacultyLogin",
                     data: myformdata,
                     success: function (response) {
                         Swal.close();
                         if (response != null) {
 
                             if (response == "LoginSuccessful") {
-                                location.href = "/CafeteriaStaff/ViewOrders";
+                                location.href = "/Auth/FacultyHome";
                             }
                             else {
 
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Oops...',
-                                    text: response
+                                    text: response,
+                                    footer: '<a href>Why do I have this issue?</a>'
                                 })
 
 
