@@ -401,3 +401,4 @@ C:\Users\Abdul Rehman\Desktop\SAJID SALEEM FOR IPT PROJECT\IPT\FINAL\IPTProject\
 C:\Users\Abdul Rehman\Desktop\SAJID SALEEM FOR IPT PROJECT\IPT\FINAL\IPTProject\IptProject\obj\Debug\IptProject.csproj.CopyComplete
 C:\Users\Abdul Rehman\Desktop\SAJID SALEEM FOR IPT PROJECT\IPT\FINAL\IPTProject\IptProject\obj\Debug\IptProject.dll
 C:\Users\Abdul Rehman\Desktop\SAJID SALEEM FOR IPT PROJECT\IPT\FINAL\IPTProject\IptProject\obj\Debug\IptProject.pdb
+C:\Users\Abdul Rehman\Desktop\SAJID SALEEM FOR IPT PROJECT\IPT\FINAL\IPTProject\IptProject\obj\Debug\IptProject.csprojAssemblyReference.cache

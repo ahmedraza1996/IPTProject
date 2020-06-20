@@ -145,6 +145,7 @@
     <Compile Include="Content\FacultyRecruitment\DbOperations\WebRoleProvider.cs" />
     <Compile Include="Controllers\Cafeteria\CafeteriaController.cs" />
     <Compile Include="Controllers\Cafeteria\CafeteriaStaffController.cs" />
+    <Compile Include="Controllers\Faculty Recruitment\EmployeeController.cs" />
     <Compile Include="Controllers\Faculty Recruitment\NucesJobAccountController.cs" />
     <Compile Include="Controllers\Faculty Recruitment\NucesJobController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -848,6 +849,7 @@
     <Content Include="Views\Shared\_Faculty RecruitmentLayout.cshtml" />
     <Content Include="Views\Shared\_FacultyRecruitmentLogin.cshtml" />
     <Content Include="Views\NucesJobAccount\Login.cshtml" />
+    <Content Include="Views\Employee\AddEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

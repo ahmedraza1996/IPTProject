@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Http;
 
 namespace IptProject.Content.FacultyRecruitment.DbOperations
 {
@@ -40,7 +41,6 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
             }
             return AllJobOpenings;
         }
-
         public int AddJob(JobOpening job)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
@@ -68,7 +68,6 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
                 }
             }
         }
-
         public int UpdateJob(JobOpening job)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();

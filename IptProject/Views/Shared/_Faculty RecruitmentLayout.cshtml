@@ -33,49 +33,48 @@
                         }
                         else
                         {
-                            <li class="nav-item" role="presentation"><a class="nav-link hoverr"  href="@Url.Action("Index","nucesjob")">Home</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link hoverr" href="@Url.Action("Index","nucesjob")">Home</a></li>
                         }
 
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item" role="presentation"><a class="nav-link hoverr" href="#" onclick="openForm()">LOGIN</a></li>
                         }
-                        @if (User.IsInRole("Human Resourse"))
+                        @if (User.IsInRole("HumanResource"))
                         {
-                            if (Request.Url.AbsoluteUri.Contains("nuces/HumanResourceIndex"))
-                            {
-                                <li class="nav-item" role="presentation"><a class="nav-link test hoverr" href="@Url.Action("HumanResourceIndex","nucesjob")">@User.Identity.Name-PANEL</a></li>
-                            }
-                            else
-                            {
-                                <li class="nav-item" role="presentation"><a class="nav-link hoverr" href="@Url.Action("HumanResourceIndex","nucesjob")">@User.Identity.Name-PANEL</a></li>
-                            }
+                            <li class="nav-item" role="presentation"><a class="nav-link test hoverr" href="@Url.Action("AddJobOpening","nucesjob")">ADD JOB</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link test hoverr" href="@Url.Action("JobOpeningDetails","nucesjob")">ACTIVE VACANCIES</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link test hoverr" href="@Url.Action("JobOpeningDetails","nucesjob")">CANDIDATE APPLICATIONS</a></li>
                         }
-                      
+                        @if (User.IsInRole("candidate"))
+                        {
+                            <li class="nav-item" role="presentation"><a class="nav-link test hoverr" href="@Url.Action("GetAllJobOpenings","nucesjob")">VIEW JOBS</a></li>
+                        }
+
                         @*@if (Request.Url.AbsoluteUri.Contains("Mainpage/campuses"))
-                        {
-                            <li class="nav-item" role="presentation"><a class="nav-link test hoverr" href="~/Mainpage/campuses">CAMPUSES</a></li>
-                        }
-                        else
-                        {
-                            <li class="nav-item" role="presentation"><a class="nav-link hoverr" href="~/Mainpage/campuses">CAMPUSES</a></li>
-                        }
-                        @if (Request.Url.AbsoluteUri.Contains("Mainpage/programs"))
-                        {
-                            <li class="nav-item" role="presentation"><a class="nav-link test hoverr" href="~/Mainpage/programs">PROGRAMS</a></li>
-                        }
-                        else
-                        {
-                            <li class="nav-item" role="presentation"><a class="nav-link hoverr" href="~/Mainpage/programs">PROGRAMS</a></li>
-                        }
-                        @if (Request.Url.AbsoluteUri.Contains("Mainpage/contactus"))
-                        {
-                            <li class="nav-item" role="presentation"><a class="nav-link test hoverr" href="~/Mainpage/contactus">COTACT US</a></li>
-                        }
-                        else
-                        {
-                            <li class="nav-item" role="presentation"><a class="nav-link hoverr" href="~/Mainpage/contactus">COTACT US</a></li>
-                        }*@
+        {
+            <li class="nav-item" role="presentation"><a class="nav-link test hoverr" href="~/Mainpage/campuses">CAMPUSES</a></li>
+        }
+        else
+        {
+            <li class="nav-item" role="presentation"><a class="nav-link hoverr" href="~/Mainpage/campuses">CAMPUSES</a></li>
+        }
+        @if (Request.Url.AbsoluteUri.Contains("Mainpage/programs"))
+        {
+            <li class="nav-item" role="presentation"><a class="nav-link test hoverr" href="~/Mainpage/programs">PROGRAMS</a></li>
+        }
+        else
+        {
+            <li class="nav-item" role="presentation"><a class="nav-link hoverr" href="~/Mainpage/programs">PROGRAMS</a></li>
+        }
+        @if (Request.Url.AbsoluteUri.Contains("Mainpage/contactus"))
+        {
+            <li class="nav-item" role="presentation"><a class="nav-link test hoverr" href="~/Mainpage/contactus">COTACT US</a></li>
+        }
+        else
+        {
+            <li class="nav-item" role="presentation"><a class="nav-link hoverr" href="~/Mainpage/contactus">COTACT US</a></li>
+        }*@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item" role="presentation"><a class="nav-link hoverr" href='@Url.Action("Signout","NucesJobAccount")'>LOGOUT</a></li>
@@ -92,8 +91,10 @@
                 @Html.Partial("~/Views/Shared/_FacultyRecruitmentLogin.cshtml")
             }
         </div>
-        <div id="body">
-            @RenderBody()
+        <div class="box">
+            <div id="body">
+                @RenderBody()
+            </div>
         </div>
        </div>
     <script src="~/Content/FacultyRecruitment/Contents/index/assets/js/jquery.min.js"></script>

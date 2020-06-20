@@ -52,7 +52,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
             data["EmpName"] = emp.EmpName;
-            data["Epassword"] = emp.Epassword;
+            data["EPassword"] = emp.Epassword;
             data["EMail"] = emp.Email;
             data["MobileNumber"]= emp.MobileNumber;
             data["DesignationID"] = jobdbhelper.GetDesignationIdbyTitle(emp.Designation);

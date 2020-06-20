@@ -40,6 +40,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
                     foreach (var users in AllUserRoles)
                     {
                         Roles[count] = users.Role;
+                        Roles[count] = Roles[count].Replace(" ", String.Empty);
                         count++;
                     }
                     return Roles;
