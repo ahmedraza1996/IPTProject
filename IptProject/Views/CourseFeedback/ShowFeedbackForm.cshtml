@@ -1,0 +1,120 @@
+﻿@model List<IptProject.Models.CourseFeedback.Questions>
+
+@{
+    ViewBag.Title = "Submit Feedback";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+    
+    <div class="container-fluid">
+        <form  id="form"  method="post">
+            @foreach (var item in Model)
+            {
+                <p hidden>@item.FeedbackID</p>
+            <div class="card"style="padding-top: 20px; padding-left: 10px; padding-bottom: 10px;">
+                <div class="col-md-6">
+                    @if (item.QuestionType == "2")
+                    {
+                        <div class="radio m-6">
+                            <p style="margin-left:7px;"><b>@item.QuestionText</b></p>
+                            <label><input  required type="radio" value="@item.options[0]" name="@item.QuestionID">@item.options[0]</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="@item.options[1]" name="@item.QuestionID">@item.options[1]</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="@item.options[2]" name="@item.QuestionID">@item.options[2]</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="@item.options[3]" name="@item.QuestionID">@item.options[3]</label>
+                        </div>
+                    }
+                    @if (item.QuestionType == "1")
+                    {
+                        <p>@item.QuestionText</p>
+                        <textarea style="width:100%;" required name=" @item.QuestionID"></textarea>
+                    }
+                </div>
+            </div>  
+            }
+            <button id ="submit" class="btn btn-primary" type="submit">Submit</button>
+
+        </form>
+        @*<script>
+            function s(e) {
+                console.log("dedededededededededededededededededede");
+                fetch("https://localhost:44380/api/coursefeedback/postAnswers", {method: "post"));
+               // $('#Form').serializeArray();
+                return false;
+            }
+            $(document).ready(function() {
+                $("#submit").click(function(){
+                  console.log( "hello");
+                }); 
+            });
+        </script>*@
+    </div>
+@section scripts{
+    <script type="text/javascript">
+        function handleUpload() {
+            console.log($("form").serialize());
+            var $form = $("form");
+            var data = getFormData($form);
+            console.log(data);
+            let keys = Object.keys(data);
+            let payload = []
+            let temp = ["Strongly Agree","Agree","Neutral","Disagree"]
+            for (let i = 0; i < keys.length; i++) {
+                let obj = {}
+                let e = data[keys[i]]
+                if (temp.indexOf(e) == -1){
+                    obj.ResponseType = "1"
+                } else {
+                    obj.ResponseType = "2"
+                }
+                obj.QuestionID = keys[i];
+                obj.FeedbackID = getCookieValue("feedbackId")
+                obj.Response = data[keys[i]];
+                payload.push(obj)
+            }
+            console.log(payload[3])
+            fetch("http://localhost:44380/api/coursefeedback/postAnswers", {
+                headers: {
+                 'Content-Type': 'application/json'
+    },
+                method: "POST",
+                body: JSON.stringify(payload)
+            }).then(() => {
+                window.location = "https://localhost:44359/CourseFeedback/ShowCourseList";
+            })
+
+        }
+        function getCookieValue(a) {
+            var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+            return b ? b.pop() : '';
+}
+    function getFormData($form){
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return indexed_array;
+        }
+        $(() => {
+            $('#form').submit(function(event) {
+                event.preventDefault();
+                handleUpload();
+                return false;
+            }); 
+        });
+        if (!getCookieValue("feedbackId")) {
+            window.location = "https://localhost:44359/CourseFeedback/ShowCourseList"
+        }
+    </script>
+
+
+
+}
+

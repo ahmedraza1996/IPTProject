@@ -140,6 +140,7 @@
     <Compile Include="Controllers\Cafeteria\CafeteriaController.cs" />
     <Compile Include="Controllers\Cafeteria\CafeteriaStaffController.cs" />
     <Compile Include="Controllers\FYP\FypController.cs" />
+    <Compile Include="Controllers\Course_Feedback\CourseFeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobPortal\JobController.cs" />
     <Compile Include="Controllers\JobPortal\StudentProfileController.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Models\Cafeteria\CafeteriaStaff.cs" />
     <Compile Include="Models\Cafeteria\Cart.cs" />
     <Compile Include="Models\Cafeteria\Feedback.cs" />
+    <Compile Include="intMap\Add.cs" />
     <Compile Include="Models\Cafeteria\FoodItem.cs" />
     <Compile Include="Models\FYP\StudentProposalController.cs" />
     <Compile Include="Models\JobPortal\CV.cs" />
@@ -169,6 +171,8 @@
     <Compile Include="Models\Cafeteria\Wallet.cs" />
     <Compile Include="Models\TimeTable\TimeTableData.cs" />
     <Compile Include="Models\TimeTable\TimeTableModel.cs" />
+    <Compile Include="Models\CourseFeedback\Course.cs" />
+    <Compile Include="Models\CourseFeedback\Questions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\Constants.cs" />
     <Compile Include="Shared\ServerConfig.cs" />
@@ -691,6 +695,8 @@
     <Content Include="Views\FYP\ViewStudentFinal.cshtml" />
     <Content Include="Views\FYP\ViewStudentProposal.cshtml" />
     <Content Include="Views\FYP\ViewStudentProposalSupervisor.cshtml" />
+    <Content Include="Views\CourseFeedback\ShowFeedbackForm.cshtml" />
+    <Content Include="Views\CourseFeedback\ShowCourseList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
