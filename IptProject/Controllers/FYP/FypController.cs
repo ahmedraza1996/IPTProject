@@ -12,7 +12,14 @@ namespace IptProject.Controllers
     public class FypController : Controller
     {
         //Home Pages
-
+        public ActionResult TeacherLogin()
+        {
+            return View();
+        }
+        public ActionResult StudentLogin()
+        {
+            return View();
+        }
         public ActionResult StudentHome()
         {
             return View();
@@ -29,7 +36,8 @@ namespace IptProject.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+
                 //HTTP GET
                 var newResponseTask = client.GetAsync("fyp1get/GetFypDetailsByTitle?title=" + title);
                 newResponseTask.Wait();
@@ -90,7 +98,7 @@ namespace IptProject.Controllers
             string myTitle = GlobalViewTitle;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/fyp1post/UpdateProposalSupervisor");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl() + "fyp1post /UpdateProposalSupervisor");
 
                 student.IndexModels = GetDetails(myTitle);
                 List<StudentProposal> getList = new List<StudentProposal>();
@@ -137,7 +145,7 @@ namespace IptProject.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/fyp1post/addproposalstudent");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl() + "fyp1post/addproposalstudent");
 
                 //HTTP POST
                 var postTask = client.PostAsJsonAsync<StudentProposal>("addproposalstudent", student);
@@ -161,7 +169,7 @@ namespace IptProject.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
                 var responseTask = client.GetAsync("fyp1get/GetProposalsNameSupervisor?id=1012");
                 responseTask.Wait();
@@ -193,7 +201,7 @@ namespace IptProject.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
                 var responseTask = client.GetAsync("fyp1get/GetProposalDetails?id=163900");
                 responseTask.Wait();
@@ -226,7 +234,7 @@ namespace IptProject.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
                 var responseTask = client.GetAsync("fyp1get/GetFypNames?id=1012");
                 responseTask.Wait();
@@ -290,8 +298,9 @@ namespace IptProject.Controllers
             List<StudentDefense> studentDefensesItems = new List<StudentDefense>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
-                var responseTask = client.GetAsync("fyp1get/GetProposalEvaluations?id=163963" );
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+
+                var responseTask = client.GetAsync("fyp1get/GetProposalEvaluations?id=163963");
                 responseTask.Wait();
 
                 //ViewBag.message = title;
@@ -311,7 +320,7 @@ namespace IptProject.Controllers
                     }
                 }
             }
-            
+
             return View(studentDefensesItems);
         }
 
@@ -321,9 +330,9 @@ namespace IptProject.Controllers
             List<Fyp1FinalModel> studentFinalItems = new List<Fyp1FinalModel>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
-                var responseTask = client.GetAsync("fyp1get/GetFinalEvaluations?id=163900" );
+                var responseTask = client.GetAsync("fyp1get/GetFinalEvaluations?id=163900");
                 responseTask.Wait();
 
                 //ViewBag.message = title;
@@ -342,7 +351,7 @@ namespace IptProject.Controllers
                         studentFinalItems.Add(item);
                     }
                 }
-            }    
+            }
             return View(studentFinalItems);
         }
         //Fyp I Final Form
@@ -353,7 +362,7 @@ namespace IptProject.Controllers
             List<StudentDefense> list = new List<StudentDefense>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
                 var responseTask = client.GetAsync("fyp1get/GetFypNames?id=1012");
                 responseTask.Wait();
@@ -383,12 +392,12 @@ namespace IptProject.Controllers
             List<Fyp1FinalModel> studentEvaluationItems = new List<Fyp1FinalModel>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
                 var responseTask = client.GetAsync("fyp1get/GetFinalEvaluations?id=163900");
                 responseTask.Wait();
 
-                
+
 
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
@@ -407,9 +416,9 @@ namespace IptProject.Controllers
 
                 var newresponseTask = client.GetAsync("fyp1get/GetFyp1FinalMarks?id=163900");
                 newresponseTask.Wait();
-                
+
                 var newResult = newresponseTask.Result;
-                
+
 
                 if (result.IsSuccessStatusCode)
                 {
@@ -429,9 +438,9 @@ namespace IptProject.Controllers
         }
 
 
-        
 
-        
+
+
 
         /// <summary>
         /// 
@@ -447,9 +456,10 @@ namespace IptProject.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+
                 //HTTP GET
-                var newResponseTask = client.GetAsync("fyp1get/GetFypDetailsByTitle?title="+title);
+                var newResponseTask = client.GetAsync("fyp1get/GetFypDetailsByTitle?title=" + title);
                 newResponseTask.Wait();
                 var newResult = newResponseTask.Result;
 
@@ -467,7 +477,7 @@ namespace IptProject.Controllers
                     }
                 }
                 int id = details[0].LeaderID;
-                var responseTask = client.GetAsync("fyp1get/GetProposalEvaluations?id="+id);
+                var responseTask = client.GetAsync("fyp1get/GetProposalEvaluations?id=" + id);
                 responseTask.Wait();
 
                 //ViewBag.message = title;
@@ -506,7 +516,8 @@ namespace IptProject.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/fyp1post/AddProposalEvaluationJury");
+
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl() + "fyp1post /AddProposalEvaluationJury");
 
                 //HTTP POST
                 var postTask = client.PostAsJsonAsync<StudentDefense>("AddProposalEvaluationJury", globalDefense.SearchModel);
@@ -546,7 +557,8 @@ namespace IptProject.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+
                 //HTTP GET
                 var newResponseTask = client.GetAsync("fyp1get/GetFypDetailsByTitle?title=" + title);
                 newResponseTask.Wait();
@@ -613,7 +625,7 @@ namespace IptProject.Controllers
                         {
                             string myString1 = item.Deliverables1;
                             studentFinalItems[0].Deliverable1 = myString1;
-                            
+
                             myString1 = item.Deliverables2;
                             studentFinalItems[0].Deliverable2 = myString1;
 
@@ -626,7 +638,7 @@ namespace IptProject.Controllers
                             myString1 = item.Deliverables5;
                             studentFinalItems[0].Deliverable5 = myString1;
                         }
-                        
+
                         /*string myString = item.
                         studentFinalItems.Add(item)*/
                     }
@@ -650,7 +662,7 @@ namespace IptProject.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/fyp1post/AddFinalEvaluationJury");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl() + "fyp1post/AddFinalEvaluationJury");
 
                 //HTTP POST
                 var postTask = client.PostAsJsonAsync<Fyp1FinalModel>("AddFinalEvaluationJury", globalFinal.SearchModel);
@@ -663,7 +675,7 @@ namespace IptProject.Controllers
                 //globalDefense.SearchModel.ChangesRecommeneded = list[0].ChangesRecommeneded;
                 //globalFinal.SearchModel.CoSupervisorID = list[0].CoSupervisorID;
                 //globalFinal.SearchModel.SupervisorEmpID = list[0].SupervisorEmpID;
-                
+
                 //globalFinal.SearchModel.ProjectName = list[0].ProjectName;
                 globalFinal.SearchModel.LeaderID = list[0].LeaderID;
                 globalFinal.SearchModel.Member1ID = list[0].Member1ID;
@@ -693,7 +705,8 @@ namespace IptProject.Controllers
             List<FypResponse> details = new List<FypResponse>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+
                 var newResponseTask = client.GetAsync("fyp1get/GetFypDetailsByTitle?title=" + title);
                 newResponseTask.Wait();
                 var newResult = newResponseTask.Result;
@@ -752,7 +765,7 @@ namespace IptProject.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/fyp2post/AddMidEvaluationJury");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl() + "fyp2post/AddMidEvaluationJury");
 
                 //HTTP POST
 
@@ -788,7 +801,8 @@ namespace IptProject.Controllers
             List<FypResponse> details = new List<FypResponse>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+
                 var newResponseTask = client.GetAsync("fyp1get/GetFypDetailsByTitle?title=" + title);
                 newResponseTask.Wait();
                 var newResult = newResponseTask.Result;
@@ -848,7 +862,7 @@ namespace IptProject.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/fyp2post/AddFinalEvaluationJury");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl() + "fyp2post/AddFinalEvaluationJury");
 
 
 
@@ -893,7 +907,7 @@ namespace IptProject.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/fyp2post/AddFyp2FinalEvaluationJury");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl() + "fyp2post/AddFyp2FinalEvaluationJury");
 
 
 
@@ -930,7 +944,8 @@ namespace IptProject.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+
                 //HTTP GET
                 var responseTask = client.GetAsync("fyp1get/GetFypNames?id=1012");
                 responseTask.Wait();
@@ -960,7 +975,8 @@ namespace IptProject.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+
                 //HTTP GET
                 var responseTask = client.GetAsync("fyp1get/GetFypNames?id=1012");
                 responseTask.Wait();
@@ -991,7 +1007,8 @@ namespace IptProject.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+
                 //HTTP GET
                 var responseTask = client.GetAsync("fyp1get/GetFypNames?id=1012");
                 responseTask.Wait();
@@ -1020,7 +1037,8 @@ namespace IptProject.Controllers
             List<FYP2FinalEvaluation> FYP2FinalEvaluationItems = new List<FYP2FinalEvaluation>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+
                 var responseTask = client.GetAsync("FYP2Get/GetFinalEvaluationByID?id=163900");
                 responseTask.Wait();
 
@@ -1086,7 +1104,8 @@ namespace IptProject.Controllers
             List<FYP2MidEvaluation> FYP2MidEvaluationItems = new List<FYP2MidEvaluation>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
+
                 var responseTask = client.GetAsync("FYP2Get/GetMidEvaluationByID?id=163963");
                 responseTask.Wait();
 
