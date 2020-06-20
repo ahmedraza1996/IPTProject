@@ -27,12 +27,14 @@ namespace IptProject.Controllers.Faculty_Recruitment
 
         //Get All Job Openings posted by the Employee
         
+            //[Authorize(Roles ="candidate")]
         public ActionResult GetAllJobOpenings()
         {
             List<JobOpening> AllJobOpenings = dbhelper.GetAllJobs();
             return View(AllJobOpenings);
         }
 
+        //[Authorize (Roles ="Department of Computer Science")]
         public ActionResult AddJobOpening()
         {
             var List = new List<string>();
@@ -121,6 +123,7 @@ namespace IptProject.Controllers.Faculty_Recruitment
         }
 
         [HttpGet]
+        //[Authorize(Roles = "Department of Computer Science")]
         public ActionResult JobOpeningDetails()
         {
             List<JobOpening> AllJobOpenings = dbhelper.GetAllJobs();
@@ -149,7 +152,7 @@ namespace IptProject.Controllers.Faculty_Recruitment
             }
 
         }
-
+        [Authorize(Roles = "Department of Computer Science")]
         public ActionResult EditJobOpenings(int id)
         {
             var List = new List<string>();

@@ -67,6 +67,12 @@ namespace IptProject.Controllers.Faculty_Recruitment
                 return View();
             }
         }
+
+        public ActionResult Signout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index" ,"NucesJob");
+        }
         public ActionResult SignUpCandidate()
         {
             return View();

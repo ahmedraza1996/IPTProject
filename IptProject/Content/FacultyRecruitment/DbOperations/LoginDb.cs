@@ -17,7 +17,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
             string newemail = Email.Replace('.', '-');
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
                 var responseTask = client.GetAsync("NucesJobAccount/GetRolesbyUserName/" + newemail);
                 responseTask.Wait();

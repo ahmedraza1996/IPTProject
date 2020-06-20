@@ -25,7 +25,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
             data["Email"] = candidate.Email;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 var responseTask = client.PostAsJsonAsync("Candidate/AddCandidate", data);
                 responseTask.Wait();
 
@@ -46,7 +46,7 @@ namespace IptProject.Content.FacultyRecruitment.DbOperations
             List<CandidateEmployee> Allcandidates = new List<CandidateEmployee>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
                 var responseTask = client.GetAsync("Candidate/GetAllCandidates");
                 responseTask.Wait();
