@@ -23,7 +23,7 @@ namespace IptProject.Controllers.Course_Feedback
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //for(var i = 0; i < feedbackIds.Count; i++)
                 //{
                 //    if (feedbackIds[i] == name)
@@ -59,7 +59,7 @@ namespace IptProject.Controllers.Course_Feedback
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
                 var responseTask = client.GetAsync("coursefeedback/getAllCourses?studentID=16k4060");
                 responseTask.Wait();
