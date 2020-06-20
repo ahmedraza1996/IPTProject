@@ -141,6 +141,7 @@
     <Compile Include="Controllers\Auth\AuthController.cs" />
     <Compile Include="Controllers\Cafeteria\CafeteriaController.cs" />
     <Compile Include="Controllers\Cafeteria\CafeteriaStaffController.cs" />
+    <Compile Include="Controllers\FYP\FypController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobPortal\JobController.cs" />
     <Compile Include="Controllers\JobPortal\StudentProfileController.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Models\Cafeteria\CafeteriaStaff.cs" />
     <Compile Include="Models\Cafeteria\Feedback.cs" />
     <Compile Include="Models\Cafeteria\FoodItem.cs" />
+    <Compile Include="Models\FYP\StudentProposalController.cs" />
     <Compile Include="Models\JobPortal\CV.cs" />
     <Compile Include="Models\JobPortal\Domain.cs" />
     <Compile Include="Models\JobPortal\Experience.cs" />
@@ -620,6 +622,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\studentProfile.js" />
+    <Content Include="Scripts\tags.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -666,6 +670,29 @@
     <Content Include="Views\Auth\FacultyLogin.cshtml" />
     <Content Include="Views\Auth\StudentHome.cshtml" />
     <Content Include="Views\Auth\FacultyHome.cshtml" />
+    <Content Include="Views\FYP\DefenseCards.cshtml" />
+    <Content Include="Views\FYP\Evaluation.cshtml" />
+    <Content Include="Views\FYP\ExternalHome.cshtml" />
+    <Content Include="Views\FYP\ExternalJuryEvaluation.cshtml" />
+    <Content Include="Views\FYP\FinalEvaluation.cshtml" />
+    <Content Include="Views\FYP\Fyp1FinalCards.cshtml" />
+    <Content Include="Views\FYP\FYP2MidEvaluation.cshtml" />
+    <Content Include="Views\FYP\InternalEvaluation.cshtml" />
+    <Content Include="Views\FYP\InternalJuryEvaluation.cshtml" />
+    <Content Include="Views\FYP\MidEvaluation.cshtml" />
+    <Content Include="Views\FYP\StudentHome.cshtml" />
+    <Content Include="Views\FYP\StudentProposal.cshtml" />
+    <Content Include="Views\FYP\SupervisorProposalCards.cshtml" />
+    <Content Include="Views\FYP\TeacherHome.cshtml" />
+    <Content Include="Views\FYP\ViewDefenseForm.cshtml" />
+    <Content Include="Views\FYP\ViewFinalEvaluation.cshtml" />
+    <Content Include="Views\FYP\ViewFyp1FinalForm.cshtml" />
+    <Content Include="Views\FYP\ViewFyp1FinalForm_Student.cshtml" />
+    <Content Include="Views\FYP\ViewFYP2MidEvaluation.cshtml" />
+    <Content Include="Views\FYP\ViewStudentDefense.cshtml" />
+    <Content Include="Views\FYP\ViewStudentFinal.cshtml" />
+    <Content Include="Views\FYP\ViewStudentProposal.cshtml" />
+    <Content Include="Views\FYP\ViewStudentProposalSupervisor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
