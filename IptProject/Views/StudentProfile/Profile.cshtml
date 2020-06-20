@@ -7,19 +7,7 @@
 }
 <html>
 <head>
-    <!--<link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/bootstrap-grid.css") />
-    <link rel="stylesheet" href=@Url.Content("/Content/JobPortal/csshunt/icons.css") />
-    <link rel="stylesheet" href=@Url.Content("/Content/JobPortal/csshunt/animate.min.css") />
-    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/style.css") />
-    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/responsive.css") />
-    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/chosen.css") />
-
-    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/style.css") />
-
-
-    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/JobPortal/csshunt/colors/colors.css") />
-    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/bootstrap.css") />-->
-    <!-- CSS Files -->
+    
     <link href="@Url.Content("~/Content/Template/assets/css/material-dashboard.css?v=2.1.2")" rel="stylesheet" />
 
    <script language="JavaScript" type="text/javascript" src=@Url.Content("/Content/JobPortal/jshunt/jquery.min.js")></script>
@@ -48,7 +36,7 @@
 <body>
     <div class="container fluid">
         <div class="row">
-            <div class="col-lg-12" style="background-color:#9c27b0">
+            <div class="col-lg-12" style="background-color:#00bcd4">
                 <div class="inner-header" style="align-items: center;">
                     <h1 style="color:white;" class="center"> Hazala 163870</h1>
                     @using (Html.BeginForm("Index", "StudentProfile",
@@ -75,7 +63,7 @@
         <div id="ExpirenceSection">
 
             <div class="row">
-                <h3 class="col-lg-10" style="color:#9c27b0;font-weight: 500">Work Experience</h3>
+                <h3 class="col-lg-10" style="color:#00bcd4;font-weight: 500">Work Experience</h3>
                 <a class="center-block col-lg-2" href="#" id="addnewExpirenceButton" title=""><i class="la la-plus"></i> Add Experience</a>
             </div>
             <hr />
@@ -143,7 +131,7 @@
 
                         <i></i>
                         <div class="col-lg-10 edu-hisinfo" id="@(item.ExpID)">
-                            <h3 style="color:#9c27b0">@(item.Designation)</h3>
+                            <h3 style="color:#00bcd4">@(item.Designation)</h3>
                             <i>@(item.StartDate.ToString("dd-MM-yyyy")) -- @(item.EndDate.Date.ToString("dd-MM-yyyy"))</i>
                             <p>@(item.JDescription)</p>
                         </div>
@@ -161,7 +149,7 @@
         <br /><br />
         <div id="ProjectSection">
             <div class="border-title row">
-                <h3 class="col-lg-10" style="color:#9c27b0;font-weight: 500">Projects</h3>
+                <h3 class="col-lg-10" style="color:#00bcd4;font-weight: 500">Projects</h3>
                 <a class="col-lg-2" href="#" title="" id="addnewProjectButton"><i class="la la-plus"></i> Add Project</a>
             </div>
             <hr />
@@ -256,7 +244,7 @@
                     <div class="row edu-history style2">
                         <i></i>
                         <div class="edu-hisinfo col-lg-10" id="@item.ProjectID">
-                            <h3 style="color:#9c27b0">@(item.ProjectName)</h3>
+                            <h3 style="color:#00bcd4">@(item.ProjectName)</h3>
                             <i>Github:-<a>@(item.GithubLink)</a></i>
                             <p>@item.Fname</p>
                         </div>
@@ -274,7 +262,7 @@
 
         <div id="SkillSection">
             <div class="border-title row">
-                <h3 class="col-lg-8" style="color:#9c27b0;font-weight: 500">Personal Skill</h3>
+                <h3 class="col-lg-8" style="color:#00bcd4;font-weight: 500">Personal Skill</h3>
             </div>
             <hr />
             <div class="edu-history-sec">
@@ -283,7 +271,7 @@
                     <div class="edu-history style2 row">
                         <i></i>
                         <div class="edu-hisinfo col-lg-10">
-                            <h3 style="color:#9c27b0">@(item.SkillName)</h3>
+                            <h3 style="color:#00bcd4">@(item.SkillName)</h3>
                             <p>@(item.DomainName)</p>
                         </div>
                         <ul class="action_job col-lg-2">

@@ -148,8 +148,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cafeteria\Cart.cs" />
     <Compile Include="Models\Cafeteria\CafeteriaStaff.cs" />
+    <Compile Include="Models\Cafeteria\Cart.cs" />
     <Compile Include="Models\Cafeteria\Feedback.cs" />
     <Compile Include="Models\Cafeteria\FoodItem.cs" />
     <Compile Include="Models\FYP\StudentProposalController.cs" />
@@ -752,4 +752,11 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
+  </Target>
 </Project>

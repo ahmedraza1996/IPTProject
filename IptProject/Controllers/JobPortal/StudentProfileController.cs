@@ -108,7 +108,7 @@ namespace IptProject.Controllers.JobPortal
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
 
                 HttpResponseMessage Res7 = await client.GetAsync("studentProfile/DownloadCV/" + 7);
-            
+
                 if (Res7.IsSuccessStatusCode)
                 {
                     var Response = Res7.Content.ReadAsStringAsync().Result;
