@@ -25,7 +25,7 @@ namespace IptProject.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 //HTTP GET
                 var responseTask = client.GetAsync("cafeteria/getproduct");
                 responseTask.Wait();
@@ -54,7 +54,7 @@ namespace IptProject.Controllers
             List<TimeTableData> temp = new List<TimeTableData>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 var responseTask = client.GetAsync("timetable/fetchtimetable");
                 responseTask.Wait();
 
@@ -131,7 +131,7 @@ namespace IptProject.Controllers
             
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 var responseTask = client.GetAsync("timetable/reallocateclassroom/?course="+courselist+"&Section="+sectionlist+"&day="+daylist+"");
 
                 responseTask.Wait();
@@ -205,7 +205,7 @@ namespace IptProject.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri(Shared.ServerConfig.GetBaseUrl());
                 var responseTask = client.GetAsync("timetable/extraclass/?course=" + courselist + "&Section="+sectionlist+"&day="+daylist+"&instructor="+instructor+"");
 
                 
