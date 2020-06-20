@@ -1,0 +1,134 @@
+﻿@model IptProject.Models.FYP.StudentProposal
+
+@{
+    ViewBag.Title = "StudentProposal";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Pre-Registration Form</h4>
+                        <p class="card-category">Final Year Project I - CS 491</p>
+                    </div>
+                    <div class="card-body">
+
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating"> ProjectTitle</label>
+                                      
+                                        @Html.EditorFor(model => model.ProjectTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ProjectTitle, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <label class="bmd-label-floating"> ProjectType</label>
+                                
+                                    <div class="form-group">
+
+                                        <div style="margin-left:10% " class="form-check form-check-inline">
+                                            <label>@Html.RadioButtonFor(model => model.ProjectType, "Product")@Html.Label("Product Based")</label>
+
+                                        </div>
+
+                                        <div style="margin-left:10% " class="form-check form-check-inline">
+                                            <label>@Html.RadioButtonFor(model => model.ProjectType, "Experiment")@Html.Label("Experiment Based")</label>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Abstract</label>
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating"> </label>
+                                            
+                                            @Html.EditorFor(model => model.Abstract, new { htmlAttributes = new { @class = "form-control" }  } )
+                                            @Html.ValidationMessageFor(model => model.Abstract, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5>Team Members</h5>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Student 1 ID</label>
+                                        @Html.EditorFor(model => model.LeaderID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.LeaderID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Student 2 ID</label>
+                                        @Html.EditorFor(model => model.Member1ID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Member1ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Student 3 ID</label>
+                                        @Html.EditorFor(model => model.Member2ID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Member2ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Supervisor ID</label>
+                                        @Html.EditorFor(model => model.SupervisorID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.SupervisorID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Co-Supervisor ID</label>
+                                        @Html.EditorFor(model => model.CoSupervisorID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.CoSupervisorID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                     
+                            <div class="form-group">
+                                    <button type="submit" class="btn btn-primary pull-right">SUBMIT</button>
+                            </div>
+                        </div>
+                        }
+
+                        @*<div>
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

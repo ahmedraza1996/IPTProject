@@ -1,0 +1,229 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">External Jury Evaluation Form</h4>
+                      
+                    </div>
+                    <div class="card-body">
+
+                        <form>
+                            <div class="form-row">
+
+                                <div class="col-md-12">
+
+                                    <div class="md-form form-group">
+                                        <label for="inputProjectTitle">PROJECT TITLE</label>
+                                        <select class="form-control" id="ProjectTitle">
+                                            <option class="form-control" value="volvo">Volvo</option>
+                                            <option class="form-control" value="saab">Saab</option>
+                                            <option class="form-control" value="mercedes">Mercedes</option>
+                                            <option class="form-control" value="audi">Audi</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <!-- Grid column -->
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="col-md-4">
+
+                                    <div class="md-form form-group">
+                                        <label for="inputLeaderID">STUDENT 1 ID</label>
+                                        <input type="text" class="form-control" disabled id="inpuLeaderID">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+
+                                    <div class="md-form form-group">
+                                        <label for="inputLeaderID">STUDENT 2 ID</label>
+                                        <input type="text" class="form-control" disabled id="inpuLeaderID">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+
+                                    <div class="md-form form-group">
+                                        <label for="inputLeaderID">STUDENT 3 ID</label>
+                                        <input type="text" class="form-control" disabled id="inpuLeaderID">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+
+                                <div class="col-md-6">
+
+                                    <div class="md-form form-group">
+                                        <label for="inputSupervisor">SUPERVISOR ID</label>
+                                        <input type="text" class="form-control" disabled id="inpuSupervisor">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="md-form form-group">
+                                        <label for="inputCoSupervisor">CO-SUPERVISOR ID</label>
+                                        <input type="text" class="form-control" disabled id="inputCoSupervisor">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                      
+                        <br />
+                        <h3><strong>Evaluation of Software Design and Implementation</strong></h3>
+                        <br />
+                        <p>Please evaluate group members individually by considering the evaluation criteria provided below. Give final marks out of 100 in the section provided overleaf.</p>
+                        <ol>
+                            <li>
+                                <p>Does the group follow a well-defined software development methodology? Can students justify the use of the chosen software development methodology.</p>
+                            </li>
+                            <li>
+                                <p>Have the students adapted the given document templates correctly according to their project requirements?</p>
+                            </li>
+                            <li>
+                                <p>How well each member knows about software product's user requirements, and production use?</p>
+                            </li>
+                            <li>
+                                <p>Knowledge of appropriate software tools, libraries and frameworks for implementation. For example: UI, Analysis, Visualization of data, IDE selected for coding, Database (SQL/NoSQL), libraries, etc.</p>
+                            </li>
+                            <li>
+                                <p>Development of UI and justification of UI/UX aspects, Structure of Code and/or hardware Components. Use of OOP and coding practices.</p>
+                            </li>
+                        </ol>
+
+
+                        <br />
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h3><strong>Team Members:</strong></h3>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="md-form form-group">
+                                    <label for="inputSupervisor">Student 1 ID</label>
+                                    <input type="text" disabled class="form-control" id="inpuSupervisor">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="md-form form-group">
+                                    <label for="inputSupervisor">Suggested Marks out of 100</label>
+                                    <input type="number" class="form-control" id="inpuSupervisor">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="md-form form-group">
+                                    <label for="inputSupervisor">Student 2 ID</label>
+                                    <input type="text" disabled class="form-control" id="inpuSupervisor">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="md-form form-group">
+                                    <label for="inputSupervisor">Suggested Marks out of 100</label>
+                                    <input type="number" class="form-control" id="inpuSupervisor">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="md-form form-group">
+                                    <label for="inputSupervisor">Student 3 ID</label>
+                                    <input type="text" disabled class="form-control" id="inpuSupervisor">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="md-form form-group">
+                                    <label for="inputSupervisor">Suggested Marks out of 100</label>
+                                    <input type="number" class="form-control" id="inpuSupervisor">
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+
+                       
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3><strong>Grading Scheme (For Reference):</strong></h3>
+                            </div>
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">A+</th>
+                                    <th scope="col">A</th>
+                                    <th scope="col">A-</th>
+                                    <th scope="col">B+</th>
+                                    <th scope="col">B</th>
+                                    <th scope="col">B-</th>
+                                    <th scope="col">C+</th>
+                                    <th scope="col">C</th>
+                                    <th scope="col">C-</th>
+                                    <th scope="col">D+</th>
+                                    <th scope="col">D</th>
+                                    <th scope="col">F</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="col">90</td>
+                                    <td scope="col">86</td>
+                                    <td scope="col">82</td>
+                                    <td scope="col">78</td>
+                                    <td scope="col">74</td>
+                                    <td scope="col">70</td>
+                                    <td scope="col">66</td>
+                                    <td scope="col">62</td>
+                                    <td scope="col">58</td>
+                                    <td scope="col">54</td>
+                                    <td scope="col">50</td>
+                                    <td scope="col">>50</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br />
+                        <br />
+
+                        <button type="submit" class="btn btn-primary pull-right">SUBMIT</button>
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

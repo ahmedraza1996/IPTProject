@@ -1,0 +1,222 @@
+﻿@model IEnumerable<IptProject.Models.FYP.Fyp1FinalModel>
+
+@{
+    ViewBag.Title = "ViewFyp1FinalForm_Student";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<h2>ViewFyp1FinalForm_Student</h2>
+@foreach (var item in Model)
+{
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">FYP Defense form</h4>
+                            <p class="card-category"></p>
+                        </div>
+                        <div class="card-body">
+
+
+                            <form>
+                                <div class="form-row">
+
+                                    <div class="col-md-12">
+
+                                        <div class="md-form form-group">
+                                            <label for="inputProjectTitle">PROJECT TITLE</label>
+                                            @Html.TextBoxFor(modelItelm => item.ProjectName, new { disabled = "disabled", @class = "form-control" })
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Grid column -->
+                                </div>
+
+                                <div class="form-row">
+
+                                    <div class="col-md-4">
+
+                                        <div class="md-form form-group">
+                                            <label for="inputLeaderID">STUDENT 1 ID</label>
+                                            @Html.TextBoxFor(modelItelm => item.LeaderID, new { disabled = "disabled", @class = "form-control" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+
+                                        <div class="md-form form-group">
+                                            <label for="inputLeaderID">STUDENT 2 ID</label>
+                                            @Html.TextBoxFor(modelItelm => item.Member1ID, new { disabled = "disabled", @class = "form-control" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+
+                                        <div class="md-form form-group">
+                                            <label for="inputLeaderID">STUDENT 3 ID</label>
+                                            @Html.TextBoxFor(modelItelm => item.Member2ID, new { disabled = "disabled", @class = "form-control" })
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+
+                                    <div class="col-md-6">
+
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">SUPERVISOR ID</label>
+                                            @Html.TextBoxFor(modelItelm => item.SuperVisorEmpID, new { disabled = "disabled", @class = "form-control" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                        <div class="md-form form-group">
+                                            <label for="inputCoSupervisor">CO-SUPERVISOR ID</label>
+                                            @Html.TextBoxFor(modelItelm => item.CoSuperVisorID, new { disabled = "disabled", @class = "form-control" })
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                            <br />
+                            <br />
+                            
+                            
+                            @using (Html.BeginForm())
+                            {
+
+
+                                <p>Deliverable(s):</p>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">DELIVERABLE #1</label>
+                                            @Html.TextBoxFor(modelItelm => item.Deliverable1, new { disabled = "disabled", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">% Complete</label>
+                                            @Html.TextBoxFor(modelItelm => item.Deliverable1Completion, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">DELIVERABLE #2</label>
+                                            @Html.TextBoxFor(modelItelm => item.Deliverable2, new { disabled = "disabled", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">% Complete</label>
+                                            @Html.TextBoxFor(modelItelm => item.Deliverable2Completion, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">DELIVERABLE #3</label>
+                                            @Html.TextBoxFor(modelItelm => item.Deliverable3, new { disabled = "disabled", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">% Complete</label>
+                                            @Html.TextBoxFor(modelItelm => item.Deliverable3Completion, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">DELIVERABLE #4</label>
+                                            @Html.TextBoxFor(modelItelm => item.Deliverable4, new { disabled = "disabled", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">% Complete</label>
+                                            @Html.TextBoxFor(modelItelm => item.Deliverable4Completion, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">DELIVERABLE #5</label>
+                                            @Html.TextBoxFor(modelItelm => item.Deliverable5, new { disabled = "disabled", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">% Complete</label>
+                                            @Html.TextBoxFor(modelItelm => item.Deliverable5Completion, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3><strong>FYP-2 Deliverables Suggested</strong></h3>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>FYP-2 Deliverables</label>
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating"> </label>
+                                                @*<textarea class="form-control" rows="7"></textarea>*@
+                                                @Html.TextBoxFor(modelItelm => item.Fyp2Deliverables, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h3><strong>MARKS:</strong></h3>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">Student  ID</label>
+                                            @Html.TextBoxFor(modelItelm => item.LeaderID, new { disabled = "disabled", @class = "form-control" })
+                                            @*<input type="text" disabled class="form-control" id="inpuSupervisor">*@
+                                            @*@Html.TextBoxFor(model => model.SearchModel.LeaderID, new { disabled = "disabled", @class = "form-control" })*@
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <label for="inputSupervisor">Suggested Marks out of 100</label>
+                                            @*<input type="number" class="form-control" disabled id="inpuSupervisor">*@
+                                            @Html.TextBoxFor(modelItelm => item.leaderMarks, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <button type="submit" style="float:left" class="btn btn-primary pull-right">Submit</button>
+                                <div class="clearfix"></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
