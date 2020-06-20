@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace IptProject.Models.Cafeteria
+namespace IptProject.Models
 {
     public class FoodItem
     {
