@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "FacultyLogin";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="~/Content/admintemplate/images/img-01.png" alt="IMG">
+            </div>
+
+            @*<form class="login100-form validate-form" action="#" method="post">*@
+            @using (Html.BeginForm("FacultyPage", "admin_faculty", FormMethod.Post))
+            {
+
+                @Html.AntiForgeryToken()
+                <span class="login100-form-title">
+                    Faculty Login
+                </span>
+
+                @*Faculty Email*@
+                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="input100" type="email" name="Email" placeholder="Email">
+                    @*@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input100", @type = "text", @name = "email", @placeholder = "Email", @required = "" } })*@
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                @*Faculty Password*@
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <input class="input100" type="password" name="EPassword" placeholder="Password">
+                    @*@Html.EditorFor(model => model.EPassword, new { htmlAttributes = new { @class = "input100", @type = "password", @name = "password", @placeholder = "Password", @id = "myInput", @required = "" } })*@
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <script>
+                function myFunction() {
+                    var x = document.getElementById("myInput");
+                    if (x.type === "password") {
+                        x.type = "text";
+                    } else {
+                        x.type = "password";
+                    }
+                }
+                </script>
+
+
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" type="submit" value="Login">
+                        Login
+                    </button>
+                </div>
+
+                <div class="text-center p-t-90">
+                    <a class="txt2" href="#">
+                    </a>
+                </div>
+            }
+            @*</form>*@
+        </div>
+    </div>
+</div>
+

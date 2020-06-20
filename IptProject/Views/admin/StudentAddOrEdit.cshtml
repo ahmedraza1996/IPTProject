@@ -1,0 +1,98 @@
+﻿@using IptProject.Models.adminpanel
+@model AddBatchVM
+
+@{
+    ViewBag.Title = "StudentAddOrEdit";
+    Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
+}
+
+<h2>StudentAddOrEdit</h2>
+
+<div class="form-body">
+    @using (Html.BeginForm("AddStudent", "admin", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        //@Html.HiddenFor(Model => Model);
+
+        @*<div class="form-group">
+                <input class="form-control" type="text" name="EmpID" hidden />
+
+            </div>*@
+
+        <div class="form-group">
+            <label>Student name</label>
+            <input class="form-control" type="text" name="SName" required />
+            @*@Html.LabelFor(Model => Model.EmpName)
+                @Html.EditorFor(Model => Model.EmpName)
+                @Html.ValidationMessageFor(Model => Model.EmpName)*@
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input class="form-control" type="email" name="Email" required />
+            @*@Html.LabelFor(Model => Model.Email)
+                @Html.EditorFor(Model => Model.Email)
+                @Html.ValidationMessageFor(Model => Model.Email)*@
+        </div>
+
+        <div class="form-group">
+            <label>Mobile Number</label>
+            <input class="form-control" type="text" name="MobileNumber" required />
+            @*@Html.LabelFor(Model => Model.MobileNumber)
+                @Html.EditorFor(Model => Model.MobileNumber)
+                @Html.ValidationMessageFor(Model => Model.MobileNumber)*@
+        </div>
+
+        <div class="form-group">
+            <label>Roll Number</label>
+            <input class="form-control" type="text" name="RollNumber" required />
+            @*@Html.LabelFor(Model => Model.MobileNumber)
+                @Html.EditorFor(Model => Model.MobileNumber)
+                @Html.ValidationMessageFor(Model => Model.MobileNumber)*@
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input class="form-control" type="text" name="SPassword" required />
+            @*@Html.LabelFor(Model => Model.MobileNumber)
+                @Html.EditorFor(Model => Model.MobileNumber)
+                @Html.ValidationMessageFor(Model => Model.MobileNumber)*@
+        </div>
+
+        <div class="form-group">
+            <label>Batch List</label>
+            <select class="form-group" name="BatchYear">
+                <option selected hidden value="1"> Select Value</option>
+                @foreach (var item in Model.batchs)
+                {
+                    <option value="@item.BatchID">@item.BatchYear</option>
+                }
+
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label>Programme List</label>
+            <select class="form-body" name="ProgrammeName">
+                <option selected hidden value="1"> Select Value</option>
+
+                <option value="1">Department Of Computer Science</option>
+                <option value="2">Department Of Electrical Engineeering</option>
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Save" />
+            <input type="reset" value="Reset" class="btn button" />
+        </div>
+
+        @*<div class="form-group">
+                <input class="form-control" type="text" name="MobileNumber" placeholder="Employee Number" />
+                <input type="submit" value="Submit" class="btn button" />
+                <input type="reset" value="Reset" class="btn button" />
+            </div>*@
+
+    }
+</div>
