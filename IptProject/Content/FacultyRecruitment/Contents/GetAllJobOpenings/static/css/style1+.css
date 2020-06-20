@@ -1,0 +1,19 @@
+#myTable {
+    border-collapse: collapse; 
+    width: 100%; 
+    border: 1px solid black; 
+    font-size: 18px; 
+    display:table;
+  }
+  
+  #myTable td {
+    text-align: left; 
+    padding: 12px; 
+    display: table-cell
+  }
+  
+  #myTable tr {
+    /* Add a bottom border to all table rows */
+      border-bottom: 1px solid #ddd;
+      display: table-row;
+  }

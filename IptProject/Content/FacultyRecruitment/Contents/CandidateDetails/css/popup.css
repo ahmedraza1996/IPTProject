@@ -1,0 +1,60 @@
+/* Popup container */
+
+.mystyle1 {
+    position:relative;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 6px;
+    background-image: linear-gradient(white, gray);
+    color:black;
+    font-size: 15px;
+    font-family: Lato, sans-serif;
+    cursor: pointer;
+}
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: Lato, sans-serif;
+    color:black
+}
+
+    .popup:hover {
+        background-color: rgba(9, 162, 255, 0.85);
+    }
+
+
+
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  color: azure;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}

@@ -1,0 +1,73 @@
+﻿@model List<IptApis.Models.FacultyRecruitment.JobOpening>
+
+@{
+    ViewBag.Title = "GetAllJobOpenings";
+    Layout = null;
+}
+
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="~/Content/FacultyRecruitment/Contents/GetAllJobOpenings/static/css/main.css">
+	</head>
+
+		<!-- One -->
+			<section id="one" class="wrapper style2">
+				<div class="inner">
+					<div class="grid-style">
+						@foreach (var item in Model)
+						{
+							<div>
+								<div class="box">
+                                    <div class="content">
+                                        <p class="align-center"><Strong>@Html.DisplayFor(model => @item.Designation)</Strong><br />@Html.DisplayFor(model => @item.Department)</p>
+                                        <dl class="table">
+                                            <dt>
+                                                @Html.DisplayNameFor(model => @item.MinExperience)
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => @item.MinExperience)
+                                            </dd>
+
+                                            <dt>
+                                                @Html.DisplayNameFor(model => @item.JobDescription)
+                                            </dt>
+
+                                            <dd>
+                                                <p>@Html.DisplayFor(model => @item.JobDescription)</p>
+                                            </dd>
+
+                                            <dt>
+                                                @Html.DisplayNameFor(model => @item.DatePosted)
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => @item.DatePosted)
+                                            </dd>
+
+                                            <dt>
+                                                @Html.DisplayNameFor(model => @item.ExpectedStartDate)
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => @item.ExpectedStartDate)
+                                            </dd>
+                                        </dl>
+                                        <a href="#" class="align-center button alt">Appply</a>
+                                    </div>
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			</section>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            @Html.ActionLink("Back to List", "Index")*@
+		<!-- Scripts -->
+			<script src="~/Content/FacultyRecruitment/Contents/GetAllJobOpenings/static/js/jquery.min.js"></script>
+			<script src="~/Content/FacultyRecruitment/Contents/GetAllJobOpenings/static/js/jquery.scrollex.min.js"></script>
+			<script src="~/Content/FacultyRecruitment/Contents/GetAllJobOpenings/static/js/skel.min.js"></script>
+			<script src="~/Content/FacultyRecruitment/Contents/GetAllJobOpenings/static/js/util.js"></script>
+			<script src="~/Content/FacultyRecruitment/Contents/GetAllJobOpenings/static/js/main.js}"></script>
