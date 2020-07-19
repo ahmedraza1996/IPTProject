@@ -31,7 +31,7 @@
     - .hidden-*-up to .d-*-none
     - .checkbox to .form-check
     - .radio to .form-check
-    - more class changes here:https://getbootstrap.com/docs/4.0/migration/
+    - more class changes here:http://getbootstrap.com/docs/4.0/migration/
 - Bug fixes for responsive devices
 - Small changes for components
 

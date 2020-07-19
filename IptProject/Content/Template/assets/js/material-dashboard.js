@@ -4,7 +4,7 @@
  * Material Dashboard - v2.1.2
  =========================================================
 
- * Product Page: https://www.creative-tim.com/product/material-dashboard
+ * Product Page: http://www.creative-tim.com/product/material-dashboard
  * Copyright 2020 Creative Tim (http://www.creative-tim.com)
 
  * Designed by www.invisionapp.com Coded by www.creative-tim.com

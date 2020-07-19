@@ -124,11 +124,11 @@ var Tooltip = function () {
    *      You may pass multiple triggers; separate them with a space. `manual` cannot be combined with any other trigger.
    * @param {HTMLElement} options.boundariesElement
    *      The element used as boundaries for the tooltip. For more information refer to Popper.js'
-   *      [boundariesElement docs](https://popper.js.org/popper-documentation.html)
+   *      [boundariesElement docs](http://popper.js.org/popper-documentation.html)
    * @param {Number|String} options.offset=0 - Offset of the tooltip relative to its reference. For more information refer to Popper.js'
-   *      [offset docs](https://popper.js.org/popper-documentation.html)
+   *      [offset docs](http://popper.js.org/popper-documentation.html)
    * @param {Object} options.popperOptions={} - Popper options, will be passed directly to popper instance. For more information refer to Popper.js'
-   *      [options docs](https://popper.js.org/popper-documentation.html)
+   *      [options docs](http://popper.js.org/popper-documentation.html)
    * @return {Object} instance - The generated tooltip instance
    */
   function Tooltip(reference, options) {

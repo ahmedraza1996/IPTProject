@@ -265,7 +265,7 @@ namespace IptProject.Controllers
             
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44380/api/");
+                client.BaseAddress = new Uri("http://13.229.231.75:8080/api/");
                 //HTTP GET
                 var responseTask = client.GetAsync("fyp1get/GetFypDetailsByTitle?title="+title);
                 responseTask.Wait();

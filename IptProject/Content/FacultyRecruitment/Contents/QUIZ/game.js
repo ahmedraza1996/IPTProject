@@ -14,7 +14,7 @@ let availableQuesions = [];
 let questions = [];
 
 fetch(
-  "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple"
+  "http://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple"
 )
   .then(res => {
     return res.json();

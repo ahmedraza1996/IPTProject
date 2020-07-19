@@ -1,4 +1,4 @@
-// FIXME: only necessary because there isn't an underscored file - see https://github.com/twbs/bootstrap/issues/18350
+// FIXME: only necessary because there isn't an underscored file - see http://github.com/twbs/bootstrap/issues/18350
 //@import "../bower_components/bootstrap/scss/
 //@import "../../bootstrap/scss/
 
@@ -7,7 +7,7 @@
 @import "./bootstrap/scss/variables";
 @import "./bootstrap/scss/mixins";
 
-// #853 start - https://github.com/twbs/bootstrap/pull/18976/files
+// #853 start - http://github.com/twbs/bootstrap/pull/18976/files
 // hack
 @mixin pull-left {
   float: left !important;
@@ -21,7 +21,7 @@
     margin-left: auto;
   }
 }
-// #853 end - https://github.com/twbs/bootstrap/pull/18976/files
+// #853 end - http://github.com/twbs/bootstrap/pull/18976/files
 
 // Reset and dependencies
 @import "./bootstrap/scss/reboot";

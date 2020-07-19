@@ -18,7 +18,7 @@ namespace IptProject.Controllers.JobPortal
         public async Task<ActionResult> Profile()
 
         {
-            string Baseurl = "https://localhost:44380/";
+            string Baseurl = "http://13.229.231.75:8080/";
             List<Experience> experiences = new List<Experience>();
 
             List<Skill> skills = new List<Skill>();
@@ -103,7 +103,7 @@ namespace IptProject.Controllers.JobPortal
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri("http://13.229.231.75:8080/api/");
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
 
@@ -145,7 +145,7 @@ namespace IptProject.Controllers.JobPortal
                     //byte[] bytes = System.IO.File.ReadAllBytes(file);
                     using (var client = new HttpClient())
                     {
-                        client.BaseAddress = new Uri("https://localhost:44380/api/");
+                        client.BaseAddress = new Uri("http://13.229.231.75:8080/api/");
                         MemoryStream target = new MemoryStream();
                         file.InputStream.CopyTo(target);
                         byte[] data = target.ToArray();
@@ -176,7 +176,7 @@ namespace IptProject.Controllers.JobPortal
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri("http://13.229.231.75:8080/api/");
 
                 //HTTP DELETE
                 var deleteTask = client.DeleteAsync("studentProfile/DeleteProject/" + id);
@@ -194,7 +194,7 @@ namespace IptProject.Controllers.JobPortal
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44380/api/");
+                client.BaseAddress = new Uri("http://13.229.231.75:8080/api/");
 
                 //HTTP DELETE
                 var deleteTask = client.DeleteAsync("studentProfile/DeleteExperience/" + id);

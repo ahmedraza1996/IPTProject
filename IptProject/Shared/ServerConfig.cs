@@ -14,7 +14,7 @@ namespace IptProject.Shared
             string Ip = ConfigurationManager.AppSettings["serverIP"].ToString();
             string port= ConfigurationManager.AppSettings["serverPort"].ToString();
 
-            string baseurl = "https://" + Ip + ":" + port + "/api/";
+            string baseurl = "http://" + Ip + ":" + port + "/api/";
             return baseurl;
         }
     }

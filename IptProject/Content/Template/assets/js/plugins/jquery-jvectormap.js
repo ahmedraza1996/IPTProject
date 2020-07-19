@@ -376,7 +376,7 @@ jvm.$ = jQuery;
 
 /**
  * indexOf polyfill for IE < 9
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
+ * http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
  */
 if (!Array.prototype.indexOf) {
   Array.prototype.indexOf = function(searchElement, fromIndex) {
@@ -1395,7 +1395,7 @@ jvm.NumericScale.prototype = {
     return Math.sqrt(result);
   },
 
-  /* Derived from d3 implementation https://github.com/mbostock/d3/blob/master/src/scale/linear.js#L94 */
+  /* Derived from d3 implementation http://github.com/mbostock/d3/blob/master/src/scale/linear.js#L94 */
   getTicks: function() {
     var m = 5,
       extent = [this.clearMinValue, this.clearMaxValue],

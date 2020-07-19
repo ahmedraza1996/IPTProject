@@ -42,7 +42,7 @@
         @*<script>
             function s(e) {
                 console.log("dedededededededededededededededededede");
-                fetch("https://localhost:44380/api/coursefeedback/postAnswers", {method: "post"));
+                fetch("http://13.229.231.75:8080/api/coursefeedback/postAnswers", {method: "post"));
                // $('#Form').serializeArray();
                 return false;
             }
@@ -77,14 +77,14 @@
                 payload.push(obj)
             }
             console.log(payload[3])
-            fetch("http://localhost:44380/api/coursefeedback/postAnswers", {
+            fetch("http://13.229.231.75:8080/api/coursefeedback/postAnswers", {
                 headers: {
                  'Content-Type': 'application/json'
     },
                 method: "POST",
                 body: JSON.stringify(payload)
             }).then(() => {
-                window.location = "https://localhost:44359/CourseFeedback/ShowCourseList";
+                window.location = "http://13.229.231.75:8081/CourseFeedback/ShowCourseList";
             })
 
         }
@@ -110,7 +110,7 @@
             }); 
         });
         if (!getCookieValue("feedbackId")) {
-            window.location = "https://localhost:44359/CourseFeedback/ShowCourseList"
+            window.location = "http://13.229.231.75:8081/CourseFeedback/ShowCourseList"
         }
     </script>
 

@@ -1,8 +1,8 @@
 /*!
- * Bootstrap-select v1.13.1 (https://developer.snapappointments.com/bootstrap-select)
+ * Bootstrap-select v1.13.1 (http://developer.snapappointments.com/bootstrap-select)
  *
  * Copyright 2012-2018 SnapAppointments, LLC
- * Licensed under MIT (https://github.com/snapappointments/bootstrap-select/blob/master/LICENSE)
+ * Licensed under MIT (http://github.com/snapappointments/bootstrap-select/blob/master/LICENSE)
  */
 
 (function(root, factory) {

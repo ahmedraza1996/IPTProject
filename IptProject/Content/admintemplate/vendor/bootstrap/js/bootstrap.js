@@ -1,7 +1,7 @@
 /*!
- * Bootstrap v4.0.0-beta (https://getbootstrap.com)
- * Copyright 2011-2017 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Bootstrap v4.0.0-beta (http://getbootstrap.com)
+ * Copyright 2011-2017 The Bootstrap Authors (http://github.com/twbs/bootstrap/graphs/contributors)
+ * Licensed under MIT (http://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
 if (typeof jQuery === 'undefined') {
@@ -29,7 +29,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-beta): util.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (http://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
 
@@ -51,7 +51,7 @@ var Util = function ($) {
     OTransition: 'oTransitionEnd otransitionend',
     transition: 'transitionend'
 
-    // shoutout AngusCroll (https://goo.gl/pxwQGp)
+    // shoutout AngusCroll (http://goo.gl/pxwQGp)
   };function toType(obj) {
     return {}.toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
   }
@@ -181,7 +181,7 @@ var Util = function ($) {
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-beta): alert.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (http://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
 
@@ -360,7 +360,7 @@ var Alert = function ($) {
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-beta): button.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (http://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
 
@@ -530,7 +530,7 @@ var Button = function ($) {
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-beta): carousel.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (http://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
 
@@ -1037,7 +1037,7 @@ var Carousel = function ($) {
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-beta): collapse.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (http://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
 
@@ -1400,7 +1400,7 @@ var Collapse = function ($) {
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-beta): dropdown.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (http://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
 
@@ -1408,10 +1408,10 @@ var Dropdown = function ($) {
 
   /**
    * Check for Popper dependency
-   * Popper - https://popper.js.org
+   * Popper - http://popper.js.org
    */
   if (typeof Popper === 'undefined') {
-    throw new Error('Bootstrap dropdown require Popper.js (https://popper.js.org)');
+    throw new Error('Bootstrap dropdown require Popper.js (http://popper.js.org)');
   }
 
   /**
@@ -1540,7 +1540,7 @@ var Dropdown = function ($) {
       // if this is a touch-enabled device we add extra
       // empty mouseover listeners to the body's immediate children;
       // only needed because of broken event delegation on iOS
-      // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+      // http://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
       if ('ontouchstart' in document.documentElement && !$(parent).closest(Selector.NAVBAR_NAV).length) {
         $('body').children().on('mouseover', null, $.noop);
       }
@@ -1825,7 +1825,7 @@ var Dropdown = function ($) {
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-beta): modal.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (http://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
 
@@ -2396,7 +2396,7 @@ var Modal = function ($) {
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-beta): scrollspy.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (http://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
 
@@ -2710,7 +2710,7 @@ var ScrollSpy = function ($) {
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-beta): tab.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (http://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
 
@@ -2962,7 +2962,7 @@ var Tab = function ($) {
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-beta): tooltip.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (http://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
 
@@ -2970,10 +2970,10 @@ var Tooltip = function ($) {
 
   /**
    * Check for Popper dependency
-   * Popper - https://popper.js.org
+   * Popper - http://popper.js.org
    */
   if (typeof Popper === 'undefined') {
-    throw new Error('Bootstrap tooltips require Popper.js (https://popper.js.org)');
+    throw new Error('Bootstrap tooltips require Popper.js (http://popper.js.org)');
   }
 
   /**
@@ -3230,7 +3230,7 @@ var Tooltip = function ($) {
         // if this is a touch-enabled device we add extra
         // empty mouseover listeners to the body's immediate children;
         // only needed because of broken event delegation on iOS
-        // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+        // http://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
         if ('ontouchstart' in document.documentElement) {
           $('body').children().on('mouseover', null, $.noop);
         }
@@ -3635,7 +3635,7 @@ var Tooltip = function ($) {
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-beta): popover.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (http://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
 

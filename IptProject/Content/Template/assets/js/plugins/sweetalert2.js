@@ -480,7 +480,7 @@
         return 0;
       });
 
-    // https://github.com/jkup/focusable/blob/master/index.js
+    // http://github.com/jkup/focusable/blob/master/index.js
     var otherFocusableElements = Array.prototype.slice.call(getPopup().querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable], audio[controls], video[controls]'));
 
     return uniqueArray(focusableElementsWithTabindex.concat(otherFocusableElements));
@@ -614,7 +614,7 @@
   }();
 
   // Measure width of scrollbar
-  // https://github.com/twbs/bootstrap/blob/master/js/modal.js#L279-L286
+  // http://github.com/twbs/bootstrap/blob/master/js/modal.js#L279-L286
   var measureScrollbar = function measureScrollbar() {
     var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
     if (supportsTouch) {
@@ -1127,7 +1127,7 @@
     getTimerLeft: getTimerLeft
   });
 
-  // https://github.com/Riim/symbol-polyfill/blob/master/index.js
+  // http://github.com/Riim/symbol-polyfill/blob/master/index.js
 
   var _Symbol = typeof Symbol === 'function' ? Symbol : function() {
     var idCounter = 0;
@@ -1140,7 +1140,7 @@
   }();
 
   // WeakMap polyfill, needed for Android 4.4
-  // Related issue: https://github.com/sweetalert2/sweetalert2/issues/1071
+  // Related issue: http://github.com/sweetalert2/sweetalert2/issues/1071
   // http://webreflection.blogspot.fi/2015/04/a-weakmap-polyfill-in-20-lines-of-code.html
 
   var WeakMap$1 = typeof WeakMap === 'function' ? WeakMap : function(s, dP, hOP) {
@@ -1173,8 +1173,8 @@
    * This module containts `WeakMap`s for each effectively-"private  property" that a `swal` has.
    * For example, to set the private property "foo" of `this` to "bar", you can `privateProps.foo.set(this, 'bar')`
    * This is the approach that Babel will probably take to implement private methods/fields
-   *   https://github.com/tc39/proposal-private-methods
-   *   https://github.com/babel/babel/pull/7555
+   *   http://github.com/tc39/proposal-private-methods
+   *   http://github.com/babel/babel/pull/7555
    * Once we have the changes from that PR in Babel, and our core class fits reasonable in *one module*
    *   then we can use that language feature.
    */
@@ -1348,8 +1348,8 @@
       return (/^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9-]{2,24}$/.test(string) ? Promise.resolve() : Promise.reject(extraParams && extraParams.validationMessage ? extraParams.validationMessage : 'Invalid email address'));
     },
     url: function url(string, extraParams) {
-      // taken from https://stackoverflow.com/a/3809435/1331425
-      return (/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/.test(string) ? Promise.resolve() : Promise.reject(extraParams && extraParams.validationMessage ? extraParams.validationMessage : 'Invalid URL'));
+      // taken from http://stackoverflow.com/a/3809435/1331425
+      return (/^http?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/.test(string) ? Promise.resolve() : Promise.reject(extraParams && extraParams.validationMessage ? extraParams.validationMessage : 'Invalid URL'));
     }
   };
 
@@ -1635,7 +1635,7 @@
 
     // showLoaderOnConfirm && preConfirm
     if (params.showLoaderOnConfirm && !params.preConfirm) {
-      warn('showLoaderOnConfirm is set to true, but preConfirm is not defined.\n' + 'showLoaderOnConfirm should be used together with preConfirm, see usage example:\n' + 'https://sweetalert2.github.io/#ajax-request');
+      warn('showLoaderOnConfirm is set to true, but preConfirm is not defined.\n' + 'showLoaderOnConfirm should be used together with preConfirm, see usage example:\n' + 'http://sweetalert2.github.io/#ajax-request');
     }
   }
 
@@ -2294,7 +2294,7 @@
 
     // Check for the existence of Promise
     if (typeof Promise === 'undefined') {
-      error('This package requires a Promise library, please include a shim to enable it in this browser (See: https://github.com/sweetalert2/sweetalert2/wiki/Migration-from-SweetAlert-to-SweetAlert2#1-ie-support)');
+      error('This package requires a Promise library, please include a shim to enable it in this browser (See: http://github.com/sweetalert2/sweetalert2/wiki/Migration-from-SweetAlert-to-SweetAlert2#1-ie-support)');
     }
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {

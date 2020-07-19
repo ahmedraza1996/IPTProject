@@ -17,7 +17,7 @@ namespace IptProject.Controllers
         {
             using (var client = new HttpClient())
             {
-                string Baseurl = "https://localhost:44380/";
+                string Baseurl = "http://13.229.231.75:8080/";
                 client.BaseAddress = new Uri(Baseurl);
 
                 client.DefaultRequestHeaders.Clear();
@@ -40,7 +40,7 @@ namespace IptProject.Controllers
         {
             //using (var client = new HttpClient())
             //{
-            //    string Baseurl = "https://localhost:44380/";
+            //    string Baseurl = "http://13.229.231.75:8080/";
             //    client.BaseAddress = new Uri(Baseurl);
 
             //    client.DefaultRequestHeaders.Clear();
@@ -63,7 +63,7 @@ namespace IptProject.Controllers
         {
             using (var client = new HttpClient())
             {
-                string Baseurl = "https://localhost:44380/";
+                string Baseurl = "http://13.229.231.75:8080/";
                 client.BaseAddress = new Uri(Baseurl);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -88,7 +88,7 @@ namespace IptProject.Controllers
         {
             using (var client = new HttpClient())
             {
-                string Baseurl = "https://localhost:44380/";
+                string Baseurl = "http://13.229.231.75:8080/";
                 client.BaseAddress = new Uri(Baseurl);
 
                 Job newjob = new Job { JobID = 1234, Title = "Senior Software Engineer", Designation = "C# Developer", ApplicationLink = "", Attachments = "", LastApplyDate = "8/2/2020", ContactPerson = "Rahim Khan", MinExperience = 5, Organization = "Arpatech" };

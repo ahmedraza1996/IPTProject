@@ -1944,7 +1944,7 @@ var modifiers = {
    * ```
    * > **NB**: If you desire to apply offsets to your poppers in a way that may make them overlap
    * > with their reference element, unfortunately, you will have to disable the `flip` modifier.
-   * > More on this [reading this issue](https://github.com/FezVrasta/popper.js/issues/373)
+   * > More on this [reading this issue](http://github.com/FezVrasta/popper.js/issues/373)
    *
    * @memberof modifiers
    * @inner

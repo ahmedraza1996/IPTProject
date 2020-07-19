@@ -180,7 +180,7 @@ namespace IptProject.Controllers.adminpanel
             {
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("https://localhost:44380/api/");
+                    client.BaseAddress = new Uri("http://13.229.231.75:8080/api/");
                     client.DefaultRequestHeaders.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
